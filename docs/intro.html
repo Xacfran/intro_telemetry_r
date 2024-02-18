@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Francisco X. Castellanos  Fundación Oso Andino">
+<meta name="dcterms.date" content="2024-02-15">
 
-<title>Curso Introduccion a R - 1&nbsp; Introduction</title>
+<title>Introducción a la Telemetría de Grandes Mamíferos - 1&nbsp; Introducción a R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -61,6 +97,8 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,7 +139,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -116,7 +154,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Curso Introduccion a R</a> 
+      <a href="./">Introducción a la Telemetría de Grandes Mamíferos</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -129,13 +167,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -156,21 +194,58 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#instalando-y-r-studio" id="toc-instalando-y-r-studio" class="nav-link active" data-scroll-target="#instalando-y-r-studio"><span class="header-section-number">2</span> Instalando <i class="fab fa-r-project"></i> y R Studio</a></li>
+  <li><a href="#ya-has-instalado-r-studio-y-ahora-qué" id="toc-ya-has-instalado-r-studio-y-ahora-qué" class="nav-link" data-scroll-target="#ya-has-instalado-r-studio-y-ahora-qué"><span class="header-section-number">3</span> !Ya has instalado R Studio! ¿Y ahora qué?</a></li>
+  <li><a href="#qué-es-un-script" id="toc-qué-es-un-script" class="nav-link" data-scroll-target="#qué-es-un-script"><span class="header-section-number">4</span> ¿Qué es un script?</a></li>
+  <li><a href="#primeros-pasos" id="toc-primeros-pasos" class="nav-link" data-scroll-target="#primeros-pasos"><span class="header-section-number">5</span> Primeros pasos</a></li>
+  <li><a href="#estructura-de-datos-objetos-vectores-data-frames-y-listas." id="toc-estructura-de-datos-objetos-vectores-data-frames-y-listas." class="nav-link" data-scroll-target="#estructura-de-datos-objetos-vectores-data-frames-y-listas."><span class="header-section-number">6</span> Estructura de datos: Objetos, vectores, <em>data frames</em>, y listas.</a>
+  <ul class="collapse">
+  <li><a href="#vectores" id="toc-vectores" class="nav-link" data-scroll-target="#vectores"><span class="header-section-number">6.1</span> Vectores</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices"><span class="header-section-number">6.2</span> Matrices</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">6.3</span> <em>Data frames</em></a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">6.4</span> Listas</a></li>
+  </ul></li>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link" data-scroll-target="#paquetes"><span class="header-section-number">7</span> Paquetes</a>
+  <ul class="collapse">
+  <li><a href="#dplyr-ggplot2-y-tidyverse" id="toc-dplyr-ggplot2-y-tidyverse" class="nav-link" data-scroll-target="#dplyr-ggplot2-y-tidyverse"><span class="header-section-number">7.1</span> <em>dplyr</em>, <em>ggplot2</em> y <em>tidyverse</em></a>
+  <ul class="collapse">
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">7.1.1</span> <em>ggplot2</em></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#nota" id="toc-nota" class="nav-link" data-scroll-target="#nota"><span class="header-section-number">8</span> Nota</a></li>
+  <li><a href="#fuentes" id="toc-fuentes" class="nav-link" data-scroll-target="#fuentes"><span class="header-section-number">9</span> Fuentes</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Francisco X. Castellanos<br> Fundación Oso Andino </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 15, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -180,7 +255,371 @@ div.csl-indent {
 </header>
 
 
-<p>This is a book created from markdown and executable code.</p>
+<section id="instalando-y-r-studio" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Instalando <i class="fab fa-r-project"></i> y R Studio</h1>
+<p>R Studio es un entorno de desarrollo integrado (IDE por sus siglas en inglés), con varias herramientas que permiten utilizar los lenguajes de programación <em>R</em> y <em>python</em>, ambas utilizadas ampliamente en la ciencia de datos. Este software provee una interfaz intuitiva que permite un manejo fácil y amigable de cualquier tipo de datos. Tanto R como R Studio son de código abierto y pueden descargarse gratuitamente.</p>
+<p>Actualmente, existen dos alternativas para utilizar R Studio. Este puede instalarse localmente en un computador, o puedes utilizarlo en la web a través de <a href="https://posit.cloud/">Posit Cloud</a>. Esta última opción es muy útil si tu computador no cuenta con suficiente memoria RAM. Crear una cuenta en Posit cloud es gratis y puedes crear hasta <strong>25 proyectos</strong>. Para hacerlo solamente sigue <a href="https://posit.cloud/plans/free">este enlace</a>, haz clic en <em>Sign up</em>, y sigue las instrucciones.</p>
+<p>Una vez hayas creado tu cuenta, verás una ventana como la siguiente y puedes crear un nuevo proyecto:</p>
+<p><img src="docs/Figures/posit_cloud_start.png" class="img-fluid"></p>
+<p>Por el contrario, si quieres tener R y R Studio en tu computador debes contar con acceso a internet y cualquier navegador web de tu preferencia, Chrome, Firefox, etc. Si tu Sistema Operativo es Windows la descarga de R debe hacerse desde el subdirectorio base en la web de CRAN (Comprehensive R Archive Network), <a href="https://cran.r-project.org/bin/windows/base/">aquí</a>. De la misma manera, R Studio para Windows puede ser descargado desde <a href="https://posit.co/download/rstudio-desktop/">aquí</a>. Si surge algún problema durante la instalación o quieres saber más sobre R, puedes dirigirte a la sección de <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html">Preguntas frecuentes de R</a>.</p>
+<p>Si tienes otro Sistema Operativo o tienes un nivel medio o avanzado en el uso de R, te recomiendo leer este <a href="https://rubenfcasal.github.io/post/instalacion-de-r/#windows">tutorial de instalación</a>.</p>
+</section>
+<section id="ya-has-instalado-r-studio-y-ahora-qué" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> !Ya has instalado R Studio! ¿Y ahora qué?</h1>
+<p>Una vez que abras R Studio notarás muchas opciones, paneles y una consola que puede parecer confusa al principio pero ahora te familiarizarás rápidamente con esta interfaz.</p>
+<p>La barra de herramientas en la parte superior contiene las opciones File, Edit, Code, View, etc. Debajo de <strong>File</strong> puedes encontrar un icono similar a este <i class="fa-solid fa-file-circle-plus" aria-label="file-circle-plus"></i>. Una vez hagas clic en este, podrás ver una amplia lista de documentos que puedes crear, entre ellos <strong>R Script</strong>. Este es el tipo de documento que utilizaremos para escribir nuestros códigos.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>También puedes crear un nuevo script presionando <strong><code>Ctrl+Shift+N</code></strong>.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="docs/Figures/script1.png" class="border column-page-right img-fluid quarto-figure quarto-figure-center figure-img" alt="Interfaz R"></p>
+</figure>
+</div>
+<p>Una vez que hayas creado un nuevo script, R Studio lucirá de la siguiente manera:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="Figures/R_script2.png" class="border column-page-right img-fluid quarto-figure quarto-figure-center figure-img" alt="Crear nuevo script"></p>
+</figure>
+</div>
+<p>Ahora puedes observar 4 paneles con varias opciones dentro de cada uno.</p>
+<ul>
+<li><strong>Source</strong> es el panel en el que manipularemos y almacenaremos nuestros códigos como <strong>Scripts</strong>.</li>
+<li><strong>Environment</strong> almacena los objetos que son creados a lo largo de nuestro trabajo.</li>
+<li>El panel que contiene a las pestañas Files, Plots, Packages, Help y Viewer, nos permite encontrar de manera rápida y eficiente los archivos en nuestro directorio de trabajo (<strong>Files</strong>), los gráficos generados a partir de análisis (<strong>Plots</strong>), los paquetes instalados (<strong>Packages</strong>), manuales de ayuda de R y de paquetes instalados (<strong>Help</strong>), y por último encontramos a <strong>Viewer</strong>, un panel que nos muestra gráficos interactivos generados por algunos paquetes.</li>
+<li>En <strong>Console</strong> encontrarás el signo “&gt;” llamado prompt que nos muestra si el sistema está listo o no para ejecutar un comando. Además, los resultados de los análisis se mostrarán aquí.</li>
+</ul>
+</section>
+<section id="qué-es-un-script" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> ¿Qué es un script?</h1>
+<p>Un script es una serie de comandos escritos en un archivo de texto que pueden ser almacenados, editados y ejecutados. ¿Suena sencillo? Efectivamente es un concepto simple y tiene muchas ventajas si se lo compara con programas que no cuentan con esta opción. Un script nos brinda la posibilidad de editar cualquier línea de comando las veces que sea necesario, te permite retomar cualquier trabajo tras varios días, meses o años. Además puedes agregar comentarios sobre el código que escribes como veremos a continuación. Esto resulta extremanente útil si quieres compartir tu trabajo con otros, o si te encuentras trabajando en un proyecto extenso, el cual podrás retomar exactamente desde donde lo dejaste.</p>
+<p>Ahora que conoces un poco más sobre esta interfaz, ¡ya puedes empezar!</p>
+</section>
+<section id="primeros-pasos" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Primeros pasos</h1>
+<p>Empecemos escribiendo operaciones matemáticas sencillas en el script.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora presiona Enter, ¿qué sucede? Es importante saber que la ejecución de comandos con la tecla <strong>Enter</strong> se lleva a cabo solamente en la <strong>Consola</strong>. Si quieres ejecutar un código dentro del script, debes apretar <strong>Ctrl+Enter</strong>.</p>
+<p>Ahora escribe la misma operación precedida por un signo numeral <code>#</code> y presiona <strong>Ctrl+Enter</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 + 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>¿Hay algún resultado? Si colocamos este símbolo al iniciar una línea, esta no será leída como un código por R, por lo que no se ejecutará. Esto es muy útil al momento de agregar comentarios sobre el código que escribimos y para poder compartirlo con otros y así entiendan rápidamente que realizaste en tu trabajo.</p>
+<p>Sigamos intentando con más operaciones matemáticas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Divisón</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span><span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicación y suma</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">+</span><span class="dv">7</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">7</span>) <span class="co">#¿Este resultado es diferente?</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Potenciación</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Potencia negativa</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">^-</span><span class="dv">3</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># También puedes ejecutar varias operaciones sobre una misma línea</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span><span class="dv">10</span> ; <span class="dv">15</span><span class="sc">/</span><span class="dv">45</span> ; <span class="dv">15-37</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Compliquemos esto aplicando otras funciones matemáticas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logaritmo</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">5</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Logaritmo natural y base 10 con otras operaciones</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">5</span>)<span class="sc">/</span><span class="fu">log2</span> (<span class="dv">5</span><span class="sc">*</span><span class="dv">3</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Raiz cuadrada</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">23.567</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Factorial</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span> (<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nota que los números ahora se encuentran dentro de un paréntesis y delante de una <strong>función</strong>. Existen probablemente millones de funciones en R con propósitos diferentes y específicos. Para poder ejecutarlas, éstas deben estar escritas con la estructura que viste en el ejemplo anterior <code>función( ... )</code>. Tú también puedes crear tus propias funciones, pero eso lo dejaremos para un curso más avanzado.</p>
+<p>Todos los resultados de estas operaciones se muestran en la <strong>Consola</strong>. Sin embargo, si quisieras almacenarlos y manipularlos es necesario transformarlos en <strong>objetos</strong>. Para ello debemos hablar sobre la estructura de datos.</p>
+</section>
+<section id="estructura-de-datos-objetos-vectores-data-frames-y-listas." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Estructura de datos: Objetos, vectores, <em>data frames</em>, y listas.</h1>
+<p>R contiene una jerarquía de elementos y provee varios tipos de estructuras de datos especializadas a las que se les conoce como objetos. Para los propósitos de este curso mencionaremos a los vectores y matrices pero nos enfocaremos en los <em>data frames</em>. Sin embargo, es importante saber que existen otros tipos de estructuras de datos como las listas, que utilizaremos ampliamente en el nivel avanzado de este curso.</p>
+<section id="vectores" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="vectores"><span class="header-section-number">6.1</span> Vectores</h2>
+<p>Un vector es una secuencia de datos del mismo tipo ya sean <strong>numéricos</strong> o de <strong>carácter</strong>. Así, para construir vectores numéricos, deberemos primeramente nombrar a nuestro objeto y asignarle valores mediante <code>&lt;-</code>. Supongamos que quieres almacenar los resultados de las operaciones anteriores en un objeto “x” e “y”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">5</span>)<span class="sc">/</span><span class="fu">log2</span>(<span class="dv">5</span><span class="sc">*</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Observa que en el panel <strong>Environment</strong> ahora hay dos objetos que corresponden a los vectores numéricos que creaste con los resultados de cada operación. De esta manera, ahora será más fácil manipular estos datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecuta lo siguiente</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">*</span>y</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Almacena el resultado de ambos objetos en un vector nuevo</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x<span class="sc">*</span>y</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Puedes imprimir el resultado en la consola</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora crea una secuencia de números dentro de un vector. Una forma rápida de crear este tipo de vectores es mediante la función <code>seq</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Puedes crear números sucesivos del 1 - 10</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># O una secuencia hasta el 15 con un intervalo de 3</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La función <code>seq</code> crea secuencias en este caso del número 1 hasta el 15, con un intervalo de 3. Pero, ¿cómo podrías saber qué significa cada argumento dentro de una función si no la conoces?</p>
+<p>Existen dos maneras de indagar sobre una función cualquiera y obtener ayuda sobre la misma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>?seq</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(seq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La sección de ayuda contiene todo lo que debes saber sobre cualquier función, al final de cada manual de instrucciones de la función podrás ver además ejemplos que te ayudarán a entenderla y aplicarla según tus necesidades.</p>
+<p>Ahora bien, puedes aplicar esto a un ejemplo más cotidiano. Imagina que posees datos de distintos pesos de varios individuos de una especie de roedor que has capturado y quieres realizar algunas operaciones con ellos. Almacena estos pesos dentro de un vector utilizando la función concatenar <code>c()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pesos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">26</span>, <span class="fl">27.5</span>, <span class="dv">23</span>, <span class="fl">30.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora que tienes estos datos almacenados en un vector, puedes realizar operaciones con ellos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de observaciones</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pesos)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores minimo o maximo de estos datos</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(pesos)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(pesos)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Promedio</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para hacer este ejemplo aún más real, imagina que las medidas tomadas eran erróneas o ya no sirven para su estudio. Puedes entonces modificar el vector de la siguiente manera:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elimina el cuarto valor en nuestro vector</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pesos_mod <span class="ot">&lt;-</span> pesos[<span class="sc">-</span><span class="dv">4</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remueve desde el primer hasta el quinto valor</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>pesos_mod <span class="ot">&lt;-</span> pesos[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">5</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrega más valores al vector</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>pesos_mod <span class="ot">&lt;-</span> <span class="fu">c</span>(pesos, <span class="dv">21</span>, <span class="fl">28.3</span>, <span class="dv">31</span>, <span class="fl">26.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cuando modificas un vector es usualmente aconsejable crear uno nuevo y almacenar la nueva información en éste. El código no siempre se verá tan sencillo como en el ejemplo anterior y es mejor trabajar de una manera segura al manipular metadatos.</p>
+<p>Es muy útil saber que si deseas eliminar cualquier objeto, lo puedes hacer en cualquier momento mediante la función <code>remove()</code> o <code>rm()</code>. Esto es especialmente útil si estás trabajando con un set de datos muy grande y quieres liberar memoria.</p>
+</section>
+<section id="matrices" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="matrices"><span class="header-section-number">6.2</span> Matrices</h2>
+<p>Una matriz no es más que un conjunto de datos del mismo tipo organizado de forma bidimensional, es decir, en filas y columnas. Crear y modificar matrices tiene también un proceso parecido al de los vectores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="at">ncol=</span><span class="dv">7</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>matriz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Organiza diferentes matrices con diferentes números de columnas y filas, usa <code>help(matrix)</code> para saber como hacerlo. ¿Qué sucede si organizas la matriz mediante <code>matrix(2:14, ncol=3)</code>?:</p>
+</div>
+</div>
+<p>Este método solo crea matrices con datos secuenciales, entonces ¿cómo podrías organizar distintos pesos de roedores de forma bidimensional? Siguiendo con el ejemplo de los roedores, supongamos que tienes dos especies de roedores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>roedor1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">26</span>, <span class="fl">27.5</span>, <span class="dv">23</span>, <span class="fl">30.8</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>roedor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="fl">26.5</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">31</span>, <span class="fl">27.5</span>, <span class="dv">28</span>, <span class="fl">20.8</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lee sobre cbind usando help()</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>roedores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(roedor1, roedor2)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora utiliza rbind() para unir ambos vectores. ¿Cuál es la diferencia?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Al igual que los vectores, las matrices también pueden ser modificadas. Sin embargo, al haber añadido una dimensión más a nuestros datos, la forma de escribir los códigos cambia dependiendo de si quieres modificar una fila o una columna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elimina la cuarta fila</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>roedores_mod <span class="ot">&lt;-</span> roedores[<span class="sc">-</span><span class="dv">4</span>,]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Elimina la 1ra, 2da y 7ma fila</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>roedores_mod <span class="ot">&lt;-</span> roedores[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">7</span>),]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora intenta esto</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>roedores_mod <span class="ot">&lt;-</span> roedores[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Qué pasó luego de ejecutar este código?</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Observa la posición de la coma</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Añade dos nuevas columnas a la matriz roedores y posteriormente elimina los datos desde la 2<sup>da</sup> hasta la 4<sup>ta</sup> fila.</p>
+</div>
+</div>
+<p>También puedes usar distintas funciones para analizar cualquier matriz.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(roedores)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(roedores)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(roedores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Puedes leer mas sobre estas funciones en la sección de ayuda.</p>
+</section>
+<section id="data-frames" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">6.3</span> <em>Data frames</em></h2>
+<p>Un <em>data frame</em> es un set de datos que puede estar conformado tanto por valores numéricos o también por caracteres. Trabajar con este tipo de objetos es una aproximación más realista debido al tipo de .</p>
+<p>Continuemos con nuestro ejemplo de los roedores, supongamos que quieres agregar una columna que contenga un vector de caracteres y se le asigne el nombre de especie a cada roedor. Para este propósito organizaremos los datos de pesos de los roedores en filas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Añade varias veces los objetos creados anteriormente</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>roedores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(roedor1, roedor2, roedor1, roedor2)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(roedores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Crea un vector de caracteres</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>localidad <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Quito"</span>, <span class="st">"Guayaquil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El objeto roedores es aún una matriz, ¿cómo podrías añadir las localidades para convertirlo en un <em>data frame</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utiliza la función data.frame</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>roedores <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(roedores, localidad)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analiza el data frame</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(roedores)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(roedores)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(roedores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La función <code>summary</code> y <code>str</code> nos brindan información relevantes que será necesaria en clases posteriores. ¿Qué pasa si quieres saber algo más específico como cuántos valores por debajo de 25 existen en el <em>data frame</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>roedores <span class="sc">&lt;=</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     roedor1 roedor2 roedor1.1 roedor2.1 localidad
+[1,]    TRUE   FALSE      TRUE     FALSE     FALSE
+[2,]   FALSE   FALSE     FALSE     FALSE     FALSE
+[3,]   FALSE   FALSE     FALSE     FALSE     FALSE
+[4,]    TRUE    TRUE      TRUE      TRUE     FALSE
+[5,]   FALSE   FALSE     FALSE     FALSE     FALSE
+[6,]   FALSE   FALSE     FALSE     FALSE     FALSE
+[7,]    TRUE   FALSE      TRUE     FALSE     FALSE
+[8,]   FALSE    TRUE     FALSE      TRUE     FALSE</code></pre>
+</div>
+</div>
+<p>Ejecutar este código nos devuelve valores lógicos o también llamados <em>booleanos</em> como resultado. Cada <code>TRUE</code> o <code>FALSE</code> puede ser contado individualmente, pero ¿cómo lograrías contarlos automáticamente?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(roedores<span class="sc">&lt;=</span> <span class="dv">25</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Ahora utiliza la función which(), ¿cuál es la diferencia?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También puedes elegir columnas individuales y realizar el mismo procedimiento. El signo <code>$</code> señala cual es la columna de la cual quieres tomar los datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>roedores<span class="sc">$</span>roedor1 <span class="sc">&gt;</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La manipulación de esta clase de objetos será ampliada y tratada con más detenimiento en la siguiente clase.</p>
+</section>
+<section id="listas" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="listas"><span class="header-section-number">6.4</span> Listas</h2>
+<p>xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+</section>
+</section>
+<section id="paquetes" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Paquetes</h1>
+<p>El hecho de que R sea un software de código abierto permite que cualquier persona puede crear sus propias líneas de código y funciones para resolver determinados problemas o automatizar procesos.</p>
+<p>Existen un gran número de paquetes que pueden ser descargados gratuitamente desde el repositorio central de paquetes de R, <strong>CRAN</strong>. Sin embargo, CRAN no es el único repositorio que existe y aunque en este curso este es el único que ocuparemos, es necesario nombrar a <strong>Bioconductor</strong> y <strong>Github</strong> como otros de los más usados. Cada uno cuenta con su manera de descarga e instalación de paquetes.</p>
+<p>Volviendo a CRAN, para descargar un paquete solamente necesitamos ejecutar el comando <code>install.packages("nombre_del_paquete")</code>. El nombre del paquete debe ser reemplazado dentro de los paréntesis y entre comillas, de la siguiente manera:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Instala el paquete dplyr</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Una vez descargado, este ya se encuentra almacenado en tu computadora, en la dirección que indica la consola. Ahora, para poder usarlo solamente debes activarlo mediante:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Los paquetes también cuentan con una sección de ayuda, a la cual puedes acceder mediante este código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span> (<span class="at">package=</span> <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora que ya sabes descargar paquetes, descarga <code>ggplot2</code>, el cual será necesario para visualizar datos en la siguiente sección.</p>
+<section id="dplyr-ggplot2-y-tidyverse" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="dplyr-ggplot2-y-tidyverse"><span class="header-section-number">7.1</span> <em>dplyr</em>, <em>ggplot2</em> y <em>tidyverse</em></h2>
+<p><em>Tidyverse</em> es una colección de paquetes que contiene a dplyr y ggplot2. Estos han sido creados para facilitar la manipulación y vsualización de datos mediante gráficos estéticos con varias opciones para modificarlos y presentarlos. Puedes ver algunos ejemplos en la <a href="https://r-graph-gallery.com/">galería oficial</a> de <em>ggplot2</em>, y varios ejemplos sobre las <a href="https://exts.ggplot2.tidyverse.org/gallery/">extensiones</a> que han sido escritas para ampliar aún más el funcionamiento de este paquete.</p>
+<p>Una vez hayas activado dplyr, ya puedes buscat datos específicos en el <em>data frame</em> “roedores”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtra por localidad</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(roedores, localidad <span class="sc">==</span> <span class="st">"Quito"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Almacena los resultados en un objeto nuevo llamado capital</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>capital <span class="ot">&lt;-</span> <span class="fu">filter</span>(roedores, localidad <span class="sc">==</span> <span class="st">"Quito"</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>capital <span class="ot">&lt;-</span> <span class="fu">select</span>(capital, roedor2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>📚 <strong>Tarea</strong></p>
+<p>Utiliza todo lo aprendido en esta clase y el set de datos <code>roedores</code> y responde: ¿cuántos individuos de Guayaquil tienen pesos menores o iguales a 26.5?</p>
+<section id="ggplot2" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">7.1.1</span> <em>ggplot2</em></h3>
+<p>Ahora puedes visualizar los datos de una manera más atractiva y comprensible. Para ello, activa el paquete <em>ggplot2</em> y ejecuta:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> roedores) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> roedor1, <span class="at">y =</span> roedor2),</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="intro_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>📚 <strong>Tarea</strong></p>
+<p>Utiliza el manual de ayuda de <code>geom_point()</code> para descifrar como elaboré este gráfico:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="intro_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="nota" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Nota</h1>
+<p>Como en cualquier actividad o disciplina, el manejo de R requiere constancia, disciplina y paciencia. Ten en cuenta que los ejemplos de este curso están planeados para que funcionen al primer intento, sin embargo, esto jamás va a ser la normal cuando analices tu propio set de datos debdo a múltiples factores. Ten en cuenta que muchas veces las respuestas a los inconvenientes que encuentres podrás resolverlos en varios sitios web, e incluso con la ayuda Inteligencia Artificial (IA).</p>
+<p>Si eres nuevo en el mundo de la programación, no recomiendo que utilices IA para resolver tus problemas, ya que el autoaprendizaje y la prueba y error son sumamente importantes cuando se empieza a conocer un lenguaje de programación.</p>
+</section>
+<section id="fuentes" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Fuentes</h1>
+<p>El presente trabajo ha sido escrito y editado por <a href="https://orcid.org/0000-0003-0955-8185">Francisco Castellanos</a> y está influenciado por la clase “Introducción Básica al Lenguaje de R” de <a href="https://www.researchgate.net/profile/Juan-Zurano-3">Juan Pablo Zurano</a>, así como también: <a href="https://bookdown.org/ndphillips/YaRrr/writing-r-scripts-in-an-editor.html">YaRrr</a> y <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf">The R Book</a>. <br> <br></p>
+<hr>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><small style="font-size: 80%;">© 2024 Fundación Oso Andino. Todos los derechos reservados.</small></p>
+</div>
+</div>
+</div>
 <p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
 
 
@@ -189,6 +628,7 @@ div.csl-indent {
 Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -580,8 +1020,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./index.html" class="pagination-link" aria-label="Prefacio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefacio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
