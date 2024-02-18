@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 book:
-  title: "intro_telemetry_r"
-  author: "Norah Jones"
+  title: "Curso Introduccion a R"
+  author: "Francisco X. Castellanos"
   date: "2/18/2024"
   chapters:
     - index.qmd
