@@ -49,25 +49,61 @@ data <- read.csv("docs/datos/osos_hema.csv")
 :::{.callout-important}
 Asegúrate que el archivo `osos_hema.csv` se encuentra en el directorio que indicaste previamente.
 :::
-Una vez que hayas immportado el archivo, lo puedes ver como *data frame* en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.
+Una vez que hayas importado el archivo, lo puedes ver como *data frame* en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.
 
 Repasa brevemente las funciones que aprendiste en @sec-intro para obtener datos más específicos sobre el objeto `data`.
 
 ```{r eval=FALSE}
 head(data)
 summary(data)
-str(data) #Tipo de variable de nuestro objeto
+str(data)
 ```
 
-Observamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.
+Observa que hay una gran cantidad de datos faltantes `NA’s`.  ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?
 
-```{r eval=FALSE}
+```{r echo=TRUE}
 mean(data$colesterol)
 median(data$colesterol)
 ```
 
-Los resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el *data frame*. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s
-únicamente en éstas.
+Los resultados muestran que no es posible calcular estas medidas de tendencia sin haber limpiado el *data frame*. Para poder hacerlo, es aconsejable elegir las columnas de interés y realizar la limpieza de `NA’s` únicamente en éstas.
+
+## Manipulación de *data frames*
+
+Ahora aprenderás a manipular los datos que serán analizados en la sección [-@sec-est-basica], e investigarás si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearás si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student.
+
+Por último, investigarás si existe correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Para esto necesitas algunos paquetes.
+
+```{r eval=FALSE}
+library(tidyverse)
+library(rafalib)
+```
+
+Para deshacerte de los `NA's` puedes extraer las columnas de interés de una manera parecida a la que has aprendido anteriormente.
+
+```{r eval=FALSE}
+lipidos <- data[ ,c("colesterol", "trigliceridos", "sexo")]
+lipidos <- na.omit(lipidos)
+
+# También puedes buscar las filas que poseen NA’s
+which(is.na(data$colesterol))
+```
+📚 **Tarea**
+
+¿Cómo podrías deshacerte de todos los NA's utilizando `which(is.na())`?
+
+## Estadística básica en R {#sec-est-basica}
+
+
+
+
+
+
+
+
+
+
+
 
 ![Seguimos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
 

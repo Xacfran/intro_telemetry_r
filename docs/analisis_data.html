@@ -205,6 +205,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#archivos-csv" id="toc-archivos-csv" class="nav-link" data-scroll-target="#archivos-csv"><span class="header-section-number">2.1.1</span> Archivos <em>csv</em></a></li>
   </ul></li>
+  <li><a href="#manipulación-de-data-frames" id="toc-manipulación-de-data-frames" class="nav-link" data-scroll-target="#manipulación-de-data-frames"><span class="header-section-number">2.2</span> Manipulación de <em>data frames</em></a></li>
+  <li><a href="#sec-est-basica" id="toc-sec-est-basica" class="nav-link" data-scroll-target="#sec-est-basica"><span class="header-section-number">2.3</span> Estadística básica en R</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -260,19 +262,29 @@ Important
 <p>Asegúrate que el archivo <code>osos_hema.csv</code> se encuentra en el directorio que indicaste previamente.</p>
 </div>
 </div>
-<p>Una vez que hayas immportado el archivo, lo puedes ver como <em>data frame</em> en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.</p>
+<p>Una vez que hayas importado el archivo, lo puedes ver como <em>data frame</em> en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.</p>
 <p>Repasa brevemente las funciones que aprendiste en <a href="intro.html" class="quarto-xref"><span>Chapter 1</span></a> para obtener datos más específicos sobre el objeto <code>data</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co">#Tipo de variable de nuestro objeto</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Observamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.</p>
+<p>Observa que hay una gran cantidad de datos faltantes <code>NA’s</code>. ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>colesterol)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(data<span class="sc">$</span>colesterol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] NA</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(data<span class="sc">$</span>colesterol)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Los resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el <em>data frame</em>. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s únicamente en éstas.</p>
+<p>Los resultados muestran que no es posible calcular estas medidas de tendencia sin haber limpiado el <em>data frame</em>. Para poder hacerlo, es aconsejable elegir las columnas de interés y realizar la limpieza de <code>NA’s</code> únicamente en éstas.</p>
+</section>
+</section>
+<section id="manipulación-de-data-frames" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="manipulación-de-data-frames"><span class="header-section-number">2.2</span> Manipulación de <em>data frames</em></h2>
+<p>Ahora aprenderás a manipular los datos que serán analizados en la sección <a href="#sec-est-basica" class="quarto-xref"><span>2.3</span></a>. Investigaremos si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearemos si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student. Por último, averiguaremos si existe una correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Empecemos llamando a los paquetes que necesitamos en esta clase.</p>
+</section>
+<section id="sec-est-basica" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-est-basica"><span class="header-section-number">2.3</span> Estadística básica en R</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
@@ -281,7 +293,6 @@ Important
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

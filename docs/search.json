@@ -204,7 +204,7 @@
     "href": "analisis_data.html#importando-datos-en-r",
     "title": "2  Análisis de datos",
     "section": "",
-    "text": "2.1.1 Archivos csv\nAntes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas immportado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data) #Tipo de variable de nuestro objeto\n\nObservamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.\n\nmean(data$colesterol)\nmedian(data$colesterol)\n\nLos resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el data frame. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s únicamente en éstas.\n\n\n\nSeguimos trabajando en este tutorial",
+    "text": "2.1.1 Archivos csv\nAntes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas importado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data)\n\nObserva que hay una gran cantidad de datos faltantes NA’s. ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?\n\nmean(data$colesterol)\n## [1] NA\nmedian(data$colesterol)\n## [1] NA\n\nLos resultados muestran que no es posible calcular estas medidas de tendencia sin haber limpiado el data frame. Para poder hacerlo, es aconsejable elegir las columnas de interés y realizar la limpieza de NA’s únicamente en éstas.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
@@ -237,6 +237,46 @@
     "text": "Estamos trabajando en este tutorial",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Áreas de vida Parte II</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#manipulación-de-data-frames",
+    "href": "analisis_data.html#manipulación-de-data-frames",
+    "title": "2  Análisis de datos",
+    "section": "2.2 Manipulación de data frames",
+    "text": "2.2 Manipulación de data frames\nAhora aprenderás a manipular los datos que serán analizados en la sección 2.3. Investigaremos si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearemos si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student. Por último, averiguaremos si existe una correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Empecemos llamando a los paquetes que necesitamos en esta clase.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#subsec-est-basica",
+    "href": "analisis_data.html#subsec-est-basica",
+    "title": "2  Análisis de datos",
+    "section": "2.3 Estadística básica en R",
+    "text": "2.3 Estadística básica en R\n\n\n\nSeguimos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#sec-est-basica",
+    "href": "analisis_data.html#sec-est-basica",
+    "title": "2  Análisis de datos",
+    "section": "2.3 Estadística básica en R",
+    "text": "2.3 Estadística básica en R\n\n\n\nSeguimos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#sec:est-basica",
+    "href": "analisis_data.html#sec:est-basica",
+    "title": "2  Análisis de datos",
+    "section": "2.3 Estadística básica en R",
+    "text": "2.3 Estadística básica en R\n\n\n\nSeguimos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
   }
 ]
