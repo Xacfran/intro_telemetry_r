@@ -1,5 +1,7 @@
-# Prefacio {.unnumbered}
+# Bienvenidos {.unnumbered}
 
-Este es el curso de Introduccion a la Ecología y telemetria de Grandes mamiferos de la Fundación Oso Andino.
+Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>.
 
-Para conocer más sobre nuestra Fundación visitanos en <https://osoandino.org>.
+## Agradecimientos
+
+Este curso esta auspiciado por INABIOy la Universidad Técnica de Cotopaxi.

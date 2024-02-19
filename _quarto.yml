@@ -4,8 +4,18 @@ project:
 
 book:
   title: "Introducción a la Telemetría de Grandes Mamíferos"
-  author: "Francisco Castellanos <br> Fundación Oso Andino"
-  date: "2/18/2024"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Este tutorial fue escrito por Francisco X. Castellanos y generado en <a href="https://quarto.org/">Quarto</a>.
+    right: |
+      © 2024 Fundación Oso Andino. Todos los derechos reservados.
+  cover-image: docs/Figures/cover.png
+  favicon: docs/Figures/cover.png
+  site-url: https://r4ds.hadley.nz/
+  repo-url: https://github.com/hadley/r4ds/
+
   chapters:
     - index.qmd
     - intro.qmd
@@ -17,8 +27,7 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+
 
 
 

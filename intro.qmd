@@ -1,8 +1,4 @@
 ---
-title: "Introducción a R"
-author: "Francisco X. Castellanos<br>
-          Fundación Oso Andino"
-date: "2024-02-15"
 format:
   html:
     toc: true
@@ -15,17 +11,15 @@ editor_options:
     canonical: true
 theme: cosmo
 ---
+# Introducción a R
 
-```{r, load-libraries, warning=FALSE, message=FALSE, include = FALSE, echo = FALSE}
+```{r}
+#| echo: false
 
-library(dplyr)
-library(rmarkdown)
-library(knitr)
-library(ggplot2)
-library(tidyverse)
+source("_common.R")
 ```
 
-# Instalando <i class="fab fa-r-project"></i> y R Studio
+## Instalando <i class="fab fa-r-project"></i> y R Studio
 
 R Studio es un entorno de desarrollo integrado (IDE por sus siglas en inglés), con varias herramientas que permiten utilizar los lenguajes de programación *R* y *python*, ambas utilizadas ampliamente en la ciencia de datos.
 Este software provee una interfaz intuitiva que permite un manejo fácil y amigable de cualquier tipo de datos.
@@ -48,7 +42,7 @@ Si surge algún problema durante la instalación o quieres saber más sobre R, p
 
 Si tienes otro Sistema Operativo o tienes un nivel medio o avanzado en el uso de R, te recomiendo leer este [tutorial de instalación](https://rubenfcasal.github.io/post/instalacion-de-r/#windows).
 
-# !Ya has instalado R Studio! ¿Y ahora qué?
+## !Ya has instalado R Studio! ¿Y ahora qué?
 
 Una vez que abras R Studio notarás muchas opciones, paneles y una consola que puede parecer confusa al principio pero ahora te familiarizarás rápidamente con esta interfaz.
 
@@ -74,7 +68,7 @@ Ahora puedes observar 4 paneles con varias opciones dentro de cada uno.
 -   El panel que contiene a las pestañas Files, Plots, Packages, Help y Viewer, nos permite encontrar de manera rápida y eficiente los archivos en nuestro directorio de trabajo (**Files**), los gráficos generados a partir de análisis (**Plots**), los paquetes instalados (**Packages**), manuales de ayuda de R y de paquetes instalados (**Help**), y por último encontramos a **Viewer**, un panel que nos muestra gráficos interactivos generados por algunos paquetes.
 -   En **Console** encontrarás el signo “\>” llamado prompt que nos muestra si el sistema está listo o no para ejecutar un comando. Además, los resultados de los análisis se mostrarán aquí.
 
-# ¿Qué es un script?
+## ¿Qué es un script?
 
 Un script es una serie de comandos escritos en un archivo de texto que pueden ser almacenados, editados y ejecutados.
 ¿Suena sencillo?
@@ -85,7 +79,7 @@ Esto resulta extremanente útil si quieres compartir tu trabajo con otros, o si 
 
 Ahora que conoces un poco más sobre esta interfaz, ¡ya puedes empezar!
 
-# Primeros pasos
+## Primeros pasos
 
 Empecemos escribiendo operaciones matemáticas sencillas en el script.
 
@@ -152,13 +146,13 @@ Todos los resultados de estas operaciones se muestran en la **Consola**.
 Sin embargo, si quisieras almacenarlos y manipularlos es necesario transformarlos en **objetos**.
 Para ello debemos hablar sobre la estructura de datos.
 
-# Estructura de datos: Objetos, vectores, *data frames*, y listas.
+## Estructura de datos
 
 R contiene una jerarquía de elementos y provee varios tipos de estructuras de datos especializadas a las que se les conoce como objetos.
 Para los propósitos de este curso mencionaremos a los vectores y matrices pero nos enfocaremos en los *data frames*.
 Sin embargo, es importante saber que existen otros tipos de estructuras de datos como las listas, que utilizaremos ampliamente en el nivel avanzado de este curso.
 
-## Vectores
+### Vectores
 
 Un vector es una secuencia de datos del mismo tipo ya sean **numéricos** o de **carácter**.
 Así, para construir vectores numéricos, deberemos primeramente nombrar a nuestro objeto y asignarle valores mediante `<-`.
@@ -249,7 +243,7 @@ El código no siempre se verá tan sencillo como en el ejemplo anterior y es mej
 Es muy útil saber que si deseas eliminar cualquier objeto, lo puedes hacer en cualquier momento mediante la función `remove()` o `rm()`.
 Esto es especialmente útil si estás trabajando con un set de datos muy grande y quieres liberar memoria.
 
-## Matrices
+### Matrices
 
 Una matriz no es más que un conjunto de datos del mismo tipo organizado de forma bidimensional, es decir, en filas y columnas.
 Crear y modificar matrices tiene también un proceso parecido al de los vectores.
@@ -311,7 +305,7 @@ class(roedores)
 
 Puedes leer mas sobre estas funciones en la sección de ayuda.
 
-## *Data frames*
+### *Data frames*
 
 Un *data frame* es un set de datos que puede estar conformado tanto por valores numéricos o también por caracteres.
 Trabajar con este tipo de objetos es una aproximación más realista debido al tipo de .
@@ -364,7 +358,7 @@ roedores$roedor1 > 25
 
 La manipulación de esta clase de objetos será ampliada y tratada con más detenimiento en la siguiente clase.
 
-## Listas
+### Listas
 
 xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -452,7 +446,7 @@ Si eres nuevo en el mundo de la programación, no recomiendo que utilices IA par
 
 # Fuentes
 
-El presente trabajo ha sido escrito y editado por [Francisco Castellanos](https://orcid.org/0000-0003-0955-8185) y está influenciado por la clase "Introducción Básica al Lenguaje de R" de [Juan Pablo Zurano](https://www.researchgate.net/profile/Juan-Zurano-3), así como también: [YaRrr](https://bookdown.org/ndphillips/YaRrr/writing-r-scripts-in-an-editor.html) y [The R Book](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf).
+El presente trabajo ha sido escrito y editado por [Francisco Castellanos](https://orcid.org/0000-0003-0955-8185) y está influenciado por la clase "Introducción Básica al Lenguaje de R" de [Juan Pablo Zurano](https://www.researchgate.net/profile/Juan-Zurano-3), así como también: [YaRrr](https://bookdown.org/ndphillips/YaRrr/writing-r-scripts-in-an-editor.html), [The R Book](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf), y [R for Data Science](https://r4ds.hadley.nz/).
 <br> <br>
 
 ------------------------------------------------------------------------
