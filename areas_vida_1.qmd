@@ -1,0 +1,21 @@
+---
+format:
+  html:
+    toc: true
+    toc-title: "Contenidos"
+    toc-expand: 1
+    code-overflow: wrap
+editor_options:
+  markdown:
+    wrap: sentence
+    canonical: true
+theme: cosmo
+---
+# Áreas de vida Parte I {#sec-areas-vida-1}
+
+```{r}
+#| include: false
+source("_common.R")
+```
+![Estamos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
+

@@ -15,7 +15,7 @@ editor_options:
 
 Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
 
-## Código de conducta
+## Código de conducta {.unnumbered}
 
 Debido a la naturaleza del evento, solicitamos mantener una actitud y vocabulario acorde a la actividad, faltas a las reglas del curso y/o problemas de comportamiento podrían provocar que sean expulsados de la sala.
 
@@ -25,6 +25,6 @@ Debido a la naturaleza del evento, solicitamos mantener una actitud y vocabulari
 4.	Los micrófonos deben permanecer apagados para evitar interrupciones.
 5.	Buscamos que nuestras clases sean interactivas, por lo que alentamos que se encienda el micrófono únicamente para realizar preguntas ocualquier comentario que aporte con al discusión de los temas dictados.
 
-## Agradecimientos
+## Agradecimientos {.unnumbered}
 
 Este curso es auspiciado por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.

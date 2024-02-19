@@ -182,21 +182,41 @@
   {
     "objectID": "analisis_data.html",
     "href": "analisis_data.html",
-    "title": "Análisis de datos",
+    "title": "2  Análisis de datos",
     "section": "",
-    "text": "Importando datos en R\nAntes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado Working Directory. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.\nR toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función getwd().\nExisten algunas formas de establecer nuestro o lugar de trabajo. La primera es de manera manual:\nNota que el símbolo ~ se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función getwd.\nLa segunda manera de establecer el directorio es presionando las teclas Ctrl+Shift+H. Inmediatamente se abrirá una ventana en la que podrás seleccionar manualmente tu directorio.",
+    "text": "2.1 Importando datos en R\nAntes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado Working Directory. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.\nR toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función getwd().\nExisten algunas formas de establecer el lugar de trabajo. La primera es de manera manual:\nsetwd(\"~/Curso_R/Estadistica basica\")\nNota que el símbolo ~ se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función getwd.\nLa segunda manera de establecer el directorio es presionando las teclas Ctrl+Shift+H. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.",
     "crumbs": [
-      "Análisis de datos"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
   },
   {
     "objectID": "analisis_data.html#archivos-csv",
     "href": "analisis_data.html#archivos-csv",
-    "title": "Análisis de datos",
-    "section": "Archivos csv",
-    "text": "Archivos csv",
+    "title": "2  Análisis de datos",
+    "section": "2.2 Archivos csv",
+    "text": "2.2 Archivos csv\nAntes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas immportado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data) #Tipo de variable de nuestro objeto\n\nObservamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.\n\nmean(data$colesterol)\nmedian(data$colesterol)\n\nLos resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el data frame. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s únicamente en éstas.",
     "crumbs": [
-      "Análisis de datos"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#importando-datos-en-r",
+    "href": "analisis_data.html#importando-datos-en-r",
+    "title": "2  Análisis de datos",
+    "section": "",
+    "text": "2.1.1 Archivos csv\nAntes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas immportado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data) #Tipo de variable de nuestro objeto\n\nObservamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.\n\nmean(data$colesterol)\nmedian(data$colesterol)\n\nLos resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el data frame. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s únicamente en éstas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html",
+    "href": "datos_telemetricos.html",
+    "title": "3  Datos telemétricos",
+    "section": "",
+    "text": "Estamos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos telemétricos</span>"
     ]
   }
 ]

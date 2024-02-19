@@ -11,7 +11,7 @@ editor_options:
     canonical: true
 theme: cosmo
 ---
-# Introducción a R
+# Introducción a R {#sec-intro}
 
 ```{r}
 #| include: false

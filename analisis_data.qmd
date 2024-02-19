@@ -11,22 +11,60 @@ editor_options:
     canonical: true
 theme: cosmo
 ---
-# Análisis de datos {.unnumbered}
+# Análisis de datos {#sec-analisis-datos}
 
-# Importando datos en R
+```{r}
+#| include: false
+source("_common.R")
+```
+
+## Importando datos en R
 
 Antes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado **Working Directory**. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.
 
 R toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función `getwd()`.
 
-Existen algunas formas de establecer nuestro  o lugar de trabajo. La primera es de manera manual:
-```r
-#| eval=FALSE
+Existen algunas formas de establecer el lugar de trabajo. La primera es de manera manual:
+```{r eval=FALSE}
 setwd("~/Curso_R/Estadistica basica")
 ```
+
 Nota que el símbolo `~` se encuentra al inicio del directorio escrito. Este símbolo
 reemplaza al resultado obtenido de la función `getwd`.
 
-La segunda manera de establecer el directorio es presionando las teclas `Ctrl+Shift+H`. Inmediatamente se abrirá una ventana en la que podrás seleccionar manualmente tu directorio.
+La segunda manera de establecer el directorio es presionando las teclas `Ctrl+Shift+H`. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.
 
-## Archivos *csv*
+### Archivos *csv*
+
+Antes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.
+
+Tanto los archivos [txt](http://www.sthda.com/english/wiki/reading-data-from-txt-csv-files-r-base-functions) y  [xlsxl](http://www.sthda.com/english/wiki/reading-data-from-excel-files-xls-xlsx-into-r) resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como [readxl](https://readxl.tidyverse.org/). Por otro lado, los archivos `csv` (*comma separated values*) con los que trabajarás en esta clase, se pueden importar de esta manera:
+
+```{r eval=FALSE}
+data <- read.csv("osos_hema.csv")
+```
+```{r include=FALSE}
+data <- read.csv("docs/datos/osos_hema.csv")
+```
+:::{.callout-important}
+Asegúrate que el archivo `osos_hema.csv` se encuentra en el directorio que indicaste previamente.
+:::
+Una vez que hayas immportado el archivo, lo puedes ver como *data frame* en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.
+
+Repasa brevemente las funciones que aprendiste en @sec-intro para obtener datos más específicos sobre el objeto `data`.
+
+```{r eval=FALSE}
+head(data)
+summary(data)
+str(data) #Tipo de variable de nuestro objeto
+```
+
+Observamos que tenemos una cantidad importante de datos faltantes (NA’s). Veamos si estos NA’s son un problema para calcular la media y mediana de la columna colesterol.
+
+```{r eval=FALSE}
+mean(data$colesterol)
+median(data$colesterol)
+```
+
+Los resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el *data frame*. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s
+únicamente en éstas.
