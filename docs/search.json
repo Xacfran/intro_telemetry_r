@@ -184,7 +184,7 @@
     "href": "analisis_data.html",
     "title": "2  Análisis de datos",
     "section": "",
-    "text": "2.1 Importando datos en R\nAntes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado Working Directory. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.\nR toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función getwd().\nExisten algunas formas de establecer el lugar de trabajo. La primera es de manera manual:\nsetwd(\"~/Curso_R/Estadistica basica\")\nNota que el símbolo ~ se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función getwd.\nLa segunda manera de establecer el directorio es presionando las teclas Ctrl+Shift+H. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.",
+    "text": "2.1 Importando datos en R\nAntes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado Working Directory. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.\nR toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función getwd().\nExisten algunas formas de establecer el lugar de trabajo. La primera es de manera manual:\nsetwd(\"~/Curso_R/Estadistica_basica\")\nNota que el símbolo ~ se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función getwd.\nLa segunda manera de establecer el directorio es presionando las teclas Ctrl+Shift+H. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
@@ -204,7 +204,7 @@
     "href": "analisis_data.html#importando-datos-en-r",
     "title": "2  Análisis de datos",
     "section": "",
-    "text": "2.1.1 Archivos csv\nAntes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas importado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data)\n\nObserva que hay una gran cantidad de datos faltantes NA’s. ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?\n\nmean(data$colesterol)\n## [1] NA\nmedian(data$colesterol)\n## [1] NA\n\nLos resultados muestran que no es posible calcular estas medidas de tendencia sin haber limpiado el data frame. Para poder hacerlo, es aconsejable elegir las columnas de interés y realizar la limpieza de NA’s únicamente en éstas.",
+    "text": "2.1.1 Archivos csv\nPuedes descargar el achivo utilizado en este tutorial desde este link . Antes de importar este u otro archivo debes tener claro cuál es el tipo de extensión, ya que diferentes formatos implican diferentes funciones para importarlos.\nTanto los archivos txt y xlsxl resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como readxl. Por otro lado, los archivos csv (comma separated values) con los que trabajarás en esta clase, se pueden importar de esta manera:\n\ndata &lt;- read.csv(\"osos_hema.csv\")\n\n\n\n\n\n\n\nImportant\n\n\n\nAsegúrate que el archivo osos_hema.csv se encuentra en el directorio que indicaste previamente.\n\n\nUna vez que hayas importado el archivo, lo puedes ver como data frame en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.\nRepasa brevemente las funciones que aprendiste en Chapter 1 para obtener datos más específicos sobre el objeto data.\n\nhead(data)\nsummary(data)\nstr(data)\n\nObserva que hay una gran cantidad de datos faltantes NA’s. ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?\n\nmean(data$colesterol)\n## [1] NA\nmedian(data$colesterol)\n## [1] NA\n\nLos resultados muestran que no es posible calcular estas medidas de tendencia sin haber limpiado el data frame. Para poder hacerlo, es aconsejable elegir las columnas de interés y realizar la limpieza de NA’s únicamente en éstas.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
@@ -244,7 +244,7 @@
     "href": "analisis_data.html#manipulación-de-data-frames",
     "title": "2  Análisis de datos",
     "section": "2.2 Manipulación de data frames",
-    "text": "2.2 Manipulación de data frames\nAhora aprenderás a manipular los datos que serán analizados en la sección 2.3. Investigaremos si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearemos si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student. Por último, averiguaremos si existe una correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Empecemos llamando a los paquetes que necesitamos en esta clase.",
+    "text": "2.2 Manipulación de data frames\nAhora aprenderás a manipular los datos que serán analizados en la sección 2.3, e investigarás si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearás si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student.\nPor último, investigarás si existe correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Para esto necesitas algunos paquetes.\n\nlibrary(tidyverse)\nlibrary(rafalib)\n\nPara deshacerte de los NA's puedes extraer las columnas de interés de una manera parecida a la que has aprendido anteriormente.\n\nlipidos &lt;- data[ ,c(\"colesterol\", \"trigliceridos\", \"sexo\")]\nlipidos &lt;- na.omit(lipidos)\n\n# También puedes buscar las filas que poseen NA’s\nwhich(is.na(data$colesterol))\n\n📚 Tarea\n¿Cómo podrías deshacerte de los NA's utilizando which(is.na())?\n\n2.2.1 pipes\nAhora usarás una de las funciones más populares del paquete magrittr (parte de tidyverse), llamado pipe y escrito como %&gt;%. Este operador se utiliza mucho en lenguaje de programación ya que simplifica la unión de funciones. Sin embargo, desde la versión de R 4.1.0, se introdujo el operador nativo |&gt;. El uso de ambos depende del contexto en el cual son implementados como se discute en este artículo, y hay un gran resumen del uso de cada uno aquí.\nSea cual sea tu elección, ambos pipes se traducen a lenguaje común como “después”, y se utilizan para pasar el output de una primer función hacia una segunda, tercera, etc.\nPuedes aprovechar esta función para simplificar la escritura del código para extraer ciertas columnas de data.\n\n# Extrae las columnas de lipidos y sexo\nlipidos &lt;- data %&gt;%\n            select(colesterol, trigliceridos, sexo) %&gt;%\n            na.omit()\n\n# Extrae las columnas de compuestos nitrogenados y sexo\nnitrogenados &lt;- data %&gt;%\n                select(proteina, bun, sexo) %&gt;%\n                na.omit()\n\nAhora el código es más fácil de interpretar y este se lee como: toma el objeto data; después selecciona las columnas colesterol, triglicéridos y sexo; después omite los NA’s. Esto se lee de igual manera para el objeto nitrogenados.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
@@ -264,7 +264,7 @@
     "href": "analisis_data.html#sec-est-basica",
     "title": "2  Análisis de datos",
     "section": "2.3 Estadística básica en R",
-    "text": "2.3 Estadística básica en R\n\n\n\nSeguimos trabajando en este tutorial",
+    "text": "2.3 Estadística básica en R\nPuedes realizar una exploración rápida de tus datos antes de iniciar análisis específicos. Observemos en un scatterplot como se distribuyen los datos.\n\nplot(data)\n\n\n\n\n\n\n\n\n\n2.3.1 Correlación\nParece ser que hay algún tipo de relación entre las variables de colesterol y triglicéridos. Podemos utilizar la función cor para determinar si de hecho existe alguna correlación.\n\ncor(lipidos$colesterol, lipidos$trigliceridos)\n## [1] 0.4223668\n\nEste resultado, sin embargo, no es muy claro pero recuerda que no estamos separando estos datos basados en otra variable como edad o sexo, que podrían tener una influencia en este resultado. Además, por default cor utiliza el método de Pearson. ¿Cambiaría este resultado en base al uso de otro método?\n\n\n\n\n\n\nEjercicio\n\n\n\nCalcula la correlación de estas variables mediante el método de Spearman.\n\n\nAhora apliquemos más funciones de dplyr junto con los pipes para calcular la correlación en base al sexo.\n\nlipidos %&gt;%\n    group_by(sexo) %&gt;%\n    summarise(cor = cor(colesterol, trigliceridos))\n## # A tibble: 2 × 2\n##   sexo     cor\n##   &lt;chr&gt;  &lt;dbl&gt;\n## 1 hembra 0.340\n## 2 macho  0.473\n\nTambién puedes utilizar ggplot2 para graficar esta posible correlación.\n\nlipidos %&gt;%\n    ggplot(aes( x = colesterol, y = trigliceridos, color = sexo)) +\n    geom_point(alpha = 0.5) +\n    geom_smooth(method = \"lm\", se = FALSE) +\n    labs( x = \"colesterol (mg/dl)\", y = \"triglicéridos (mg/dl)\") +\n    theme_bw()\n\n\n\n\n\n\n\n\n\n\n2.3.2 Diferencias de medias\nAhora utiliza el objeto nitrogenados e inspecciona en detalle alguna diferencia entre machos y hembras.\n\nnitrogenados %&gt;%\n    select(bun, sexo) %&gt;%\n    group_by(sexo) %&gt;%\n    summarise(media = mean(bun),\n                mediana = median(bun),\n                desv_est = sd(bun))\n\nEstas posibles diferencias también pueden ser observadas también mediante un gráfico decaja y biggotes.\n\nboxplot(nitrogenados$bun ~ nitrogenados$sexo)\n\n\n\n\n\n\n\nboxplot(nitrogenados$proteina ~ nitrogenados$sexo)\n\n\n\n\n\n\n\n\nLa diferencia de medidas de tendencia entre sexos no es clara. Sin embargo, ¿cómo podemos saber que esta diferencia es o no estadísticamente significativa?\nAunque a fines de este ejemplo, utilizaremos el test de Student para calcular el valor p, es necesario aclarar que no profundizaremos en detalles matemáticos o discutiremos sobre que tipos de test podrían contestar esta pregunta de mejor manera. Si deseas tener más conocimiento sobre temas estadísticos, dirígete a la sección de Fuentes de este documento y descarga los libros y documentos que sean de tu interés.\nPrimero, debemos observar si nuestros datos siguen una distribución normal. Para esto utilizaremos funciones base de R y además la función mypar() del paquete rafalib que instalamos previamente.\n\nmypar(1,2)\n# Grafica un histograma\nhist(nitrogenados$bun, main = \"Distribución de valores de Urea en sangre\")\n\n# y además\nqqnorm(nitrogenados$bun)\nqqline(nitrogenados$bun)\n\n\n\n\n\n\n\n\nSi deseas saber más sobre el significado de los Q-Q plots, ingresa aquí.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]
@@ -275,6 +275,56 @@
     "title": "2  Análisis de datos",
     "section": "2.3 Estadística básica en R",
     "text": "2.3 Estadística básica en R\n\n\n\nSeguimos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#personalizando-gráficos-con-ggplot2",
+    "href": "analisis_data.html#personalizando-gráficos-con-ggplot2",
+    "title": "2  Análisis de datos",
+    "section": "2.6 Personalizando gráficos con ggplot2",
+    "text": "2.6 Personalizando gráficos con ggplot2",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#fuentes",
+    "href": "analisis_data.html#fuentes",
+    "title": "2  Análisis de datos",
+    "section": "2.7 Fuentes",
+    "text": "2.7 Fuentes\nEl diseño y escritura de esta clase fue tomado y adaptado por Francisco Castellanos de diversas fuentes, siendo R for Data Science y el curso gratis de edX Statistics and R, las más grandes influencias de este trabajo.\nTanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic aquí.\nFinalmente, puedes profundizar más en el uso de ggplot2 ingresando a: Data Visualization with R , Top 50 ggplot2 Visualizations y Data visualization with ggplot2.\n\n\n\nSeguimos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#t-test",
+    "href": "analisis_data.html#t-test",
+    "title": "2  Análisis de datos",
+    "section": "2.4 t-Test",
+    "text": "2.4 t-Test\nAhora que sabemos que los niveles de colesterol siguen una distribución normal, estamos listos para calcular el valor p. Primero necesitamos separar en dos objetos a nuestro objeto lipidos. ¿Por qué?\n\n# Crea un objeto con los machos\nbun_m &lt;- nitrogenados%&gt;%\n            filter(sexo == \"macho\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n# Ahora uno con las hembras\nbun_h &lt;- nitrogenados %&gt;%\n            filter(sexo == \"hembra\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n\n\n\n\n\n\nEjercicio\n\n\n\n¿Cómo fueron almacenados los objetos col_m y col_h?. Lee sobre unlist en la sección de Ayuda.\n\n\nAhora puedes realizar la prueba T de Studentcon la seguridad de que tus datos siguen una distribución normal.\n\nt.test(bun_h, bun_m, var.equal = T)\n\n#Si solo quieres obtener el valor de p\nt.test(bun_h, bun_m, var.equal = T)$p.value\n\nEl p-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la diferencia de medias en los niveles de urea en sangre se deba a un error de muestreo o al azar. Consecuentemente, la hipótesis nula queda rechazada y aceptamos la hipótesis alternativa.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#análisis-de-componentes-principales",
+    "href": "analisis_data.html#análisis-de-componentes-principales",
+    "title": "2  Análisis de datos",
+    "section": "2.5 Análisis de Componentes Principales",
+    "text": "2.5 Análisis de Componentes Principales",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "analisis_data.html#t-de-student",
+    "href": "analisis_data.html#t-de-student",
+    "title": "2  Análisis de datos",
+    "section": "2.4 T de Student",
+    "text": "2.4 T de Student\nAhora que tienes evidencia de que los niveles de urea en sangre se aproximan a una distribución normal, puedes calcular el valor p. Primero necesitas subdividir al objeto nitrogenados.\n\n# Crea un objeto con los machos\nbun_m &lt;- nitrogenados%&gt;%\n            filter(sexo == \"macho\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n# Ahora uno con las hembras\nbun_h &lt;- nitrogenados %&gt;%\n            filter(sexo == \"hembra\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n\n\n\n\n\n\nEjercicio\n\n\n\n¿Cómo fueron almacenados los objetos col_m y col_h?. Lee sobre unlist en la sección de Ayuda.\n\n\nPuedes entonces realizar la prueba T de Student con una sola línea de comando.\n\nt.test(bun_h, bun_m, var.equal = T)\n\n#Si solo quieres obtener el valor de p\nt.test(bun_h, bun_m, var.equal = T)$p.value\n\nEl p-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la diferencia de medias en los niveles de urea en sangre se deba a un error de muestreo o al azar. Consecuentemente, la hipótesis nula queda rechazada y aceptamos la hipótesis alternativa.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
     ]

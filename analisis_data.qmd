@@ -26,7 +26,7 @@ R toma automáticamente un directorio en el cual trabajar. Puedes saber en que d
 
 Existen algunas formas de establecer el lugar de trabajo. La primera es de manera manual:
 ```{r eval=FALSE}
-setwd("~/Curso_R/Estadistica basica")
+setwd("~/Curso_R/Estadistica_basica")
 ```
 
 Nota que el símbolo `~` se encuentra al inicio del directorio escrito. Este símbolo
@@ -36,7 +36,7 @@ La segunda manera de establecer el directorio es presionando las teclas `Ctrl+Sh
 
 ### Archivos *csv*
 
-Antes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.
+Puedes descargar el achivo utilizado en este tutorial desde este [link](https://mega.nz/file/Rk92CCBb#AEQqmA4g8CWvtA1g98lCUzWtRZzmUklwpuCgLFsk8tg) . Antes de importar este u otro archivo debes tener claro cuál es el tipo de extensión, ya que diferentes formatos implican diferentes funciones para importarlos.
 
 Tanto los archivos [txt](http://www.sthda.com/english/wiki/reading-data-from-txt-csv-files-r-base-functions) y  [xlsxl](http://www.sthda.com/english/wiki/reading-data-from-excel-files-xls-xlsx-into-r) resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como [readxl](https://readxl.tidyverse.org/). Por otro lado, los archivos `csv` (*comma separated values*) con los que trabajarás en esta clase, se pueden importar de esta manera:
 
@@ -90,18 +90,152 @@ which(is.na(data$colesterol))
 ```
 📚 **Tarea**
 
-¿Cómo podrías deshacerte de todos los NA's utilizando `which(is.na())`?
+¿Cómo podrías deshacerte de los `NA's` utilizando `which(is.na())`?
+
+### *pipes*
+
+Ahora usarás una de las funciones más populares del paquete *magrittr* (parte de *tidyverse*), llamado **_pipe_** y escrito como `%>%`. Este operador se utiliza mucho en lenguaje de programación ya que simplifica la unión de funciones. Sin embargo, desde la versión de R 4.1.0, se introdujo el operador nativo `|>`. El uso de ambos depende del contexto en el cual son implementados como se discute en [este artículo](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/), y hay un gran resumen del uso de cada uno [aquí](https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-native-pipe-and-the-magrittr-pipe).
+
+Sea cual sea tu elección, ambos *pipes* se traducen a lenguaje común como “después”, y se utilizan para pasar el **output** de una primer función hacia una segunda, tercera, etc.
+
+Puedes aprovechar esta función para simplificar la escritura del código para extraer ciertas columnas de `data`.
+
+```{r echo=TRUE}
+# Extrae las columnas de lipidos y sexo
+lipidos <- data %>%
+            select(colesterol, trigliceridos, sexo) %>%
+            na.omit()
+
+# Extrae las columnas de compuestos nitrogenados y sexo
+nitrogenados <- data %>%
+                select(proteina, bun, sexo) %>%
+                na.omit()
+```
+
+
+Ahora el código es más fácil de interpretar y este se lee como: toma el objeto data; *después* selecciona las columnas colesterol, triglicéridos y sexo; *después* omite los `NA’s`. Esto se lee de igual manera para el objeto `nitrogenados`.
 
 ## Estadística básica en R {#sec-est-basica}
 
+Puedes realizar una exploración rápida de tus datos antes de iniciar análisis específicos. Observemos en un *scatterplot* como se distribuyen los datos.
+
+```{r}
+plot(data)
+```
+### Correlación
+Parece ser que hay algún tipo de relación entre las variables de colesterol y triglicéridos. Podemos utilizar la función `cor` para determinar si de hecho existe alguna correlación.
+
+```{r}
+cor(lipidos$colesterol, lipidos$trigliceridos)
+```
+Este resultado, sin embargo, no es muy claro pero recuerda que no estamos separando estos datos basados en otra variable como edad o sexo, que podrían tener una influencia en este resultado. Además, por *default* `cor` utiliza el método de Pearson. ¿Cambiaría este resultado en base al uso de otro método?
+
+::: callout-tip
+## Ejercicio
+Calcula la correlación de estas variables mediante el método de Spearman.
+:::
+
+Ahora apliquemos más funciones de *dplyr* junto con los *pipes* para calcular la correlación en base al sexo.
+```{r}
+lipidos %>%
+    group_by(sexo) %>%
+    summarise(cor = cor(colesterol, trigliceridos))
+```
+
+También puedes utilizar *ggplot2* para graficar esta posible correlación.
+
+```{r}
+lipidos %>%
+    ggplot(aes( x = colesterol, y = trigliceridos, color = sexo)) +
+    geom_point(alpha = 0.5) +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs( x = "colesterol (mg/dl)", y = "triglicéridos (mg/dl)") +
+    theme_bw()
+```
+
+### Diferencias de medias
+
+Ahora utiliza el objeto `nitrogenados` e inspecciona en detalle alguna diferencia entre machos y hembras.
+
+```{r eval=FALSE}
+nitrogenados %>%
+    select(bun, sexo) %>%
+    group_by(sexo) %>%
+    summarise(media = mean(bun),
+                mediana = median(bun),
+                desv_est = sd(bun))
+```
+
+Estas posibles diferencias también pueden ser observadas también mediante un gráfico decaja y biggotes.
+
+```{r}
+boxplot(nitrogenados$bun ~ nitrogenados$sexo)
+boxplot(nitrogenados$proteina ~ nitrogenados$sexo)
+```
 
 
+La diferencia de medidas de tendencia entre sexos no es clara. Sin embargo, ¿cómo podemos saber que esta diferencia es o no estadísticamente significativa?
 
+Aunque a fines de este ejemplo, utilizaremos el test de Student para calcular el valor p, es necesario aclarar que no profundizaremos en detalles matemáticos o discutiremos sobre que tipos de test podrían contestar esta pregunta de mejor manera. Si deseas tener más conocimiento sobre temas estadísticos, dirígete a la sección de Fuentes de este documento y descarga los libros y documentos que sean de tu interés.
 
+Primero, debemos observar si nuestros datos siguen una distribución normal. Para esto utilizaremos funciones base de R y además la función `mypar()` del paquete *rafalib* que instalamos previamente.
 
+```{r}
+mypar(1,2)
+# Grafica un histograma
+hist(nitrogenados$bun, main = "Distribución de valores de Urea en sangre")
 
+# y además
+qqnorm(nitrogenados$bun)
+qqline(nitrogenados$bun)
+```
 
+Si deseas saber más sobre el significado de los Q-Q plots, ingresa [aquí](https://data.library.virginia.edu/understanding-q-q-plots/).
 
+## T de Student
+
+Ahora que tienes evidencia de que los niveles de urea en sangre se aproximan a una distribución normal, puedes calcular el valor *p*. Primero necesitas subdividir al objeto `nitrogenados`.
+
+```{r}
+# Crea un objeto con los machos
+bun_m <- nitrogenados%>%
+            filter(sexo == "macho") %>%
+                select(bun) %>% unlist()
+
+# Ahora uno con las hembras
+bun_h <- nitrogenados %>%
+            filter(sexo == "hembra") %>%
+                select(bun) %>% unlist()
+```
+
+::: callout-tip
+## Ejercicio
+¿Cómo fueron almacenados los objetos `col_m` y `col_h`?. Lee sobre `unlist` en la sección de Ayuda.
+:::
+
+Puedes entonces realizar la prueba T de Student con una sola línea de comando.
+
+```{r eval=FALSE}
+t.test(bun_h, bun_m, var.equal = T)
+
+#Si solo quieres obtener el valor de p
+t.test(bun_h, bun_m, var.equal = T)$p.value
+```
+
+El *p*-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la diferencia de medias en los niveles de urea en sangre se deba a un error de muestreo o al azar. Consecuentemente, la hipótesis nula queda rechazada y aceptamos la hipótesis alternativa.
+
+## Análisis de Componentes Principales
+
+## Personalizando gráficos con ggplot2
+
+## Fuentes
+
+El diseño y escritura de esta clase fue tomado y adaptado por [Francisco Castellanos](https://orcid.org/0000-0003-0955-8185) de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/) y el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), las más grandes influencias de este trabajo.
+
+Tanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic [aquí](https://mega.nz/fm/d5dBkYRS).
+
+Finalmente, puedes profundizar más en el uso de ggplot2 ingresando a: [Data
+Visualization with R](https://cengel.github.io/R-data-viz/) , [Top 50 ggplot2 Visualizations](https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#1.%20Correlation) y [Data visualization with ggplot2](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html).
 
 
 

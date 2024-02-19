@@ -205,8 +205,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#archivos-csv" id="toc-archivos-csv" class="nav-link" data-scroll-target="#archivos-csv"><span class="header-section-number">2.1.1</span> Archivos <em>csv</em></a></li>
   </ul></li>
-  <li><a href="#manipulación-de-data-frames" id="toc-manipulación-de-data-frames" class="nav-link" data-scroll-target="#manipulación-de-data-frames"><span class="header-section-number">2.2</span> Manipulación de <em>data frames</em></a></li>
-  <li><a href="#sec-est-basica" id="toc-sec-est-basica" class="nav-link" data-scroll-target="#sec-est-basica"><span class="header-section-number">2.3</span> Estadística básica en R</a></li>
+  <li><a href="#manipulación-de-data-frames" id="toc-manipulación-de-data-frames" class="nav-link" data-scroll-target="#manipulación-de-data-frames"><span class="header-section-number">2.2</span> Manipulación de <em>data frames</em></a>
+  <ul class="collapse">
+  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="header-section-number">2.2.1</span> <em>pipes</em></a></li>
+  </ul></li>
+  <li><a href="#sec-est-basica" id="toc-sec-est-basica" class="nav-link" data-scroll-target="#sec-est-basica"><span class="header-section-number">2.3</span> Estadística básica en R</a>
+  <ul class="collapse">
+  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación"><span class="header-section-number">2.3.1</span> Correlación</a></li>
+  <li><a href="#diferencias-de-medias" id="toc-diferencias-de-medias" class="nav-link" data-scroll-target="#diferencias-de-medias"><span class="header-section-number">2.3.2</span> Diferencias de medias</a></li>
+  </ul></li>
+  <li><a href="#t-de-student" id="toc-t-de-student" class="nav-link" data-scroll-target="#t-de-student"><span class="header-section-number">2.4</span> T de Student</a></li>
+  <li><a href="#análisis-de-componentes-principales" id="toc-análisis-de-componentes-principales" class="nav-link" data-scroll-target="#análisis-de-componentes-principales"><span class="header-section-number">2.5</span> Análisis de Componentes Principales</a></li>
+  <li><a href="#personalizando-gráficos-con-ggplot2" id="toc-personalizando-gráficos-con-ggplot2" class="nav-link" data-scroll-target="#personalizando-gráficos-con-ggplot2"><span class="header-section-number">2.6</span> Personalizando gráficos con ggplot2</a></li>
+  <li><a href="#fuentes" id="toc-fuentes" class="nav-link" data-scroll-target="#fuentes"><span class="header-section-number">2.7</span> Fuentes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -238,13 +249,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>R toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función <code>getwd()</code>.</p>
 <p>Existen algunas formas de establecer el lugar de trabajo. La primera es de manera manual:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Curso_R/Estadistica basica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Curso_R/Estadistica_basica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nota que el símbolo <code>~</code> se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función <code>getwd</code>.</p>
 <p>La segunda manera de establecer el directorio es presionando las teclas <code>Ctrl+Shift+H</code>. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.</p>
 <section id="archivos-csv" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="archivos-csv"><span class="header-section-number">2.1.1</span> Archivos <em>csv</em></h3>
-<p>Antes de importar nuestros datos, debemos tener claro cuál es la extensión de estos ya que diferentes formatos implican diferentes funciones para importarlos en R.</p>
+<p>Puedes descargar el achivo utilizado en este tutorial desde este <a href="https://mega.nz/file/Rk92CCBb#AEQqmA4g8CWvtA1g98lCUzWtRZzmUklwpuCgLFsk8tg">link</a> . Antes de importar este u otro archivo debes tener claro cuál es el tipo de extensión, ya que diferentes formatos implican diferentes funciones para importarlos.</p>
 <p>Tanto los archivos <a href="http://www.sthda.com/english/wiki/reading-data-from-txt-csv-files-r-base-functions">txt</a> y <a href="http://www.sthda.com/english/wiki/reading-data-from-excel-files-xls-xlsx-into-r">xlsxl</a> resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como <a href="https://readxl.tidyverse.org/">readxl</a>. Por otro lado, los archivos <code>csv</code> (<em>comma separated values</em>) con los que trabajarás en esta clase, se pueden importar de esta manera:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"osos_hema.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -281,10 +292,202 @@ Important
 </section>
 <section id="manipulación-de-data-frames" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="manipulación-de-data-frames"><span class="header-section-number">2.2</span> Manipulación de <em>data frames</em></h2>
-<p>Ahora aprenderás a manipular los datos que serán analizados en la sección <a href="#sec-est-basica" class="quarto-xref"><span>2.3</span></a>. Investigaremos si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearemos si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student. Por último, averiguaremos si existe una correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Empecemos llamando a los paquetes que necesitamos en esta clase.</p>
+<p>Ahora aprenderás a manipular los datos que serán analizados en la sección <a href="#sec-est-basica" class="quarto-xref"><span>2.3</span></a>, e investigarás si existe alguna diferencia entre la media de colesterol de machos y hembras, y si la hubiera, testearás si esta disimilitud es estadísticamente significativa realizando la prueba de hipótesis estadística T de Student.</p>
+<p>Por último, investigarás si existe correlación entre los niveles de colesterol y triglicéridos en ambos sexos. Para esto necesitas algunos paquetes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rafalib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para deshacerte de los <code>NA's</code> puedes extraer las columnas de interés de una manera parecida a la que has aprendido anteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lipidos <span class="ot">&lt;-</span> data[ ,<span class="fu">c</span>(<span class="st">"colesterol"</span>, <span class="st">"trigliceridos"</span>, <span class="st">"sexo"</span>)]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lipidos <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lipidos)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># También puedes buscar las filas que poseen NA’s</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>colesterol))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>📚 <strong>Tarea</strong></p>
+<p>¿Cómo podrías deshacerte de los <code>NA's</code> utilizando <code>which(is.na())</code>?</p>
+<section id="pipes" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="pipes"><span class="header-section-number">2.2.1</span> <em>pipes</em></h3>
+<p>Ahora usarás una de las funciones más populares del paquete <em>magrittr</em> (parte de <em>tidyverse</em>), llamado <strong><em>pipe</em></strong> y escrito como <code>%&gt;%</code>. Este operador se utiliza mucho en lenguaje de programación ya que simplifica la unión de funciones. Sin embargo, desde la versión de R 4.1.0, se introdujo el operador nativo <code>|&gt;</code>. El uso de ambos depende del contexto en el cual son implementados como se discute en <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">este artículo</a>, y hay un gran resumen del uso de cada uno <a href="https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-native-pipe-and-the-magrittr-pipe">aquí</a>.</p>
+<p>Sea cual sea tu elección, ambos <em>pipes</em> se traducen a lenguaje común como “después”, y se utilizan para pasar el <strong>output</strong> de una primer función hacia una segunda, tercera, etc.</p>
+<p>Puedes aprovechar esta función para simplificar la escritura del código para extraer ciertas columnas de <code>data</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extrae las columnas de lipidos y sexo</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lipidos <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">select</span>(colesterol, trigliceridos, sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">na.omit</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extrae las columnas de compuestos nitrogenados y sexo</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>nitrogenados <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                <span class="fu">select</span>(proteina, bun, sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora el código es más fácil de interpretar y este se lee como: toma el objeto data; <em>después</em> selecciona las columnas colesterol, triglicéridos y sexo; <em>después</em> omite los <code>NA’s</code>. Esto se lee de igual manera para el objeto <code>nitrogenados</code>.</p>
+</section>
 </section>
 <section id="sec-est-basica" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-est-basica"><span class="header-section-number">2.3</span> Estadística básica en R</h2>
+<p>Puedes realizar una exploración rápida de tus datos antes de iniciar análisis específicos. Observemos en un <em>scatterplot</em> como se distribuyen los datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analisis_data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="correlación" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="correlación"><span class="header-section-number">2.3.1</span> Correlación</h3>
+<p>Parece ser que hay algún tipo de relación entre las variables de colesterol y triglicéridos. Podemos utilizar la función <code>cor</code> para determinar si de hecho existe alguna correlación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(lipidos<span class="sc">$</span>colesterol, lipidos<span class="sc">$</span>trigliceridos)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.4223668</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este resultado, sin embargo, no es muy claro pero recuerda que no estamos separando estos datos basados en otra variable como edad o sexo, que podrían tener una influencia en este resultado. Además, por <em>default</em> <code>cor</code> utiliza el método de Pearson. ¿Cambiaría este resultado en base al uso de otro método?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calcula la correlación de estas variables mediante el método de Spearman.</p>
+</div>
+</div>
+<p>Ahora apliquemos más funciones de <em>dplyr</em> junto con los <em>pipes</em> para calcular la correlación en base al sexo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lipidos <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">cor =</span> <span class="fu">cor</span>(colesterol, trigliceridos))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 × 2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   sexo     cor</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 hembra 0.340</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 macho  0.473</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También puedes utilizar <em>ggplot2</em> para graficar esta posible correlación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lipidos <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>( <span class="at">x =</span> colesterol, <span class="at">y =</span> trigliceridos, <span class="at">color =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">"colesterol (mg/dl)"</span>, <span class="at">y =</span> <span class="st">"triglicéridos (mg/dl)"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analisis_data_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="diferencias-de-medias" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="diferencias-de-medias"><span class="header-section-number">2.3.2</span> Diferencias de medias</h3>
+<p>Ahora utiliza el objeto <code>nitrogenados</code> e inspecciona en detalle alguna diferencia entre machos y hembras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nitrogenados <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(bun, sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(bun),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">mediana =</span> <span class="fu">median</span>(bun),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">desv_est =</span> <span class="fu">sd</span>(bun))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estas posibles diferencias también pueden ser observadas también mediante un gráfico decaja y biggotes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(nitrogenados<span class="sc">$</span>bun <span class="sc">~</span> nitrogenados<span class="sc">$</span>sexo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analisis_data_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(nitrogenados<span class="sc">$</span>proteina <span class="sc">~</span> nitrogenados<span class="sc">$</span>sexo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analisis_data_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La diferencia de medidas de tendencia entre sexos no es clara. Sin embargo, ¿cómo podemos saber que esta diferencia es o no estadísticamente significativa?</p>
+<p>Aunque a fines de este ejemplo, utilizaremos el test de Student para calcular el valor p, es necesario aclarar que no profundizaremos en detalles matemáticos o discutiremos sobre que tipos de test podrían contestar esta pregunta de mejor manera. Si deseas tener más conocimiento sobre temas estadísticos, dirígete a la sección de Fuentes de este documento y descarga los libros y documentos que sean de tu interés.</p>
+<p>Primero, debemos observar si nuestros datos siguen una distribución normal. Para esto utilizaremos funciones base de R y además la función <code>mypar()</code> del paquete <em>rafalib</em> que instalamos previamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafica un histograma</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(nitrogenados<span class="sc">$</span>bun, <span class="at">main =</span> <span class="st">"Distribución de valores de Urea en sangre"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># y además</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(nitrogenados<span class="sc">$</span>bun)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(nitrogenados<span class="sc">$</span>bun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analisis_data_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si deseas saber más sobre el significado de los Q-Q plots, ingresa <a href="https://data.library.virginia.edu/understanding-q-q-plots/">aquí</a>.</p>
+</section>
+</section>
+<section id="t-de-student" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="t-de-student"><span class="header-section-number">2.4</span> T de Student</h2>
+<p>Ahora que tienes evidencia de que los niveles de urea en sangre se aproximan a una distribución normal, puedes calcular el valor <em>p</em>. Primero necesitas subdividir al objeto <code>nitrogenados</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crea un objeto con los machos</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>bun_m <span class="ot">&lt;-</span> nitrogenados<span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"macho"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">select</span>(bun) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora uno con las hembras</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>bun_h <span class="ot">&lt;-</span> nitrogenados <span class="sc">%&gt;%</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"hembra"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                <span class="fu">select</span>(bun) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Cómo fueron almacenados los objetos <code>col_m</code> y <code>col_h</code>?. Lee sobre <code>unlist</code> en la sección de Ayuda.</p>
+</div>
+</div>
+<p>Puedes entonces realizar la prueba T de Student con una sola línea de comando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bun_h, bun_m, <span class="at">var.equal =</span> T)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Si solo quieres obtener el valor de p</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bun_h, bun_m, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El <em>p</em>-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la diferencia de medias en los niveles de urea en sangre se deba a un error de muestreo o al azar. Consecuentemente, la hipótesis nula queda rechazada y aceptamos la hipótesis alternativa.</p>
+</section>
+<section id="análisis-de-componentes-principales" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="análisis-de-componentes-principales"><span class="header-section-number">2.5</span> Análisis de Componentes Principales</h2>
+</section>
+<section id="personalizando-gráficos-con-ggplot2" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="personalizando-gráficos-con-ggplot2"><span class="header-section-number">2.6</span> Personalizando gráficos con ggplot2</h2>
+</section>
+<section id="fuentes" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="fuentes"><span class="header-section-number">2.7</span> Fuentes</h2>
+<p>El diseño y escritura de esta clase fue tomado y adaptado por <a href="https://orcid.org/0000-0003-0955-8185">Francisco Castellanos</a> de diversas fuentes, siendo <a href="https://r4ds.had.co.nz/">R for Data Science</a> y el curso gratis de edX <a href="https://www.edx.org/course/statistics-and-r">Statistics and R</a>, las más grandes influencias de este trabajo.</p>
+<p>Tanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic <a href="https://mega.nz/fm/d5dBkYRS">aquí</a>.</p>
+<p>Finalmente, puedes profundizar más en el uso de ggplot2 ingresando a: <a href="https://cengel.github.io/R-data-viz/">Data Visualization with R</a> , <a href="https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#1.%20Correlation">Top 50 ggplot2 Visualizations</a> y <a href="https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html">Data visualization with ggplot2</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
