@@ -68,3 +68,6 @@ median(data$colesterol)
 
 Los resultados nos indican que no podemos calcular estas medidas de tendencia sin haber limpiado primeramente el *data frame*. Para poder hacerlo, podríamos limpiar todo nuestro set de datos, pero se perdería mucha información de esta manera. Por ende, es aconsejable elegir las columnas que nos interesen y realizar la limpieza de NA’s
 únicamente en éstas.
+
+![Seguimos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
+
