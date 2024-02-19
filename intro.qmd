@@ -448,8 +448,3 @@ El presente trabajo ha sido escrito y editado por [Francisco Castellanos](https:
 <br> <br>
 
 ------------------------------------------------------------------------
-
-::: {.callout appearance="simple"}
-<small style="font-size: 80%;">© 2024 Fundación Oso Andino.
-Todos los derechos reservados.</small>
-:::
