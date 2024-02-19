@@ -357,10 +357,6 @@ roedores$roedor1 > 25
 
 La manipulación de esta clase de objetos será ampliada y tratada con más detenimiento en la siguiente clase.
 
-### Listas
-
-xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
 # Paquetes
 
 El hecho de que R sea un software de código abierto permite que cualquier persona puede crear sus propias líneas de código y funciones para resolver determinados problemas o automatizar procesos.
