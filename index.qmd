@@ -1,7 +1,30 @@
-# Bienvenidos {.unnumbered}
+---
+format:
+    html:
+        toc: true
+        toc-title: "Contenidos"
+        toc-expand: 1
+        code-overflow: wrap
+editor_options:
+    markdown:
+        wrap: sentence
+        canonical: true
+---
 
-Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>.
+# Inicio {.unnumbered}
+
+Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
+
+## Código de conducta
+
+Debido a la naturaleza del evento, solicitamos mantener una actitud y vocabulario acorde a la actividad, faltas a las reglas del curso y/o problemas de comportamiento podrían provocar que sean expulsados de la sala.
+
+1.  Se les solicita que su plataforma Zoom esté actualizada a la última versión.
+2.  Para ingresar a la reunión, coloca tu nombre y apellido seguido de un guion y tu país de origen (**OBLIGATORIO**). Por ejemplo: Francisco Castellanos - Ecuador.
+3.  No mantener prendidas las cámaras web ya que pueden ocupar ancho de banda de la actividad y podrían afectar la conferencia de los expositores.
+4.	Los micrófonos deben permanecer apagados para evitar interrupciones.
+5.	Buscamos que nuestras clases sean interactivas, por lo que alentamos que se encienda el micrófono únicamente para realizar preguntas ocualquier comentario que aporte con al discusión de los temas dictados.
 
 ## Agradecimientos
 
-Este curso esta auspiciado por INABIOy la Universidad Técnica de Cotopaxi.
+Este curso es auspiciado por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.

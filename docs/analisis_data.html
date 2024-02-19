@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introducción a la Telemetría de Grandes Mamíferos</title>
+<title>Introducción a la Telemetría de Grandes Mamíferos - Análisis de datos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./intro.html" rel="prev">
 <link href="./docs/Figures/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -81,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Inicio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analisis_data.html">Análisis de datos</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -116,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inicio</span></a>
   </div>
 </li>
@@ -128,14 +163,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analisis_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análisis de datos [.unnumbered]</span></span></a>
+  <a href="./analisis_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Análisis de datos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Resumen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resumen</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -154,10 +189,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#inicio" id="toc-inicio" class="nav-link active" data-scroll-target="#inicio">Inicio</a>
+  <li><a href="#importando-datos-en-r" id="toc-importando-datos-en-r" class="nav-link active" data-scroll-target="#importando-datos-en-r">Importando datos en R</a>
   <ul class="collapse">
-  <li><a href="#código-de-conducta" id="toc-código-de-conducta" class="nav-link" data-scroll-target="#código-de-conducta">Código de conducta</a></li>
-  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
+  <li><a href="#archivos-csv" id="toc-archivos-csv" class="nav-link" data-scroll-target="#archivos-csv">Archivos <em>csv</em></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -167,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introducción a la Telemetría de Grandes Mamíferos</h1>
+<h1 class="title">Análisis de datos</h1>
 </div>
 
 
@@ -184,24 +218,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="inicio" class="level1 unnumbered">
-<h1 class="unnumbered">Inicio</h1><p><img src="docs/Figures/cover.png" title="Introducción a la Telemetría de Grandes Mamíferos" class="quarto-cover-image img-fluid"></p>
-<p>Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.</p>
-<section id="código-de-conducta" class="level2">
-<h2 class="anchored" data-anchor-id="código-de-conducta">Código de conducta</h2>
-<p>Debido a la naturaleza del evento, solicitamos mantener una actitud y vocabulario acorde a la actividad, faltas a las reglas del curso y/o problemas de comportamiento podrían provocar que sean expulsados de la sala.</p>
-<ol type="1">
-<li>Se les solicita que su plataforma Zoom esté actualizada a la última versión.</li>
-<li>Para ingresar a la reunión, coloca tu nombre y apellido seguido de un guion y tu país de origen (<strong>OBLIGATORIO</strong>). Por ejemplo: Francisco Castellanos - Ecuador.</li>
-<li>No mantener prendidas las cámaras web ya que pueden ocupar ancho de banda de la actividad y podrían afectar la conferencia de los expositores.</li>
-<li>Los micrófonos deben permanecer apagados para evitar interrupciones.</li>
-<li>Buscamos que nuestras clases sean interactivas, por lo que alentamos que se encienda el micrófono únicamente para realizar preguntas ocualquier comentario que aporte con al discusión de los temas dictados.</li>
-</ol>
-</section>
-<section id="agradecimientos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h2>
-<p>Este curso es auspiciado por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.</p>
+<section id="importando-datos-en-r" class="level1">
+<h1>Importando datos en R</h1>
+<p>Antes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado <strong>Working Directory</strong>. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.</p>
+<p>R toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función <code>getwd()</code>.</p>
+<p>Existen algunas formas de establecer nuestro o lugar de trabajo. La primera es de manera manual:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval=FALSE</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Curso_R/Estadistica basica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nota que el símbolo <code>~</code> se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función <code>getwd</code>.</p>
+<p>La segunda manera de establecer el directorio es presionando las teclas <code>Ctrl+Shift+H</code>. Inmediatamente se abrirá una ventana en la que podrás seleccionar manualmente tu directorio.</p>
+<section id="archivos-csv" class="level2">
+<h2 class="anchored" data-anchor-id="archivos-csv">Archivos <em>csv</em></h2>
 
 
 </section>
@@ -597,10 +624,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Introducción a R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introducción a R">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Resumen">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resumen</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

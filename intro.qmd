@@ -14,8 +14,7 @@ theme: cosmo
 # Introducción a R
 
 ```{r}
-#| echo: false
-
+#| include: false
 source("_common.R")
 ```
 
@@ -104,7 +103,7 @@ Esto es muy útil al momento de agregar comentarios sobre el código que escribi
 Sigamos intentando con más operaciones matemáticas.
 
 ```{r eval= FALSE}
-# Divisón
+# División
 8/2
 
 # Multiplicación y suma
@@ -215,7 +214,7 @@ Ahora que tienes estos datos almacenados en un vector, puedes realizar operacion
 # Número de observaciones
 length(pesos)
 
-# Valores minimo o maximo de estos datos
+# Valores minimos y maximos
 min(pesos)
 max(pesos)
 
@@ -377,8 +376,7 @@ El nombre del paquete debe ser reemplazado dentro de los paréntesis y entre com
 install.packages("dplyr")
 ```
 
-Una vez descargado, este ya se encuentra almacenado en tu computadora, en la dirección que indica la consola.
-Ahora, para poder usarlo solamente debes activarlo mediante:
+Una vez descargado, este ya se encuentra almacenado en tu computadora, en la dirección que indica la consola. Ahora, para poder usarlo solamente debes activarlo mediante:
 
 ```{r eval=FALSE}
 library(dplyr)
@@ -392,7 +390,7 @@ help (package= "dplyr")
 
 Ahora que ya sabes descargar paquetes, descarga `ggplot2`, el cual será necesario para visualizar datos en la siguiente sección.
 
-## *dplyr*, *ggplot2* y *tidyverse*
+## *tidyverse*
 
 *Tidyverse* es una colección de paquetes que contiene a dplyr y ggplot2.
 Estos han sido creados para facilitar la manipulación y vsualización de datos mediante gráficos estéticos con varias opciones para modificarlos y presentarlos.
@@ -415,7 +413,7 @@ capital <- select(capital, roedor2)
 
 Utiliza todo lo aprendido en esta clase y el set de datos `roedores` y responde: ¿cuántos individuos de Guayaquil tienen pesos menores o iguales a 26.5?
 
-### *ggplot2*
+## *ggplot2*
 
 Ahora puedes visualizar los datos de una manera más atractiva y comprensible.
 Para ello, activa el paquete *ggplot2* y ejecuta:
