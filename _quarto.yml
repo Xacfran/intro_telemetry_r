@@ -13,9 +13,13 @@ book:
       © 2024 Fundación Oso Andino. Todos los derechos reservados.
   cover-image: docs/Figures/cover.png
   favicon: docs/Figures/cover.png
-  site-url: https://xacfran.github.io/intro_telemetry_r/
   repo-url: https://github.com/Xacfran/intro_telemetry_r
   repo-actions: [issue]
+  sidebar:
+    tools:
+      - icon: globe
+        text: "Fundación Oso Andino"
+        href: "https://osoandino.org/"
 
   chapters:
     - index.qmd

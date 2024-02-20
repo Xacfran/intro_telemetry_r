@@ -1,1 +1,1 @@
-Sitemap: https://xacfran.github.io/intro_telemetry_r/sitemap.xml
+Sitemap: https://osoandino.org/sitemap.xml
