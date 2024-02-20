@@ -94,7 +94,7 @@
     "href": "index.html#agradecimientos",
     "title": "Introducción a la Telemetría de Grandes Mamíferos",
     "section": "Agradecimientos",
-    "text": "Agradecimientos\nEste curso es auspiciado por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.",
+    "text": "Agradecimientos\nEsta edición del curso ha sido auspiciada por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.",
     "crumbs": [
       "Inicio"
     ]
@@ -327,6 +327,16 @@
     "text": "2.4 T de Student\nAhora que tienes evidencia de que los niveles de urea en sangre se aproximan a una distribución normal, puedes calcular el valor p. Primero necesitas subdividir al objeto nitrogenados.\n\n# Crea un objeto con los machos\nbun_m &lt;- nitrogenados%&gt;%\n            filter(sexo == \"macho\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n# Ahora uno con las hembras\nbun_h &lt;- nitrogenados %&gt;%\n            filter(sexo == \"hembra\") %&gt;%\n                select(bun) %&gt;% unlist()\n\n\n\n\n\n\n\nEjercicio\n\n\n\n¿Cómo fueron almacenados los objetos col_m y col_h?. Lee sobre unlist en la sección de Ayuda.\n\n\nPuedes entonces realizar la prueba T de Student con una sola línea de comando.\n\nt.test(bun_h, bun_m, var.equal = T)\n\n#Si solo quieres obtener el valor de p\nt.test(bun_h, bun_m, var.equal = T)$p.value\n\nEl p-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la diferencia de medias en los niveles de urea en sangre se deba a un error de muestreo o al azar. Consecuentemente, la hipótesis nula queda rechazada y aceptamos la hipótesis alternativa.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#expositores",
+    "href": "index.html#expositores",
+    "title": "Introducción a la Telemetría de Grandes Mamíferos",
+    "section": "Expositores",
+    "text": "Expositores\nEstudiantes y profesionales brindarán charlas para mostrarnos el trabajo que desarrollan.\n\nLas horas corresponden al horario de Ecuador (GMT -5)\n\n\n\n\n\n\n\nFecha\nExpositor\nTema\n\n\n\n\nMarzo 1, 2024 11:00 - 11:30\nDra. Diorene Smith Cabellos - Panamá\nBlindando de la extinción al perezoso pigmeo\n\n\nMarzo 4, 2024 11:00 - 11:30\nJorge Brito - Ecuador\nA definir\n\n\nMarzo 5, 2024 10:30 - 11:00\nAngela Alviz - Colombia\nOcupación, patrones de actividad y abundancia relativa de la danta de tierras bajas (Tapirus terrestris) en Arauca, Colombia\n\n\nMarzo 5, 2024 11:00 - 11:30\nValentina López - Colombia\nPatrones intersexuales de la conducta de marcaje por olor del oso andino (Tremarctos ornatus) en el corredor biológico Guácharos-Puracé\n\n\nMarzo 7, 2024 11:00 - 11:30\nChristian Loaiza - Ecuador\nEl zorro de Séchura en Ecuador situación actual y estado de conservación",
+    "crumbs": [
+      "Inicio"
     ]
   }
 ]

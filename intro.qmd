@@ -440,7 +440,4 @@ Si eres nuevo en el mundo de la programación, no recomiendo que utilices IA par
 
 # Fuentes
 
-El presente trabajo ha sido escrito y editado por [Francisco Castellanos](https://orcid.org/0000-0003-0955-8185) y está influenciado por la clase "Introducción Básica al Lenguaje de R" de [Juan Pablo Zurano](https://www.researchgate.net/profile/Juan-Zurano-3), así como también: [YaRrr](https://bookdown.org/ndphillips/YaRrr/writing-r-scripts-in-an-editor.html), [The R Book](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf), y [R for Data Science](https://r4ds.hadley.nz/).
-<br> <br>
-
-------------------------------------------------------------------------
+Este capítulo está influenciado por la clase "Introducción Básica al Lenguaje de R" de [Juan Pablo Zurano](https://www.researchgate.net/profile/Juan-Zurano-3), así como también: [YaRrr](https://bookdown.org/ndphillips/YaRrr/writing-r-scripts-in-an-editor.html), [The R Book](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf), y [R for Data Science](https://r4ds.hadley.nz/).

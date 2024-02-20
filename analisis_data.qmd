@@ -230,7 +230,7 @@ El *p*-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la
 
 ## Fuentes
 
-El diseño y escritura de esta clase fue tomado y adaptado por [Francisco Castellanos](https://orcid.org/0000-0003-0955-8185) de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/) y el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), las más grandes influencias de este trabajo.
+Este capítulo fue tomado y adaptado de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/) y el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), las más grandes influencias de este trabajo.
 
 Tanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic [aquí](https://mega.nz/fm/d5dBkYRS).
 

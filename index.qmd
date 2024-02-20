@@ -25,6 +25,35 @@ Debido a la naturaleza del evento, solicitamos mantener una actitud y vocabulari
 4.	Los micrófonos deben permanecer apagados para evitar interrupciones.
 5.	Buscamos que nuestras clases sean interactivas, por lo que alentamos que se encienda el micrófono únicamente para realizar preguntas ocualquier comentario que aporte con al discusión de los temas dictados.
 
+## Expositores
+
+Estudiantes y profesionales brindarán charlas para mostrar el trabajo que llevan a cabo en sus países.
+
++-------------------+---------------------------------+----------------------------------------------+
+| Fecha             | Expositor                       | Tema                                         |
++===================+=================================+==============================================+
+| Marzo 1, 2024     | Dra. Diorene Smith Cabellos     | Blindando de la extinción al perezoso pigmeo |
+| 11:00 - 11:30     | - Panamá                        |                                              |
+|                   |                                 |                                              |
++-------------------+---------------------------------+----------------------------------------------+
+| Marzo 4, 2024     | Jorge Brito - Ecuador           | A definir                                    |
+| 11:00 - 11:30     |                                 |                                              |
+|                   |                                 |                                              |
++-------------------+---------------------------------+----------------------------------------------+
+| Marzo 5, 2024     | Angela Alviz - Colombia         | Ocupación, patrones de actividad y abundancia|
+| 10:30 - 11:00     |                                 | relativa de la danta de tierras bajas        |
+|                   |                                 | (*Tapirus terrestris*) en Arauca, Colombia   |
++-------------------+---------------------------------+----------------------------------------------+
+| Marzo 5, 2024     | Valentina López - Colombia      | Patrones intersexuales de la conducta de     |
+| 11:00 - 11:30     |                                 | marcaje por olor del oso andino (*Tremarctos*|
+|                   |                                 | *ornatus*) en el corredor biológico          |
+|                   |                                 | Guácharos-Puracé                             |
++-------------------+---------------------------------+----------------------------------------------+
+| Marzo 7, 2024     | Christian Loaiza - Ecuador      | El zorro de Séchura en Ecuador situación     |
+| 11:00 - 11:30     |                                 | actual y estado de conservación              |
++-------------------+---------------------------------+----------------------------------------------+
+: Las horas corresponden al horario de Ecuador (GMT -5)
+
 ## Agradecimientos {.unnumbered}
 
-Este curso es auspiciado por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.
+Esta edición del curso ha sido auspiciada por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.
