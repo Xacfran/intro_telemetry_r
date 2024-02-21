@@ -37,13 +37,13 @@ Una vez hayas creado tu cuenta, verás una ventana como la siguiente y puedes cr
 Por el contrario, si quieres tener R y R Studio en tu computador debes contar con acceso a internet y cualquier navegador web de tu preferencia, Chrome, Firefox, etc.
 Si tu Sistema Operativo es Windows la descarga de R debe hacerse desde el subdirectorio base en la web de CRAN (Comprehensive R Archive Network), [aquí](https://cran.r-project.org/bin/windows/base/).
 De la misma manera, R Studio para Windows puede ser descargado desde [aquí](https://posit.co/download/rstudio-desktop/).
-Si surge algún problema durante la instalación o quieres saber más sobre R, puedes dirigirte a la sección de [Preguntas frecuentes de R](https://cran.r-project.org/doc/FAQ/R-FAQ.html).
+Si surge algún problema durante la instalación o quieres saber más sobre R, puedes dirigirte a la sección de [Preguntas frecuentes](https://cran.r-project.org/doc/FAQ/R-FAQ.html).
 
 Si tienes otro Sistema Operativo o tienes un nivel medio o avanzado en el uso de R, te recomiendo leer este [tutorial de instalación](https://rubenfcasal.github.io/post/instalacion-de-r/#windows).
 
 ## !Ya has instalado R Studio! ¿Y ahora qué?
 
-Una vez que abras R Studio notarás muchas opciones, paneles y una consola que puede parecer confusa al principio pero ahora te familiarizarás rápidamente con esta interfaz.
+Una vez que abras R Studio notarás muchas opciones, paneles y una consola. Todo esto puede parecer confuso al principio pero ahora te familiarizarás rápidamente con esta interfaz.
 
 La barra de herramientas en la parte superior contiene las opciones File, Edit, Code, View, etc.
 Debajo de **File** puedes encontrar un icono similar a este {{< fa file-circle-plus >}}.
@@ -62,42 +62,42 @@ Una vez que hayas creado un nuevo script, R Studio lucirá de la siguiente maner
 
 Ahora puedes observar 4 paneles con varias opciones dentro de cada uno.
 
--   **Source** es el panel en el que manipularemos y almacenaremos nuestros códigos como **Scripts**.
--   **Environment** almacena los objetos que son creados a lo largo de nuestro trabajo.
--   El panel que contiene a las pestañas Files, Plots, Packages, Help y Viewer, nos permite encontrar de manera rápida y eficiente los archivos en nuestro directorio de trabajo (**Files**), los gráficos generados a partir de análisis (**Plots**), los paquetes instalados (**Packages**), manuales de ayuda de R y de paquetes instalados (**Help**), y por último encontramos a **Viewer**, un panel que nos muestra gráficos interactivos generados por algunos paquetes.
--   En **Console** encontrarás el signo “\>” llamado prompt que nos muestra si el sistema está listo o no para ejecutar un comando. Además, los resultados de los análisis se mostrarán aquí.
+-   **Source** es el panel en el que puedes crear y editar *scripts*.
+-   **Environment** almacena los objetos creados a lo largo del trabajo por tu *script*.
+-   El panel que contiene a las pestañas Files, Plots, Packages, Help y Viewer, te permetirá encontrar de manera rápida y eficiente los archivos en tu directorio de trabajo (**Files**), los gráficos generados (**Plots**), los paquetes instalados (**Packages**), manuales de ayuda de funciones y de paquetes instalados (**Help**), y por último a **Viewer**, un panel que muestra gráficos interactivos generados por algunos paquetes.
+-   En **Console** encontrarás el signo `>` llamado *prompt* que muestra si el sistema está listo o no para ejecutar un comando. Además, los resultados de los análisis se mostrarán aquí.
 
-## ¿Qué es un script?
+## ¿Qué es un *script*?
 
-Un script es una serie de comandos escritos en un archivo de texto que pueden ser almacenados, editados y ejecutados.
+Un *script* comprende una serie de comandos escritos en un archivo de texto que pueden ser almacenados, editados y ejecutados.
 ¿Suena sencillo?
 Efectivamente es un concepto simple y tiene muchas ventajas si se lo compara con programas que no cuentan con esta opción.
 Un script nos brinda la posibilidad de editar cualquier línea de comando las veces que sea necesario, te permite retomar cualquier trabajo tras varios días, meses o años.
-Además puedes agregar comentarios sobre el código que escribes como veremos a continuación.
-Esto resulta extremanente útil si quieres compartir tu trabajo con otros, o si te encuentras trabajando en un proyecto extenso, el cual podrás retomar exactamente desde donde lo dejaste.
+Además puedes agregar comentarios sobre el código que escribes como verás a continuación.
+Esto resulta extremadamente útil si quieres compartir tu trabajo con otros, o si te encuentras trabajando en un proyecto extenso, el cual podrás retomar exactamente desde donde lo dejaste.
 
 Ahora que conoces un poco más sobre esta interfaz, ¡ya puedes empezar!
 
 ## Primeros pasos
 
-Empecemos escribiendo operaciones matemáticas sencillas en el script.
+Empecemos escribiendo operaciones matemáticas sencillas en el *script*.
 
 ```{r eval=FALSE}
 2 + 2
 ```
 
-Ahora presiona Enter, ¿qué sucede?
-Es importante saber que la ejecución de comandos con la tecla **Enter** se lleva a cabo solamente en la **Consola**.
-Si quieres ejecutar un código dentro del script, debes apretar **Ctrl+Enter**.
+Ahora presiona `Enter`, ¿qué sucede?
+Es importante saber que la ejecución de comandos con la tecla `Enter` se lleva a cabo solamente en la **Consola**.
+Si quieres ejecutar un código dentro del script, debes apretar `Ctrl+Enter`.
 
-Ahora escribe la misma operación precedida por un signo numeral `#` y presiona **Ctrl+Enter**.
+Ahora escribe la misma operación precedida por un signo numeral `#` y presiona `Ctrl+Enter`.
 
 ```{r eval=FALSE}
 # 2 + 2
 ```
 
 ¿Hay algún resultado?
-Si colocamos este símbolo al iniciar una línea, esta no será leída como un código por R, por lo que no se ejecutará.
+Si colocamos este símbolo al iniciar una línea, esta no será leída como un código, por lo que no se ejecutará.
 Esto es muy útil al momento de agregar comentarios sobre el código que escribimos y para poder compartirlo con otros y así entiendan rápidamente que realizaste en tu trabajo.
 
 Sigamos intentando con más operaciones matemáticas.
@@ -127,13 +127,13 @@ Compliquemos esto aplicando otras funciones matemáticas.
 log(5)
 
 # Logaritmo natural y base 10 con otras operaciones
-log(5)/log2 (5*3)
+log(5)/log2(5*3)
 
 # Raiz cuadrada
 sqrt(23.567)
 
 # Factorial
-factorial (24)
+factorial(24)
 ```
 
 Nota que los números ahora se encuentran dentro de un paréntesis y delante de una **función**.
@@ -141,9 +141,8 @@ Existen probablemente millones de funciones en R con propósitos diferentes y es
 Para poder ejecutarlas, éstas deben estar escritas con la estructura que viste en el ejemplo anterior `función( ... )`.
 Tú también puedes crear tus propias funciones, pero eso lo dejaremos para un curso más avanzado.
 
-Todos los resultados de estas operaciones se muestran en la **Consola**.
-Sin embargo, si quisieras almacenarlos y manipularlos es necesario transformarlos en **objetos**.
-Para ello debemos hablar sobre la estructura de datos.
+Como lo notaste, todos los resultados de estas operaciones se muestran en la **Consola**.
+Sin embargo, si quisieras almacenarlos y manipularlos posteriormente es necesario transformarlos en **objetos**. Para ello debemos hablar sobre la estructura de datos.
 
 ## Estructura de datos
 
@@ -198,7 +197,7 @@ Existen dos maneras de indagar sobre una función cualquiera y obtener ayuda sob
 help(seq)
 ```
 
-La sección de ayuda contiene todo lo que debes saber sobre cualquier función, al final de cada manual de instrucciones de la función podrás ver además ejemplos que te ayudarán a entenderla y aplicarla según tus necesidades.
+La sección de ayuda contiene todo lo que debes saber sobre cualquier función. Al final de cada manual de instrucciones de la función podrás ver además ejemplos que te ayudarán a entenderla y aplicarla según tus necesidades.
 
 Ahora bien, puedes aplicar esto a un ejemplo más cotidiano.
 Imagina que posees datos de distintos pesos de varios individuos de una especie de roedor que has capturado y quieres realizar algunas operaciones con ellos.
@@ -240,7 +239,6 @@ Cuando modificas un vector es usualmente aconsejable crear uno nuevo y almacenar
 El código no siempre se verá tan sencillo como en el ejemplo anterior y es mejor trabajar de una manera segura al manipular metadatos.
 
 Es muy útil saber que si deseas eliminar cualquier objeto, lo puedes hacer en cualquier momento mediante la función `remove()` o `rm()`.
-Esto es especialmente útil si estás trabajando con un set de datos muy grande y quieres liberar memoria.
 
 ### Matrices
 
@@ -273,7 +271,7 @@ roedores <- cbind(roedor1, roedor2)
 ```
 
 Al igual que los vectores, las matrices también pueden ser modificadas.
-Sin embargo, al haber añadido una dimensión más a nuestros datos, la forma de escribir los códigos cambia dependiendo de si quieres modificar una fila o una columna.
+Sin embargo, al haber añadido una dimensión más, la forma de editarlas cambia dependiendo de si quieres modificar una fila o una columna.
 
 ```{r}
 # Elimina la cuarta fila
@@ -294,7 +292,7 @@ roedores_mod <- roedores[,-1]
 Añade dos nuevas columnas a la matriz roedores y posteriormente elimina los datos desde la 2<sup>da</sup> hasta la 4<sup>ta</sup> fila.
 :::
 
-También puedes usar distintas funciones para analizar cualquier matriz.
+También puedes usar distintas funciones para analizar cualquier matriz. Puedes leer mas sobre estas funciones en la sección de ayuda.
 
 ```{r eval= FALSE}
 head(roedores)
@@ -302,28 +300,24 @@ nrow(roedores)
 class(roedores)
 ```
 
-Puedes leer mas sobre estas funciones en la sección de ayuda.
-
 ### *Data frames*
 
-Un *data frame* es un set de datos que puede estar conformado tanto por valores numéricos o también por caracteres.
-Trabajar con este tipo de objetos es una aproximación más realista debido al tipo de .
+Un *data frame* es un set de datos que puede estar conformado por valores numéricos y caracteres. Trabajar con este tipo de objetos es una aproximación más realista a lo que ecncontrarás cotidianamente como verás a lo largo de este curso.
 
-Continuemos con nuestro ejemplo de los roedores, supongamos que quieres agregar una columna que contenga un vector de caracteres y se le asigne el nombre de especie a cada roedor.
-Para este propósito organizaremos los datos de pesos de los roedores en filas.
+Continuando con el ejemplo de los roedores, agrega una columna que contenga un vector de caracteres y asigna el nombre de especie a cada roedor. Para este propósito puedes organizar los datos de pesos de los roedores en filas.
 
 ```{r}
 # Añade varias veces los objetos creados anteriormente
 roedores <- cbind(roedor1, roedor2, roedor1, roedor2)
 class(roedores)
-
-#Crea un vector de caracteres
-localidad <- c("Quito", "Guayaquil")
 ```
 
 El objeto roedores es aún una matriz, ¿cómo podrías añadir las localidades para convertirlo en un *data frame*?
 
 ```{r results='hide'}
+#Crea un vector de caracteres
+localidad <- c("Quito", "Guayaquil")
+
 # Utiliza la función data.frame
 roedores <- data.frame(roedores, localidad)
 
@@ -333,8 +327,7 @@ summary(roedores)
 str(roedores)
 ```
 
-La función `summary` y `str` nos brindan información relevantes que será necesaria en clases posteriores.
-¿Qué pasa si quieres saber algo más específico como cuántos valores por debajo de 25 existen en el *data frame*?
+La función `summary` y `str` brindan información relevante que te permite tener una vista rápida para entender la organización de tus datos. Sin embargo, ¿cómo podrías saber algo más específico como cuántos valores por debajo de 25 existen en el *data frame*?
 
 ```{r echo=TRUE}
 roedores <= 25
@@ -368,7 +361,7 @@ Volviendo a CRAN, para descargar un paquete solamente necesitamos ejecutar el co
 El nombre del paquete debe ser reemplazado dentro de los paréntesis y entre comillas, de la siguiente manera:
 
 ```{r eval=FALSE}
-#Instala el paquete dplyr
+# Instala el paquete dplyr
 install.packages("dplyr")
 ```
 
@@ -381,18 +374,18 @@ library(dplyr)
 Los paquetes también cuentan con una sección de ayuda, a la cual puedes acceder mediante este código:
 
 ```{r eval=FALSE}
-help (package= "dplyr")
+help(package= "dplyr")
 ```
 
-Ahora que ya sabes descargar paquetes, descarga `ggplot2`, el cual será necesario para visualizar datos en la siguiente sección.
+Ahora que ya sabes descargar paquetes, descarga `ggplot2`, un paquete de visualización de datos extremadamente popular y útil que utilizarás ampliamente en próximos capítulos.
 
 ## *tidyverse*
 
-*Tidyverse* es una colección de paquetes que contiene a dplyr y ggplot2.
-Estos han sido creados para facilitar la manipulación y vsualización de datos mediante gráficos estéticos con varias opciones para modificarlos y presentarlos.
+*tidyverse* es una colección de paquetes que contiene a *dplyr* y *ggplot2*.
+Estos han sido creados para facilitar la manipulación y visualización de datos mediante gráficos estéticos con varias opciones para modificarlos y presentarlos.
 Puedes ver algunos ejemplos en la [galería oficial](https://r-graph-gallery.com/) de *ggplot2*, y varios ejemplos sobre las [extensiones](https://exts.ggplot2.tidyverse.org/gallery/) que han sido escritas para ampliar aún más el funcionamiento de este paquete.
 
-Una vez hayas activado dplyr, ya puedes buscat datos específicos en el *data frame* “roedores”.
+Una vez hayas activado dplyr, ya puedes utilizarlo para buscar datos específicos en el *data frame* “roedores” utilizando una sintaxis diferente a la que aprendiste recientemente.
 
 ```{r eval=FALSE}
 library(dplyr)
@@ -405,14 +398,15 @@ capital <- filter(roedores, localidad == "Quito")
 capital <- select(capital, roedor2)
 ```
 
-📚 **Tarea**
+:::{.callout-tip}
+## **Tarea**
 
 Utiliza todo lo aprendido en esta clase y el set de datos `roedores` y responde: ¿cuántos individuos de Guayaquil tienen pesos menores o iguales a 26.5?
+:::
 
 ## *ggplot2*
 
-Ahora puedes visualizar los datos de una manera más atractiva y comprensible.
-Para ello, activa el paquete *ggplot2* y ejecuta:
+Ahora que cuentas con un *data frame*, puedes visualizar los datos de una manera estética y comprensible. Por ahora, aprenderás a utilizar algunasfunciones de este paquete, sin un fin específico, y más adelante te concentrarás en ponerlo en uso con un objetivo de comunicación científica. Activa el paquete *ggplot2* y ejecuta:
 
 ```{r}
 ggplot(data = roedores) +
@@ -420,9 +414,7 @@ ggplot(data = roedores) +
              size = 5)
 ```
 
-📚 **Tarea**
-
-Utiliza el manual de ayuda de `geom_point()` para descifrar como elaboré este gráfico:
+Ahora colorea cada punto en base a la localidad de muestreo.
 
 ```{r echo=FALSE}
 ggplot(data = roedores) +
@@ -430,13 +422,17 @@ ggplot(data = roedores) +
               size = 5)
 ```
 
+:::{.callout-tip}
+## **Tarea**
+Utiliza el manual de ayuda de `geom_point()` o haz una búsqueda en internet para descifrar como elaboré este gráfico.
+:::
+
+
 # Nota
 
 Como en cualquier actividad o disciplina, el manejo de R requiere constancia, disciplina y paciencia.
-Ten en cuenta que los ejemplos de este curso están planeados para que funcionen al primer intento, sin embargo, esto jamás va a ser la normal cuando analices tu propio set de datos debdo a múltiples factores.
-Ten en cuenta que muchas veces las respuestas a los inconvenientes que encuentres podrás resolverlos en varios sitios web, e incluso con la ayuda Inteligencia Artificial (IA).
-
-Si eres nuevo en el mundo de la programación, no recomiendo que utilices IA para resolver tus problemas, ya que el autoaprendizaje y la prueba y error son sumamente importantes cuando se empieza a conocer un lenguaje de programación.
+Ten en cuenta que los ejemplos de este curso están planeados para que funcionen inmediatamente y sin errores, sin embargo, esto jamás va a ser la norma cuando analices tu propio set de datos debido a múltiples factores.
+Ten en cuenta que muchas veces las respuestas a los inconvenientes que encuentres podrás resolverlos en varios sitios web, e incluso con la ayuda Inteligencia Artificial (IA). Aunque, si eres nuevo en el mundo de la programación, no recomiendo que utilices IA para resolver tus problemas, ya que el autoaprendizaje y la prueba y error son sumamente importantes cuando se empieza a conocer un lenguaje de programación.
 
 # Fuentes
 
