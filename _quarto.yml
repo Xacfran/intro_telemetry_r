@@ -8,7 +8,7 @@ book:
 
   page-footer:
     left: |
-      Escrito por FXC en <a href="https://quarto.org/">Quarto</a>.
+      Escrito por <a href="https://xacfran.github.io/digital-resume/">FXC</a> en <a href="https://quarto.org/">Quarto</a>.
     right: |
       © 2024 Fundación Oso Andino. Todos los derechos reservados.
   cover-image: docs/Figures/cover.png

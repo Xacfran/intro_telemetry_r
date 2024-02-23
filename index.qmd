@@ -13,7 +13,7 @@ editor_options:
 
 # Inicio {.unnumbered}
 
-Este es el curso de Introduccion a la Ecología y Telemetria de Grandes mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
+Esta es la sexta edición del curso de Introduccion a la Ecología y Telemetria de Grandes Mamiferos dictado por la  <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
 
 ## Código de conducta {.unnumbered}
 
@@ -39,9 +39,9 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 | 11:00 - 11:30     | - Panamá                        |                                              |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Marzo 4, 2024     | Jorge Brito - Ecuador           | *A definir*                                  |
-| 11:00 - 11:30     |                                 |                                              |
-|                   |                                 |                                              |
+| Marzo 4, 2024     | Jorge Brito - Ecuador           | Explorando la diversidad de pequeños         |
+| 11:00 - 11:30     |                                 | mamíferos no voladores en Ecuador:           |
+|                   |                                 | Avances y descubrimientos                    |
 +-------------------+---------------------------------+----------------------------------------------+
 | Marzo 5, 2024     | Angela Alviz - Colombia         | Ocupación, patrones de actividad y abundancia|
 | 10:30 - 11:00     |                                 | relativa de la danta de tierras bajas        |
@@ -52,9 +52,14 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 |                   |                                 | *ornatus*) en el corredor biológico          |
 |                   |                                 | Guácharos-Puracé                             |
 +-------------------+---------------------------------+----------------------------------------------+
+| Marzo 7, 2024     | Elias Condori - Perú            | Monitoreo de mamíferos con cámaras trampa    |
+| 10:30 - 11:00     |                                 | en el valle de Koshñipata (zona de           |
+|                   |                                 | amortiguamiento del parque nacional del Manu)|
++-------------------+---------------------------------+----------------------------------------------+
 | Marzo 7, 2024     | Christian Loaiza - Ecuador      | El zorro de Séchura en Ecuador situación     |
 | 11:00 - 11:30     |                                 | actual y estado de conservación              |
 +-------------------+---------------------------------+----------------------------------------------+
+
 : Las horas corresponden al horario de Ecuador (GMT -5)
 
 ## Agradecimientos {.unnumbered}
