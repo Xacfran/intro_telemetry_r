@@ -8,7 +8,7 @@ book:
 
   page-footer:
     left: |
-      Este tutorial fue escrito por Francisco X. Castellanos en <a href="https://quarto.org/">Quarto</a>.
+      Escrito por FXC en <a href="https://quarto.org/">Quarto</a>.
     right: |
       © 2024 Fundación Oso Andino. Todos los derechos reservados.
   cover-image: docs/Figures/cover.png
