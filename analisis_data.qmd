@@ -228,6 +228,62 @@ El *p*-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la
 
 ## Personalizando gráficos con ggplot2
 
+Existen tres sistemas de plotting en R, base plotting, el paquete lattice y ggplot2.
+Por ahora nos concentraremos en indagar en algunas de las tantas opciones de personalización que nos ofrece *ggplot2* y de otros paquetes que interactúan con éste.
+
+Imaginemos que una vez concluidos nuestros análisis, estamos disconformes con ellos y creemos que puede deberse a un error en los datos. ¿Como podríamos identificar entre tantos valores a aquel que genera un error en el cálculo de estadísticos? Para generar el gráfico que nos puede ayudar a responder esta pregunta, necesitaremos descargar primeramente el paquete *plotly*.
+
+```{r eval=TRUE, fig.align="center", fig.width=5, fig.height=5}
+library(plotly)
+
+# Crea un objeto que contenga un ggplot de nuestro dataset lipidos.
+lipidos_valores <- lipidos %>%
+                    ggplot(aes(x = colesterol, y = trigliceridos, colour = sexo)) +
+                    geom_point() +
+                    # Cambia el temadel plot
+                    theme_light() +
+                    # Cambia los nombres de los ejes
+                    labs( y = "Triglicéridos", x = "Colesterol")
+
+# !Observa el gráfico interactivo!
+ggplotly(lipidos_valores)
+```
+
+Este gráfico interactivo aparecerá en la pestaña **Viewer** y te permitirá ubicarte sobre cualquier punto del scatterplot y observar su valor en el eje de coordenadas. Esto será muy útil más adelante para deshacernos de outliers en los análisis espaciales.
+
+
+### Paquetes que interactúan con *ggplot2*
+
+#### *ggExtra*
+
+Este es un paquete que mejora la visualización de gráficas adjuntando histogramas, boxplots y plots de densidad hacia los márgenes de una gráfica de scatterplot realizada en *ggplot2*.
+
+```{r eval= TRUE, fig.align="center", fig.width=5, fig.height=5}
+library(ggExtra)
+
+# ¿Por qué crees que almacenamos el siguiente gráfico como un objeto?
+g <- ggplot(lipidos, aes(colesterol, trigliceridos, colour=sexo)) +
+        geom_point() +
+        # Agrega regresiones lineales
+        geom_smooth(method = "lm", se = F) +
+        # Agrega un título al plot
+        labs(title = "Correlación y Distribución \nde lípidos") +
+        # Cambia el tema del plot
+        theme_bw () +
+        # La posición de la leyenda y el tamaño de la letra
+        theme(legend.position = "bottom",
+                text = element_text(size = 15))
+
+# Crea un gráfico con ggExtra
+ggMarginal(g, type = "histogram", fill = "transparent")
+```
+
+::: callout-tip
+## Tarea
+Lee el apartado de ayuda de `ggMarginal` y grafica un diagrama de caja y
+bigotes en lugar de un histograma.
+:::
+
 ## Fuentes
 
 Este capítulo fue tomado y adaptado de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/) y el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), las más grandes influencias de este trabajo.
@@ -236,8 +292,3 @@ Tanto el análisis estadístico como la creación de gráficos utilizando ggplot
 
 Finalmente, puedes profundizar más en el uso de ggplot2 ingresando a: [Data
 Visualization with R](https://cengel.github.io/R-data-viz/) , [Top 50 ggplot2 Visualizations](https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#1.%20Correlation) y [Data visualization with ggplot2](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html).
-
-
-
-![Seguimos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
-
