@@ -22,15 +22,14 @@ source("_common.R")
 
 Antes de ingresar nuestros datos, es muy importante indicar a R cuál será nuestro directorio de trabajo o también llamado **Working Directory**. Es decir, debemos establecer la carpeta dentro de la cual se encuentran los archivos a utilizar, y donde se exportarán los que generes durante tu trabajo.
 
-R toma automáticamente un directorio en el cual trabajar. Puedes saber en que directorio estás trabajando con la función `getwd()`.
+R toma automáticamente un directorio en el cual trabajar y puedes saber cual es con la función `getwd()`.
 
 Existen algunas formas de establecer el lugar de trabajo. La primera es de manera manual:
 ```{r eval=FALSE}
 setwd("~/Curso_R/Estadistica_basica")
 ```
 
-Nota que el símbolo `~` se encuentra al inicio del directorio escrito. Este símbolo
-reemplaza al resultado obtenido de la función `getwd`.
+Nota que el símbolo `~` se encuentra al inicio del directorio escrito. Este símbolo reemplaza al resultado obtenido de la función `getwd`.
 
 La segunda manera de establecer el directorio es presionando las teclas `Ctrl+Shift+H`. Inmediatamente se abrirá una ventana en la que podrás seleccionar tu directorio manualmente.
 
@@ -38,7 +37,7 @@ La segunda manera de establecer el directorio es presionando las teclas `Ctrl+Sh
 
 Puedes descargar el achivo utilizado en este tutorial desde este [link](https://mega.nz/file/Rk92CCBb#AEQqmA4g8CWvtA1g98lCUzWtRZzmUklwpuCgLFsk8tg) . Antes de importar este u otro archivo debes tener claro cuál es el tipo de extensión, ya que diferentes formatos implican diferentes funciones para importarlos.
 
-Tanto los archivos [txt](http://www.sthda.com/english/wiki/reading-data-from-txt-csv-files-r-base-functions) y  [xlsxl](http://www.sthda.com/english/wiki/reading-data-from-excel-files-xls-xlsx-into-r) resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como [readxl](https://readxl.tidyverse.org/). Por otro lado, los archivos `csv` (*comma separated values*) con los que trabajarás en esta clase, se pueden importar de esta manera:
+Tanto los archivos [txt](http://www.sthda.com/english/wiki/reading-data-from-txt-csv-files-r-base-functions) y [xlsxl](http://www.sthda.com/english/wiki/reading-data-from-excel-files-xls-xlsx-into-r) resultan un poco más complicados de leer e incluso necesitan la instalación de otros paquetes como [readxl](https://readxl.tidyverse.org/). Por otro lado, los archivos `csv` (*comma separated values*) con los que trabajarás en esta clase, se pueden importar de esta manera:
 
 ```{r eval=FALSE}
 data <- read.csv("osos_hema.csv")
@@ -51,7 +50,7 @@ Asegúrate que el archivo `osos_hema.csv` se encuentra en el directorio que indi
 :::
 Una vez que hayas importado el archivo, lo puedes ver como *data frame* en el panel Environment. Puedes hacer clic sobre el objeto e inspeccionarlo brevemente.
 
-Repasa brevemente las funciones que aprendiste en @sec-intro para obtener datos más específicos sobre el objeto `data`.
+Repasa las funciones que aprendiste en @sec-intro para obtener datos más específicos sobre el objeto `data`.
 
 ```{r eval=FALSE}
 head(data)
@@ -59,7 +58,7 @@ summary(data)
 str(data)
 ```
 
-Observa que hay una gran cantidad de datos faltantes `NA’s`.  ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?
+Observa que hay una gran cantidad de datos faltantes, `NA’s`.  ¿Son estos datos faltantes un problema para calcular la media y mediana de la columna colesterol?
 
 ```{r echo=TRUE}
 mean(data$colesterol)
@@ -88,9 +87,10 @@ lipidos <- na.omit(lipidos)
 # También puedes buscar las filas que poseen NA’s
 which(is.na(data$colesterol))
 ```
-📚 **Tarea**
-
+:::{.callout-tip}
+## **Tarea**
 ¿Cómo podrías deshacerte de los `NA's` utilizando `which(is.na())`?
+:::
 
 ### *pipes*
 
@@ -112,8 +112,35 @@ nitrogenados <- data %>%
                 na.omit()
 ```
 
+Ahora el código es más fácil de interpretar y este se lee como: *"toma el objeto data; después selecciona las columnas colesterol, triglicéridos y sexo; después omite los `NA’s`"*. Esto se lee de igual manera para el objeto `nitrogenados`.
 
-Ahora el código es más fácil de interpretar y este se lee como: toma el objeto data; *después* selecciona las columnas colesterol, triglicéridos y sexo; *después* omite los `NA’s`. Esto se lee de igual manera para el objeto `nitrogenados`.
+### Manipulación semi-avanzada
+
+Puedes hacer mucho más con este set de datos hipotético que puedes aplicar en tu propia investigación.
+
+```{r echo=TRUE}
+# Agrega una columna con la relación proteina/bun
+data %>%
+  select(proteina, bun, sexo) %>%
+  na.omit() %>%
+  mutate(proteina_bun_ratio = proteina / bun) %>%
+  head()
+
+# Agrega categorías por rangos
+data %>%
+  select(proteina, bun, sexo) %>%
+  na.omit() %>%
+  mutate(categoria_bun = case_when(
+    bun < 15 ~ "Bajo",
+    bun >= 15 & bun <= 20 ~ "Normal",
+    bun > 20 ~ "Alto")) %>%
+    head(n = 10)
+```
+
+:::{.callout-tip}
+## **Ejercicio**
+¿Cómo harías para seleccionar y guardar únicamente los valores normales en nuevo *data frame*?
+:::
 
 ## Estadística básica en R {#sec-est-basica}
 
@@ -166,7 +193,7 @@ nitrogenados %>%
                 desv_est = sd(bun))
 ```
 
-Estas posibles diferencias también pueden ser observadas también mediante un gráfico decaja y biggotes.
+Estas posibles diferencias también pueden ser observadas mediante un gráfico de caja y bigotes.
 
 ```{r}
 boxplot(nitrogenados$bun ~ nitrogenados$sexo)
@@ -191,6 +218,11 @@ qqline(nitrogenados$bun)
 ```
 
 Si deseas saber más sobre el significado de los Q-Q plots, ingresa [aquí](https://data.library.virginia.edu/understanding-q-q-plots/).
+
+Si quieres aumentar la confianza sobre la normalidad de tu set de datos, puedes utilizar la función `shapiro.test`.
+```{r echo = TRUE}
+shapiro.test(nitrogenados$bun)
+```
 
 ## T de Student
 
@@ -226,11 +258,104 @@ El *p*-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la
 
 ## Análisis de Componentes Principales
 
+Este método de reducción dimensional incluye el análisis de valores propios (eigenvalues) y vectores propios (eigenvectors) de una matriz de covarianza o correlación. Sin embargo, para los propósitos de este curso aprenderás los conceptos básicos y necesarios para realizar este análisis multivariado.
+Te recomiendo que hagas una lectura a fondo de este tema utilizando la bibliografía que puedes encontrar en [-@sec-est-basica-fuentes], si quieres utilizar este método para publicaciones científicas.
+
+Por lo pronto, empieza instalando los paquetes necesarios para esta sección e importando otro archivo hipotético de un segundo análisis de sangre.
+
+```{r eval=FALSE}
+library(factoextra)
+library(ggfortify)
+
+data_pca <- read.csv("osos_hema_pca.csv")
+```
+```{r include=FALSE}
+data_pca <- read.csv("docs/datos/osos_hema_pca.csv")
+```
+
+Hay muchos paquetes que incorporan funciones para realizar un PCA, pero para este curso introductorio sugiero que te familiarices con la función `prcomp` del paquete *stats* y algunas de *factoextra* para visualización.
+
+```{r eval = FALSE}
+prcomp(data_pca[,1:4] , center= TRUE, scale=TRUE)
+```
+
+¿Por qué no puedes correr este código? Recuerda que el set de datos que importamos, no fue limpiado, y al tener `NA's`, los análisis matemáticos no son posibles. Asegúrate de limpiarlo antes de proceder.
+
+```{r eval = TRUE}
+# Limpia los datos
+clean_data <- data_pca %>% na.omit()
+
+# PCA
+osos_pca <- prcomp(clean_data[, 1:4] , center= TRUE, scale=TRUE)
+```
+
+Es muy importante tener en cuenta que los argumentos `center` y `scale` deben ser utilizados siempre. Así eliminarás sesgos sistemáticos asegurándote que la estructura de tus datos se basen en la covarianza/varianza, y además estandarizas los datos para evitar que la posible diferencia de escalas no afecten el cálculo.
+
+Ahora puedes analizar los resultados del PCA de varias maneras y cada una de ellas te proporcionará con información valiosa para que entiendas los factores que contribuyen a la aparición de patrones y estructuras en los datos.
+
+### Entendiendo el PCA
+Empieza por ver un resumen del análisis.
+
+```{r eval = TRUE}
+summary(osos_pca)
+```
+
+Puedes notar que la proporción de varianza en el primer componente principal (PC1) es del 71.05% y en el PC2 es 24.09%, es decir que juntos explican el 95.14% de varianza total de los datos. Puedes visualizar qué componentes principales explican la mayor parte de la varianza, lo que te permitirá decidir cuantos componentes deberiás elegir para tus análisis posteriores.
+
+```{r eval = TRUE}
+# Genera un scree plot
+fviz_eig(osos_pca, addlabels = TRUE,
+         barfill = "gray70", barcolor = "black")
+```
+
+Los valores mostrados en el *scree plot* también puedes obtenerlos desde el objeto de esta manera:
+```{r eval = TRUE}
+get_eigenvalue(osos_pca)
+```
+
+Ahora sabes cuantos componentes deberías elegir, pero, ¿cuáles son las variables que están más fuertemente asociadas con cada componente principal?
+
+```{r eval = TRUE}
+osos_pca$rotation
+```
+
+Puedes visualizar esta contribución de la siguiente manera:
+```{r eval = TRUE}
+fviz_pca_var(osos_pca,
+             col.var = "contrib",
+             gradient.cols = c("#440D54", "#39568C", "#54C667"),
+             repel = TRUE)
+```
+
+::: {.callout-note}
+## Nota
+Los colores utilizados en este gráfico los he extraído del paquete [`viridis`](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html), que ayudan a mejorar la representación de los  datos y son amigables con gente daltónica.
+
+:::
+
+### *Biplots*
+
+Ahora puedes crear un biplot, un tipo de gráfica típica de este análisis que contiene al *score plot*, es decir a los datos proyectas en dos componentes principales, y el *loading plot*, que representa la contribución de cada variable.
+```{r eval = TRUE}
+fviz_pca_biplot(osos_pca,
+                geom.ind = "point",
+                pointshape = 21,
+                pointsize = 3.5,
+                fill.ind = clean_data$sexo,
+                label = "var",
+                repel = TRUE,
+                legend.title = "Sexo osos",
+                title = "") +
+  theme_light()
+```
+
+
 ## Personalizando gráficos con ggplot2
 
 Existen tres sistemas de plotting en R, base plotting, el paquete lattice y ggplot2.
 Por ahora nos concentraremos en indagar en algunas de las tantas opciones de personalización que nos ofrece *ggplot2* y de otros paquetes que interactúan con éste.
 
+### Plotly
 Imaginemos que una vez concluidos nuestros análisis, estamos disconformes con ellos y creemos que puede deberse a un error en los datos. ¿Como podríamos identificar entre tantos valores a aquel que genera un error en el cálculo de estadísticos? Para generar el gráfico que nos puede ayudar a responder esta pregunta, necesitaremos descargar primeramente el paquete *plotly*.
 
 ```{r eval=TRUE, fig.align="center", fig.width=5, fig.height=5}
@@ -256,7 +381,7 @@ Este gráfico interactivo aparecerá en la pestaña **Viewer** y te permitirá u
 
 #### *ggExtra*
 
-Este es un paquete que mejora la visualización de gráficas adjuntando histogramas, boxplots y plots de densidad hacia los márgenes de una gráfica de scatterplot realizada en *ggplot2*.
+Este es un paquete que mejora la visualización de gráficas adjuntando histogramas, boxplots y plots de densidad hacia los márgenes de una gráfica realizada en *ggplot2*.
 
 ```{r eval= TRUE, fig.align="center", fig.width=5, fig.height=5}
 library(ggExtra)
@@ -284,9 +409,9 @@ Lee el apartado de ayuda de `ggMarginal` y grafica un diagrama de caja y
 bigotes en lugar de un histograma.
 :::
 
-## Fuentes
+## Fuentes {#sec-est-basica-fuentes}
 
-Este capítulo fue tomado y adaptado de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/) y el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), las más grandes influencias de este trabajo.
+Este capítulo fue tomado y adaptado de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/), el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), [Linear Algebra for Data Science with examples in R](https://shainarace.github.io/LinearAlgebra/index.html), [Plotting PCA](https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html), y [Principal Component Methods in R: Practical Guide](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/#biplot) las más grandes influencias de este trabajo.
 
 Tanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic [aquí](https://mega.nz/fm/d5dBkYRS).
 

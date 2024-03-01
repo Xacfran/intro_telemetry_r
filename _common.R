@@ -5,6 +5,8 @@ library(rmarkdown)
 library(knitr)
 library(rafalib)
 library(ggExtra)
+library(factoextra)
+library(ggfortify)
 
 # Set global options for knitr
 knitr::opts_chunk$set(
