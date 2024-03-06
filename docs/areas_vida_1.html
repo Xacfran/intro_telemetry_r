@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -98,7 +132,8 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Introducción a la Telemetría de Grandes Mamíferos</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://osoandino.org/" title="Fundación Oso Andino" class="quarto-navigation-tool px-1" aria-label="Fundación Oso Andino"><i class="bi bi-globe"></i></a>
     <a href="https://github.com/Xacfran/intro_telemetry_r" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -163,7 +198,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">4.1</span> ?????</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -187,6 +228,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>La estimación de áreas de vida es una parte fundamental en el estudio de la Ecología de animales. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial. adehabitatHR El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos. adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.</p>
+<p>Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios. Preparación y análisis de datos Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores. A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales. Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"zebras.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">na.strings =</span> <span class="st">"NA"</span>,  <span class="at">sep=</span><span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (data)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>zebra <span class="ot">&lt;-</span> data[, <span class="fu">c</span>(<span class="st">"event-id"</span>, <span class="st">"individual-local-identifier"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"location-long"</span>, <span class="st">"location-lat"</span>, <span class="st">"study-local-timestamp"</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>zebra <span class="ot">&lt;-</span> zebra <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">id =</span> <span class="st">"event-id"</span>, <span class="at">identifier =</span> <span class="st">"individual-local-identifier"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">long =</span> <span class="st">"location-long"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">lat =</span> <span class="st">"location-lat"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">timestamp =</span> <span class="st">"study-local-timestamp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="section" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.1</span> ?????</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
@@ -195,6 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -600,11 +670,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Este tutorial fue escrito por Francisco X. Castellanos en <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Escrito por <a href="https://xacfran.github.io/digital-resume/">FXC</a> en <a href="https://quarto.org/">Quarto</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>© 2024 Fundación Oso Andino. Todos los derechos reservados.</p>
 </div>

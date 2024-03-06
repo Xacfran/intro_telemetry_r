@@ -224,7 +224,7 @@
     "href": "areas_vida_1.html",
     "title": "4  Áreas de vida Parte I",
     "section": "",
-    "text": "Estamos trabajando en este tutorial",
+    "text": "4.1 ?????",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Áreas de vida Parte I</span>"
     ]
@@ -347,6 +347,16 @@
     "text": "2.7 Fuentes\nEste capítulo fue tomado y adaptado de diversas fuentes, siendo R for Data Science, el curso gratis de edX Statistics and R, Linear Algebra for Data Science with examples in R, Plotting PCA, y Principal Component Methods in R: Practical Guide las más grandes influencias de este trabajo.\nTanto el análisis estadístico como la creación de gráficos utilizando ggplot2 son temas muy amplios para los cuales existen una amplia gama de recursos en internet. En cuanto a la parte estadística, he hecho una recopilación muy breve de libros que abordan estos temas, así como también sobre la investigación reproducible, su importancia, y como llevarla a cabo en R. Para acceder a estos recursos haz clic aquí.\nFinalmente, puedes profundizar más en el uso de ggplot2 ingresando a: Data Visualization with R , Top 50 ggplot2 Visualizations y Data visualization with ggplot2.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Análisis de datos</span>"
+    ]
+  },
+  {
+    "objectID": "areas_vida_1.html#section",
+    "href": "areas_vida_1.html#section",
+    "title": "4  Áreas de vida Parte I",
+    "section": "",
+    "text": "Estamos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Áreas de vida Parte I</span>"
     ]
   }
 ]
