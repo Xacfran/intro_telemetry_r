@@ -261,7 +261,7 @@ El *p*-value = 0.002837017, quiere decir que hay muy baja probabilidad de que la
 Este método de reducción dimensional incluye el análisis de valores propios (eigenvalues) y vectores propios (eigenvectors) de una matriz de covarianza o correlación. Sin embargo, para los propósitos de este curso aprenderás los conceptos básicos y necesarios para realizar este análisis multivariado.
 Te recomiendo que hagas una lectura a fondo de este tema utilizando la bibliografía que puedes encontrar en [-@sec-est-basica-fuentes], si quieres utilizar este método para publicaciones científicas.
 
-Por lo pronto, empieza instalando los paquetes necesarios para esta sección e importando otro archivo hipotético de un segundo análisis de sangre.
+Por lo pronto, empieza instalando los paquetes necesarios para esta sección e importando otro archivo hipotético de un segundo análisis de sangre que puedes descargara desde [aquí](https://mega.nz/folder/VwVQEbJK#lxYXI88_90s6hUihhwNXgg).
 
 ```{r eval=FALSE}
 library(factoextra)

@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -171,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datos_telemetricos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos telemétricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos de telemetría satelital</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Literatura citada</span></a>
   </div>
 </li>
     </ul>
@@ -228,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>La estimación de áreas de vida es una parte fundamental en el estudio de la Ecología de animales. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial. adehabitatHR El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos. adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.</p>
+<p>La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de <span class="citation" data-cites="silva_autocorrelation-informed_2022">Silva et al. (<a href="references.html#ref-silva_autocorrelation-informed_2022" role="doc-biblioref">2022</a>)</span> . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial. adehabitatHR El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos. adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.</p>
 <p>Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios. Preparación y análisis de datos Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores. A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales. Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()</span></span>
@@ -264,6 +284,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-silva_autocorrelation-informed_2022" class="csl-entry" role="listitem">
+Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. <span>“Autocorrelation-Informed Home Range Estimation: <span>A</span> Review and Practical Guide.”</span> <em>Methods in Ecology and Evolution</em> 13 (3): 534–44. <a href="https://doi.org/10.1111/2041-210X.13786">https://doi.org/10.1111/2041-210X.13786</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -656,8 +681,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./datos_telemetricos.html" class="pagination-link" aria-label="Datos telemétricos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos telemétricos</span></span>
+      <a href="./datos_telemetricos.html" class="pagination-link" aria-label="Datos de telemetría satelital">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos de telemetría satelital</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

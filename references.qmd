@@ -1,4 +1,4 @@
-# References {.unnumbered}
+# Literatura citada {.unnumbered}
 
 ::: {#refs}
 :::

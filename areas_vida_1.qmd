@@ -18,7 +18,7 @@ source("_common.R")
 
 # Áreas de vida Parte I {#sec-areas-vida-1}
 
-La estimación de áreas de vida es una parte fundamental en el estudio de la Ecología de animales. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial.
+La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de @silva_autocorrelation-informed_2022  . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial.
 adehabitatHR
 El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos.  adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.
 

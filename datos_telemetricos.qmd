@@ -11,8 +11,57 @@ editor_options:
     canonical: true
 theme: cosmo
 ---
-# Datos telemétricos {#sec-datos-telemetricos}
+# Datos de telemetría satelital {#sec-datos-telemetricos}
 
+
+La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de @silva_autocorrelation-informed_2022 realiza una revisión detallada al respecto . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial.
+
+
+## adehabitatHR
+El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos.  adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.
+
+En el año 2023, los paquetes sp, raster y rgdal, que en su momento fueron la base sobre los cuales se creaban otros paquetes para el estudio espacial, fueron deprecados y reemplazados por sf y terra. Sin embargo, los ante mencionados aún pueden ser descargados y utilizados, aunque se recomienda la transición hacia los nuevos paquetes.
+Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios.
+
+## Preparación y análisis de datos
+Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores.
+A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases.
+Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales.
+Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.
+
+```{r eval = FALSE}
+# Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()
+
+data1 <- read.csv("zebras.csv")
+data2 <- read.csv2("zebras.csv")
+data3 <- read.table("zebras.csv", header = TRUE, na.strings = "NA",  sep=";")
+```
+
+Ahora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()
+
+```{r include=FALSE}
+data <- read_csv2("docs/datos/zebras.csv")
+```
+```{r eval = FALSE}
+data <- read_csv2("zebras.csv")
+summary (data)
+str(data)
+```
+
+Extrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.
+
+```{r}
+zebra <- data[, c("event-id", "individual-local-identifier",
+                "location-long", "location-lat", "study-local-timestamp")]
+
+zebra <- zebra %>%
+              rename(id = "event-id", identifier = "individual-local-identifier",
+              long = "location-long",
+              lat = "location-lat",
+              timestamp = "study-local-timestamp")
+```
+
+## ?????
 ```{r}
 #| include: false
 source("_common.R")
