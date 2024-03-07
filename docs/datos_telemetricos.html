@@ -291,7 +291,7 @@ Figura&nbsp;3.1: Captura de pantalla de zebras.csv
 </div>
 <p>Ahora activa el paquete <em>readr</em> (también parte de <em>tidyverse</em>) e intenta importar los datos mediante la función <code>read_csv2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> ?<span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -525,24 +525,23 @@ Importante
 <p>Mediante <code>as.POSIXct</code>, te has asegurado de transformar una columna que fue importada como caracter, y ahora la tienes en formato <code>POSIXct</code>, con el cual R maneja el tiempo. Una vez tengas tu set de datos con el formato adecuado, puedes empezar.</p>
 <div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(move2)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(units)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>dos_zebras_move <span class="ot">&lt;-</span> <span class="fu">mt_as_move2</span>(dos_zebras, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">time_column =</span> <span class="st">"timestamp"</span>, <span class="at">track_id_column =</span> <span class="st">"identifier"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># en Mercator porque funciones no corren en Lambert</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            sf<span class="sc">::</span><span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas del objeto</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mt_n_tracks</span>(dos_zebras_move)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cada cuantas horas se tomaron posiciones satelitales?</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>timeLags <span class="ot">&lt;-</span> <span class="fu">set_units</span>(<span class="fu">mt_time_lags</span>(dos_zebras_move), hours)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution of time lags</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>timeLags_h <span class="ot">&lt;-</span> units<span class="sc">::</span><span class="fu">drop_units</span>(timeLags) <span class="co">#hist is not compatible with time "units", we drop them</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(timeLags_h, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main=</span><span class="cn">NA</span>, <span class="at">xlab =</span> <span class="st">"Time lag in hours"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(units)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>dos_zebras_move <span class="ot">&lt;-</span> <span class="fu">mt_as_move2</span>(dos_zebras, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">time_column =</span> <span class="st">"timestamp"</span>, <span class="at">track_id_column =</span> <span class="st">"identifier"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="co"># en Mercator porque funciones no corren en Lambert</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            sf<span class="sc">::</span><span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas del objeto</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mt_n_tracks</span>(dos_zebras_move)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cada cuantas horas se tomaron posiciones satelitales?</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>timeLags <span class="ot">&lt;-</span> <span class="fu">set_units</span>(<span class="fu">mt_time_lags</span>(dos_zebras_move), hours)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution of time lags</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>timeLags_h <span class="ot">&lt;-</span> units<span class="sc">::</span><span class="fu">drop_units</span>(timeLags) <span class="co">#hist is not compatible with time "units", we drop them</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(timeLags_h, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main=</span><span class="cn">NA</span>, <span class="at">xlab =</span> <span class="st">"Time lag in hours"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -568,7 +567,7 @@ Importante
 </div>
 <p>Ahora puedes anotar algunos parametros de movimiento como:</p>
 <ol type="1">
-<li>Acimut o dirección angular:</li>
+<li>Acimut o dirección angular: como sugiere su nombre estima la dirección engrados angulares en los cuales el animal se mueve.</li>
 <li>Desplazamiento cuadrado neto (NSD): mide el movimiento del animal como una distancia cuadrada neta y permite predecir si el animal mantiene un movimiento estacionario, migatorio. Mira la <a href="#fig-NSD" class="quarto-xref">Figura&nbsp;<span>3.5</span></a>.</li>
 <li>Velocidad: ten en cuenta que este paquete mide velocidad lineal entre un punto A y B, en un tiempo t0 y t1.</li>
 </ol>
