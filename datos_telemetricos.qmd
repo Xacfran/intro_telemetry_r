@@ -26,7 +26,7 @@ Es de suma importancia que estos pasos sean realizados de manera correcta, ya qu
 
 A manera de ejercicio, he tomado material del curso [Landscape and Analysis Modeling](https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/index.html) de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Además, modifiqué el formato del archivo original `MigratoryZebra.csv`, por un motivo que será obvio a continuación.
 
-Es siempre aconsejable tener una mirada general de los datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura. Descarga y abre el archivo que usarás en este módulo `zebras.csv`, en un archivo de texto y observa algunas características importantes del archivo como los separadores de columnas y los indicadores de decimales.
+Es siempre aconsejable tener una mirada general de los datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura. [Descarga](https://mega.nz/folder/VwVQEbJK#lxYXI88_90s6hUihhwNXgg) y abre el archivo que usarás en este módulo `zebras.csv`, en un archivo de texto y observa algunas características importantes del archivo como los separadores de columnas y los indicadores de decimales.
 
 :::::: {.callout-caution}
 ## **IMPORTANTE**
@@ -52,7 +52,7 @@ library(readr)
 data <- read_csv2("docs/datos/zebras.csv")
 ```
 ```{r eval = FALSE}
-data <- ?read_csv2("zebras.csv")
+data <- read_csv2("zebras.csv")
 summary(data)
 str(data)
 ```
@@ -208,7 +208,6 @@ Mediante `as.POSIXct`, te has asegurado de transformar una columna que fue impor
 
 ```{r warnings = FALSE}
 library(move2)
-library(sf)
 library(units)
 
 dos_zebras_move <- mt_as_move2(dos_zebras, coords = c("long", "lat"),
@@ -238,7 +237,7 @@ ggplot() +
 
 Ahora puedes anotar algunos parametros de movimiento como:
 
-1)  Acimut o dirección angular:
+1)  Acimut o dirección angular: como sugiere su nombre estima la dirección engrados angulares en los cuales el animal se mueve.
 1)  Desplazamiento cuadrado neto (NSD): mide el movimiento del animal como una distancia cuadrada neta y permite predecir si el animal mantiene un movimiento estacionario, migatorio. Mira la @fig-NSD.
 1)  Velocidad: ten en cuenta que este paquete mide velocidad lineal entre un punto A y B, en un tiempo t0 y t1.
 
