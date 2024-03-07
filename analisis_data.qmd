@@ -230,7 +230,7 @@ Ahora que tienes evidencia de que los niveles de urea en sangre se aproximan a u
 
 ```{r}
 # Crea un objeto con los machos
-bun_m <- nitrogenados%>%
+bun_m <- nitrogenados %>%
             filter(sexo == "macho") %>%
                 select(bun) %>% unlist()
 

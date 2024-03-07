@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -204,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#importación-limpieza-y-visualización-de-datos-telemétricos" id="toc-importación-limpieza-y-visualización-de-datos-telemétricos" class="nav-link active" data-scroll-target="#importación-limpieza-y-visualización-de-datos-telemétricos"><span class="header-section-number">3.1</span> Importación, limpieza y visualización de datos telemétricos</a></li>
   <li><a href="#transformación-y-proyección-cartográfica" id="toc-transformación-y-proyección-cartográfica" class="nav-link" data-scroll-target="#transformación-y-proyección-cartográfica"><span class="header-section-number">3.2</span> Transformación y proyección cartográfica</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.3</span> </a></li>
+  <li><a href="#análisis-de-trayectorias" id="toc-análisis-de-trayectorias" class="nav-link" data-scroll-target="#análisis-de-trayectorias"><span class="header-section-number">3.3</span> Análisis de trayectorias</a></li>
   <li><a href="#move2" id="toc-move2" class="nav-link" data-scroll-target="#move2"><span class="header-section-number">3.4</span> <em>move2</em></a></li>
   <li><a href="#fuentes" id="toc-fuentes" class="nav-link" data-scroll-target="#fuentes"><span class="header-section-number">3.5</span> Fuentes</a></li>
   </ul>
@@ -271,7 +291,7 @@ Figura&nbsp;3.1: Captura de pantalla de zebras.csv
 </div>
 <p>Ahora activa el paquete <em>readr</em> (también parte de <em>tidyverse</em>) e intenta importar los datos mediante la función <code>read_csv2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> ?<span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -403,14 +423,30 @@ Ejercicio
 <p>El canal de YouTube Vox tiene un excelente video que muestra gráficamente este problema.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/kIID5FDi2JQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>El paquete <em>sp</em> es el indicado para esta tarea ya que ofrece clases y métodos para manejar datos espaciales. Así, empezarás por transformar el objeto <code>zebras.proj</code> a un objeto de clase <code>SpatialPointsDataFrame</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zebras.proj <span class="ot">&lt;-</span> <span class="fu">SpatialPointsDataFrame</span>(<span class="at">coords =</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(zebras.proj<span class="sc">$</span>long, zebras.proj<span class="sc">$</span>lat)),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> zebras.proj,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">proj4string =</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>zebras.proj <span class="ot">&lt;-</span> <span class="fu">SpatialPointsDataFrame</span>(<span class="at">coords =</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(zebras.proj<span class="sc">$</span>long, zebras.proj<span class="sc">$</span>lat)),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> zebras.proj,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">proj4string =</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para entender el código que antecede a la función <code>proj4string</code> primero te debes preguntar, ¿qué significa CRS, y qué argumentos contiene esta función? <em>proj4string</em> no es nada más que una librería que dispone de métodos que permiten la transformación entre diferentes sistemas de coordenadas de referencia <strong>(CRS)</strong>.</p>
 <p><code>CRS</code> permite determinar la ubicación de un punto de una manera estandarizada, utilizando uno o más números que representan tanto su posición vertical como horizontal. Para lograr esto, utiliza como referencia un elipsoide que es una representación matemática de la Tierra. Una vez definido el sistema de coordenadas, <code>datum</code> define la posición y orientación del elipsoide de referencia en relación con el centro de la Tierra y el meridiano usado como longitud cero, el meridiano principal. Investiga sobre el significado de <strong>WGS84</strong>.</p>
 <p>Como ya deberia ser habitual para ti, analiza tu objeto antes de proseguir. ¿Qué sucedió con <code>zebras.proj</code>? Aplica funciones que has aprendido para analizar este nueva clase de objeto.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Precaución
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>He decidido mostrar el código antiguo de definir la proyección para mejorar la comprensión de lo que sucede tras escenas del código. Sin embargo <code>proj4string</code> ahora debe definirse como <code>CRS(SRS_string = "EPSG:4326")</code></p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(zebras.proj)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "SpatialPointsDataFrame"</span></span>
@@ -462,23 +498,161 @@ Figura&nbsp;3.4: Zebras extraídas del data frame <code>zebra</code> observadas 
 </div>
 <p>¿Cuál es la diferencia entre la <a href="#fig-zebras-proyectadas" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> y <a href="#fig-dos-zebras-plot" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> ?</p>
 </section>
-<section id="section" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="section"><span class="header-section-number">3.3</span> </h2>
-<p>Hay que tener en cuenta que existen otros analisis como segmentacion FPT , etc que nos ayudan a predecir el comportamiento y el uso del espacio de un animal. Las areas de viida son solo uno de los tantos parametros q pueden obtenerse a partir de informacion satelital … etc xxxxxxx</p>
+<section id="análisis-de-trayectorias" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="análisis-de-trayectorias"><span class="header-section-number">3.3</span> Análisis de trayectorias</h2>
+<p>Debes tener en cuenta que la limpieza de los sets de datos no es el único paso a seguir en el análisis espacial, también debes explorar métodos de segmentación o partición para poder discernir cambios en la conducta o trayectoria de un animal (<span class="citation" data-cites="gurarie_what_2016">Gurarie et&nbsp;al. (<a href="references.html#ref-gurarie_what_2016" role="doc-biblioref">2016</a>)</span>). Según la pregunta de investigación que tengas debes indagar más en otros métodos como First Passage Time (FPT), step selection function, etc.</p>
+<p>Aquí, verás brevemente como puedes obtener información sobre la trayectoria de las zebras que extrajimos previamente.</p>
 </section>
 <section id="move2" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="move2"><span class="header-section-number">3.4</span> <em>move2</em></h2>
+<p>Este paquete es la continuación de <em>move</em>, y asi como <em>sp</em>, realizó una transición para incorporar funciones de <em>sf</em>. Para iniciar necesitarás convertir el data frame <code>zebras</code> a un objeto de clase <code>move2</code>, y además deberás ocuparte de otro problema, la transformación del tiempo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dos_zebras<span class="sc">$</span>timestamp <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(dos_zebras<span class="sc">$</span>timestamp, <span class="st">"%Y-%m-%d %H:%M:%S"</span>, <span class="at">tz=</span><span class="st">"UTC"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Establecimos la zona horaria como UTC, que es la que usualmente usan como predeterminada los collares satelitales. Sin embargo deber ser cauteloso al momento de definir la zona horaria, y transformarla a tu zona de estudio, si es que fuese necesario. Esto lo puedes hacer con el paquete <code>lubridate</code>.</p>
+</div>
+</div>
+<p>Mediante <code>as.POSIXct</code>, te has asegurado de transformar una columna que fue importada como caracter, y ahora la tienes en formato <code>POSIXct</code>, con el cual R maneja el tiempo. Una vez tengas tu set de datos con el formato adecuado, puedes empezar.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(move2)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(units)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>dos_zebras_move <span class="ot">&lt;-</span> <span class="fu">mt_as_move2</span>(dos_zebras, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">time_column =</span> <span class="st">"timestamp"</span>, <span class="at">track_id_column =</span> <span class="st">"identifier"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># en Mercator porque funciones no corren en Lambert</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            sf<span class="sc">::</span><span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas del objeto</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mt_n_tracks</span>(dos_zebras_move)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cada cuantas horas se tomaron posiciones satelitales?</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>timeLags <span class="ot">&lt;-</span> <span class="fu">set_units</span>(<span class="fu">mt_time_lags</span>(dos_zebras_move), hours)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution of time lags</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>timeLags_h <span class="ot">&lt;-</span> units<span class="sc">::</span><span class="fu">drop_units</span>(timeLags) <span class="co">#hist is not compatible with time "units", we drop them</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(timeLags_h, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main=</span><span class="cn">NA</span>, <span class="at">xlab =</span> <span class="st">"Time lag in hours"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puedes graficar la distribucion de puntos por individuo.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico por individuos con ggplot2</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> dos_zebras_move) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">mt_track_lines</span>(dos_zebras_move), <span class="fu">aes</span>(<span class="at">color =</span> identifier)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora puedes anotar algunos parametros de movimiento como:</p>
+<ol type="1">
+<li>Acimut o dirección angular:</li>
+<li>Desplazamiento cuadrado neto (NSD): mide el movimiento del animal como una distancia cuadrada neta y permite predecir si el animal mantiene un movimiento estacionario, migatorio. Mira la <a href="#fig-NSD" class="quarto-xref">Figura&nbsp;<span>3.5</span></a>.</li>
+<li>Velocidad: ten en cuenta que este paquete mide velocidad lineal entre un punto A y B, en un tiempo t0 y t1.</li>
+</ol>
+<div id="fig-NSD" class="quarto-figure quarto-figure-center quarto-float anchored" alt="">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-NSD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="docs/Figures/NSD1.png" class="img-fluid figure-img" alt="">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NSD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.5: Comportamiento teórico basado en la estimación del NSD. Tomado de <span class="citation" data-cites="pretorius_movement_2020">Pretorius et&nbsp;al. (<a href="references.html#ref-pretorius_movement_2020" role="doc-biblioref">2020</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Debes tener en cuenta que es necesario agregar un límite en el cual tu infieras que el animal está en movimiento o no. Esto dependerá de tu conocimiento sobre el comportamiento de tu organismo de estudio, el terreno, el tipo de collar que utilizaste para tomar los puntos, entre otros factores. Así puedes establecer, por ahora, un limite de 5 m/min como indicador de movimiento en las zebras.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cuando se mueven</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>zebras_movimiento <span class="ot">&lt;-</span> dos_zebras_annot <span class="sc">%&gt;%</span> <span class="fu">filter</span>(speed <span class="sc">&gt;</span> <span class="fu">set_units</span>(<span class="dv">3</span>, <span class="st">"m/min"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>zebras_movimiento<span class="sc">$</span>NSD <span class="ot">&lt;-</span> <span class="fu">set_units</span>(zebras_movimiento<span class="sc">$</span>NSD, <span class="st">"km^2"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zebras_movimiento<span class="sc">$</span>NSD)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Units: [km^2]</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">##              [,1]</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,] 7.856621e-04</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,] 2.968707e+00</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [3,] 2.310044e+01</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [4,] 3.282908e+01</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [5,] 2.785819e+01</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [6,] 2.823813e+01</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(zebras_movimiento, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">mt_time</span>(zebras_movimiento), <span class="at">y =</span> NSD,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> identifier)) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>identifier, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span><span class="st">"Desplazamiento cuadrático neto"</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(zebras_movimiento, <span class="fu">aes</span>(<span class="at">x =</span> azimuth, <span class="at">y =</span> speed)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span> <span class="fu">alpha</span>(<span class="st">"black"</span>, <span class="fl">0.3</span>)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_units</span>(<span class="at">unit =</span> <span class="st">"degrees"</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">*</span> <span class="dv">90</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_units</span>(<span class="at">unit =</span> <span class="st">"km/h"</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>TAREA</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Grafica la distribución de estas zebras sobre un mapa.</p>
+</div>
+</div>
 </section>
 <section id="fuentes" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="fuentes"><span class="header-section-number">3.5</span> Fuentes</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
-<figcaption>Estamos trabajando en este tutorial</figcaption>
-</figure>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-gurarie_what_2016" class="csl-entry" role="listitem">
+Gurarie, Eliezer, Chloe Bracis, Maria Delgado, Trevor D. Meckley, Ilpo Kojola, y C. Michael Wagner. 2016. <span>«What is the animal doing? <span>Tools</span> for exploring behavioural structure in animal movements»</span>. <em>Journal of Animal Ecology</em> 85 (1): 69-84. <a href="https://doi.org/10.1111/1365-2656.12379">https://doi.org/10.1111/1365-2656.12379</a>.
 </div>
-
-
+<div id="ref-pretorius_movement_2020" class="csl-entry" role="listitem">
+Pretorius, Mattheuns, Lourens Leeuwner, Gareth Tate, Andre Botha, Michael Michael, Kaajial Durgapersad, y Kishaylin Chetty. 2020. <span>«Movement patterns of lesser flamingos <span>Phoeniconaias</span> minor: nomadism or partial migration?»</span> <em>Wildlife Biology</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

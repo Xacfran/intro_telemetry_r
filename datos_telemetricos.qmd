@@ -52,7 +52,7 @@ library(readr)
 data <- read_csv2("docs/datos/zebras.csv")
 ```
 ```{r eval = FALSE}
-data <- read_csv2("zebras.csv")
+data <- ?read_csv2("zebras.csv")
 summary(data)
 str(data)
 ```
@@ -140,7 +140,10 @@ El canal de YouTube Vox tiene un excelente video que muestra gráficamente este 
 
 El paquete _sp_ es el indicado para esta tarea ya que ofrece clases y métodos para manejar datos espaciales. Así, empezarás por transformar el objeto `zebras.proj` a un objeto de clase `SpatialPointsDataFrame`.
 
-```{r}
+```{r warnings = FALSE}
+library(sp)
+library(sf)
+
 zebras.proj <- SpatialPointsDataFrame(coords = as.data.frame(cbind(zebras.proj$long, zebras.proj$lat)),
                 data = zebras.proj,
                 proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
@@ -152,6 +155,11 @@ Para entender el código que antecede a la función `proj4string` primero te deb
 Una vez definido el sistema de coordenadas, `datum` define la posición y orientación del elipsoide de referencia en relación con el centro de la Tierra y el meridiano usado como longitud cero, el meridiano principal. Investiga sobre el significado de **WGS84**.
 
 Como ya deberia ser habitual para ti, analiza tu objeto antes de proseguir. ¿Qué sucedió con `zebras.proj`? Aplica funciones que has aprendido para analizar este nueva clase de objeto.
+
+:::::: {.callout-caution}
+He decidido mostrar el código antiguo de definir la proyección para mejorar la comprensión de lo que sucede tras escenas del código. Sin embargo `proj4string` ahora debe definirse como `CRS(SRS_string = "EPSG:4326")`
+:::
+
 
 ```{r}
 class(zebras.proj)
@@ -172,21 +180,112 @@ Esta CRS es una proyección cónica y representa a la forma más precisamente qu
 ```{r}
 # ¿Qué diferencia tiene este grafico con el anterior?
 plot(zebras.transf, pch = 20, col = c("#440D54", "#3CBB75"), axes=TRUE)
+
 ```
 :::
 
 ¿Cuál es la diferencia entre la @fig-zebras-proyectadas y @fig-dos-zebras-plot ?
 
-##
+## Análisis de trayectorias
 
+Debes tener en cuenta que la limpieza de los sets de datos no es el único paso a seguir en el análisis espacial, también debes explorar métodos de segmentación o partición para poder discernir cambios en la conducta o trayectoria de un animal (@gurarie_what_2016). Según la pregunta de investigación que tengas debes indagar más en otros métodos como First Passage Time (FPT), step selection function, etc.
 
-Hay que tener en cuenta que existen otros  analisis como segmentacion FPT , etc que nos ayudan a predecir el comportamiento y el uso del espacio de un animal. Las areas de viida son solo uno de los tantos parametros q pueden obtenerse a partir de informacion satelital ... etc xxxxxxx
+Aquí, verás brevemente como puedes obtener información sobre la trayectoria de las zebras que extrajimos previamente.
 
 ## _move2_
 
+Este paquete es la continuación de _move_, y asi como _sp_, realizó una transición para incorporar funciones de _sf_. Para iniciar necesitarás convertir el data frame `zebras` a un objeto de clase `move2`, y además deberás ocuparte de otro problema, la transformación del tiempo.
+
+```{r}
+dos_zebras$timestamp <- as.POSIXct(dos_zebras$timestamp, "%Y-%m-%d %H:%M:%S", tz="UTC")
+```
+
+:::::: {.callout-important}
+Establecimos la zona horaria como UTC, que es la que usualmente usan como predeterminada los collares satelitales. Sin embargo deber ser cauteloso al momento de definir la zona horaria, y transformarla a tu zona de estudio, si es que fuese necesario. Esto lo puedes hacer con el paquete `lubridate`.
+:::
+
+Mediante `as.POSIXct`, te has asegurado de transformar una columna que fue importada como caracter, y ahora la tienes en formato `POSIXct`, con el cual R maneja el tiempo. Una vez tengas tu set de datos con el formato adecuado, puedes empezar.
+
+```{r warnings = FALSE}
+library(move2)
+library(sf)
+library(units)
+
+dos_zebras_move <- mt_as_move2(dos_zebras, coords = c("long", "lat"),
+            time_column = "timestamp", track_id_column = "identifier") %>%
+            # en Mercator porque funciones no corren en Lambert
+            sf::st_set_crs(4326)
+
+# Estadísticas del objeto
+mt_n_tracks(dos_zebras_move)
+
+# ¿Cada cuantas horas se tomaron posiciones satelitales?
+timeLags <- set_units(mt_time_lags(dos_zebras_move), hours)
+
+# Distribution of time lags
+timeLags_h <- units::drop_units(timeLags) #hist is not compatible with time "units", we drop them
+hist(timeLags_h, breaks = 50, main=NA, xlab = "Time lag in hours")
+```
+
+Puedes graficar la distribucion de puntos por individuo.
+```{r warnings = FALSE}
+# Grafico por individuos con ggplot2
+ggplot() +
+  geom_sf(data = dos_zebras_move) +
+  geom_sf(data = mt_track_lines(dos_zebras_move), aes(color = identifier)) +
+  theme_light()
+```
+
+Ahora puedes anotar algunos parametros de movimiento como:
+
+1)  Acimut o dirección angular:
+1)  Desplazamiento cuadrado neto (NSD): mide el movimiento del animal como una distancia cuadrada neta y permite predecir si el animal mantiene un movimiento estacionario, migatorio. Mira la @fig-NSD.
+1)  Velocidad: ten en cuenta que este paquete mide velocidad lineal entre un punto A y B, en un tiempo t0 y t1.
+
+![Comportamiento teórico basado en la estimación del NSD. Tomado de @pretorius_movement_2020](docs/Figures/NSD1.png){#fig-NSD fig-alt=""}
+
+```{r echo = FALSE}
+dos_zebras_annot <- dos_zebras_move %>%
+                      mutate(azimuth = mt_azimuth(dos_zebras_move),
+                      speed = mt_speed(dos_zebras_move),
+                      turnangle = mt_turnangle(dos_zebras_move),
+                      NSD = (st_distance(dos_zebras_move,
+                      dos_zebras_move[1,]))^2)
+```
+
+Debes tener en cuenta que es necesario agregar un límite en el cual tu infieras que el animal está en movimiento o no. Esto dependerá de tu conocimiento sobre el comportamiento de tu organismo de estudio, el terreno, el tipo de collar que utilizaste para tomar los puntos, entre otros factores. Así puedes establecer, por ahora, un limite de 5 m/min como indicador de movimiento en las zebras.
+
+```{r warnings = FALSE}
+# Cuando se mueven
+zebras_movimiento <- dos_zebras_annot %>% filter(speed > set_units(3, "m/min"))
+```
+
+
+```{r warnings = FALSE}
+zebras_movimiento$NSD <- set_units(zebras_movimiento$NSD, "km^2")
+head(zebras_movimiento$NSD)
+
+ggplot(zebras_movimiento, aes(x = mt_time(zebras_movimiento), y = NSD,
+  group = identifier)) +
+  geom_line() +
+  facet_grid(~identifier, scales = "free_x") +
+  labs(x = "", y ="Desplazamiento cuadrático neto") +
+  theme_bw()
+```
+
+
+```{r warnings = FALSE}
+ggplot(zebras_movimiento, aes(x = azimuth, y = speed)) +
+  geom_point(color= alpha("black", 0.3)) +
+  scale_x_units(unit = "degrees", breaks = c(-2:2) * 90) +
+  scale_y_units(unit = "km/h") +
+  theme_linedraw()
+```
+
+:::::: {.callout-note}
+## **TAREA**
+Grafica la distribución de estas zebras sobre un mapa.
+:::
 
 ## Fuentes
-
-
-![Estamos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
 
