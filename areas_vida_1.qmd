@@ -18,50 +18,13 @@ source("_common.R")
 
 # Áreas de vida Parte I {#sec-areas-vida-1}
 
-La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de @silva_autocorrelation-informed_2022  . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial.
-adehabitatHR
-El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos.  adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.
+La estimación de áreas de vida es una parte fundamental, pero no la única, en el estudio de la ecología y etología de los animales, y los artículos científicos de @kays_terrestrial_2015, @abrahms_emerging_2021, y @silva_autocorrelation-informed_2022 son una excelente fuente de información si estás involucrándote en el mundo de la ecología de movimiento. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo aprenderás sobre métodos tradicionales ampliamente utilizados y que serán comparados más adelante con nuevos métodos en el paquete _ctmm_.
 
-Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios.
-Preparación y análisis de datos
-Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores.
-A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases.
-Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales.
-Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.
+## _adehabitatHR_
 
-```{r eval = FALSE}
-# Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()
+El paquete [_adeHabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado _adehabitat_, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes _raster_, _rgdal_, _rgeos_, y _sp_, que fueron reemplazados en el 2023 por _sf_ y _terra_. _sp_ es el único que se adaptó a esta transición y adoptó funciones del paquete _sf_ Sin embargo, _adehabitatHR_ no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.
 
-data1 <- read.csv("zebras.csv")
-data2 <- read.csv2("zebras.csv")
-data3 <- read.table("zebras.csv", header = TRUE, na.strings = "NA",  sep=";")
-```
-
-Ahora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()
-
-```{r include=FALSE}
-data <- read_csv2("docs/datos/zebras.csv")
-```
-```{r eval = FALSE}
-data <- read_csv2("zebras.csv")
-summary (data)
-str(data)
-```
-
-Extrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.
-
-```{r}
-zebra <- data[, c("event-id", "individual-local-identifier",
-                "location-long", "location-lat", "study-local-timestamp")]
-
-zebra <- zebra %>%
-              rename(id = "event-id", identifier = "individual-local-identifier",
-              long = "location-long",
-              lat = "location-lat",
-              timestamp = "study-local-timestamp")
-```
-
-## ?????
+A pesar de esto, aprender sobre _adeHabitatHR_ es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.
 
 ```{r}
 #| include: false

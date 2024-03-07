@@ -9,62 +9,184 @@ editor_options:
   markdown:
     wrap: sentence
     canonical: true
-theme: cosmo
+lang: es
 ---
+```{r}
+#| include: false
+source("_common.R")
+```
+
 # Datos de telemetría satelital {#sec-datos-telemetricos}
 
+Como he hecho énfasis hasta ahora, antes de iniciar con análisis, es necesario asegurarse que la información ingresada sea la apropiada para evitar cualquier tipo de errores, desde mensajes de advertencia, a impedimentos para correr funciones, y errores en los resultados finales.
 
-La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de @silva_autocorrelation-informed_2022 realiza una revisión detallada al respecto . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial.
+## Importación, limpieza y visualización de datos telemétricos
 
-
-## adehabitatHR
-El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos.  adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.
-
-En el año 2023, los paquetes sp, raster y rgdal, que en su momento fueron la base sobre los cuales se creaban otros paquetes para el estudio espacial, fueron deprecados y reemplazados por sf y terra. Sin embargo, los ante mencionados aún pueden ser descargados y utilizados, aunque se recomienda la transición hacia los nuevos paquetes.
-Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios.
-
-## Preparación y análisis de datos
 Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores.
-A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases.
-Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales.
-Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.
+
+A manera de ejercicio, he tomado material del curso [Landscape and Analysis Modeling](https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/index.html) de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Además, modifiqué el formato del archivo original `MigratoryZebra.csv`, por un motivo que será obvio a continuación.
+
+Es siempre aconsejable tener una mirada general de los datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura. Descarga y abre el archivo que usarás en este módulo `zebras.csv`, en un archivo de texto y observa algunas características importantes del archivo como los separadores de columnas y los indicadores de decimales.
+
+:::::: {.callout-caution}
+## **IMPORTANTE**
+Evita abrir cualquier archivo que será importado a R, utilizando Excel como primera opción. Utiliza editores de texto como Notepad o Notepad++.
+:::
+
+![Captura de pantalla de zebras.csv](docs/Figures/zebras_csv_screenshot.png){#fig-captura .column-page-right .border fig-alt="Captura de pantalla del archivo zebras.csv"}
+
+Puedes ver que las columnas están separadas por `;`, y los decimales mediante `,`.
 
 ```{r eval = FALSE}
-# Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()
+# Intenta importar el archivo y mira las características de estos objetos mediante summary() y str()
 
 data1 <- read.csv("zebras.csv")
 data2 <- read.csv2("zebras.csv")
 data3 <- read.table("zebras.csv", header = TRUE, na.strings = "NA",  sep=";")
 ```
 
-Ahora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()
+Ahora activa el paquete _readr_ (también parte de _tidyverse_) e intenta importar los datos mediante la función `read_csv2`.
 
 ```{r include=FALSE}
+library(readr)
 data <- read_csv2("docs/datos/zebras.csv")
 ```
 ```{r eval = FALSE}
 data <- read_csv2("zebras.csv")
-summary (data)
+summary(data)
 str(data)
 ```
 
-Extrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.
+Ya que tienes el archivo debidamente importado, extrae algunas columnas de interés y asigna un nombre más intuitivo, fácil de escribir y recordar. Esta es una preferencia personal, así que puedes omitir esta parte según tu preferencia.
 
 ```{r}
-zebra <- data[, c("event-id", "individual-local-identifier",
+zebras <- data[, c("event-id", "individual-local-identifier",
                 "location-long", "location-lat", "study-local-timestamp")]
 
-zebra <- zebra %>%
+zebras <- zebras %>%
               rename(id = "event-id", identifier = "individual-local-identifier",
               long = "location-long",
               lat = "location-lat",
               timestamp = "study-local-timestamp")
+
+# Inspecciona las primeras filas y los nombres de las columnas
+head(zebras)
 ```
 
-## ?????
+Ahora puedes observar la distribución de estas zebras de una manera sencilla mediante funciones base.
+
+::: {#fig-todas-zebras-plot fig-cap="Distribución espacial de todos los individuos en el data frame `zebras`"}
 ```{r}
-#| include: false
-source("_common.R")
+# Cambia el valor de pch y mira que sucede con el gráfico
+plot(zebras[, c("long", "lat")], pch = 20)
 ```
+:::
+
+Los individuos muestreados se encuentran en una extensión de terreno enorme, por lo que es preferible para los fines de esta primera lección, que analices animales que comparten un mismo espacio geográfico. Para esto, puedes hacer un subset del data frame original, y además puedes practicar tus habilidades en manejar _dyplyr_.
+
+```{r}
+dos_zebras <- zebras %>%
+          filter(identifier == "Z3864" | identifier == "Z6405") %>%
+          dplyr::select(identifier, long, lat, timestamp)
+```
+
+Realiza nuevamente un gráfico asignando colores a cada individuo.
+
+::: {#fig-dos-zebras-plot fig-cap="Distribución espacial de dos zebras extraídas del data frame `zebras`"}
+```{r}
+#cambia el valor de pch y mira que sucede con el gráfico
+plot(dos_zebras[, c("long", "lat")], pch = 20, col = c("#440D54", "#3CBB75"))
+legend("topright", legend = c("Z3864", "Z6405"),
+      fill = c("#440D54", "#3CBB75"),
+      pch = 20, box.lty = 0)
+```
+:::
+
+:::::: {.callout-note}
+## **Tarea**
+Utiliza tus habilidades y conocimiento en `ggplot2` para realizar un gráfico similar al que acabas de realizar con `plot`.
+:::
+
+Como has aprendido en lecciones anteriores, no es conveniente embarcarse en algúm tipo de análisis sin antes realizar una limpieza de tus datos. Ahora puedes proceder a remover los NA’s de las columnas señaladas por `summary`.
+
+```{r}
+# Investiga si el set de datos posee NAs
+summary(dos_zebras)
+which(is.na(dos_zebras$lat))
+which(is.na(dos_zebras$long))
+```
+
+:::::: {.callout-tip}
+## Ejercicio
+Utiliza cualquier método para eliminar los datos de longitud y latitud faltantes en la fila 1802, y verifica que el proceso de limpieza de datos sea correcto.
+:::
+```{r include=FALSE}
+# Investiga si el set de datos posee NAs
+dos_zebras <- dos_zebras %>% na.omit
+```
+
+!Haz limpiado los datos con éxito! Ahora crea un objeto que será transformado y proyectado posteriormente.
+
+```{r}
+zebras.proj <- dos_zebras
+```
+
+## Transformación y proyección cartográfica
+
+Para continuar y entender cual es el propósito de los siguientes pasos, primero debes entender que es una proyección cartográfica. En breve, la posición en el espacio tridimensional de un animal tomada mediante coordenadas decimales deben ser transformadas a un objeto bidimensional. Esta transformación viene acompañada de un gran problema como lo es la distorsión, y esta será más o menos evidente según el tipo de proyección que elijas.
+
+El canal de YouTube Vox tiene un excelente video que muestra gráficamente este problema.
+{{< video https://www.youtube.com/watch?v=kIID5FDi2JQ&ab_channel=Vox >}}
+
+El paquete _sp_ es el indicado para esta tarea ya que ofrece clases y métodos para manejar datos espaciales. Así, empezarás por transformar el objeto `zebras.proj` a un objeto de clase `SpatialPointsDataFrame`.
+
+```{r}
+zebras.proj <- SpatialPointsDataFrame(coords = as.data.frame(cbind(zebras.proj$long, zebras.proj$lat)),
+                data = zebras.proj,
+                proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+```
+
+Para entender el código que antecede a la función `proj4string` primero te debes preguntar, ¿qué significa CRS, y qué argumentos contiene esta función? *proj4string* no es nada más que una librería que dispone de métodos que permiten la transformación entre diferentes sistemas de coordenadas de referencia **(CRS)**.
+
+`CRS` permite determinar la ubicación de un punto de una manera estandarizada, utilizando uno o más números que representan tanto su posición vertical como horizontal. Para lograr esto, utiliza como referencia un elipsoide que es una representación matemática de la Tierra.
+Una vez definido el sistema de coordenadas, `datum` define la posición y orientación del elipsoide de referencia en relación con el centro de la Tierra y el meridiano usado como longitud cero, el meridiano principal. Investiga sobre el significado de **WGS84**.
+
+Como ya deberia ser habitual para ti, analiza tu objeto antes de proseguir. ¿Qué sucedió con `zebras.proj`? Aplica funciones que has aprendido para analizar este nueva clase de objeto.
+
+```{r}
+class(zebras.proj)
+summary(zebras.proj)
+```
+
+Ya has verificado la transformación de las CRS, sin embargo, estos siguen siendo puntos en un mapa representados por medidas angulares. ¿De qué manera podemos medir la distancia entre ellos para poder calcular el área descrita por los puntos posteriormente? Transformando esta proyección a un sistema basado en metros.
+
+```{r}
+zebras.transf <- spTransform(zebras.proj,
+                  CRS("+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+```
+
+Esta CRS es una proyección cónica y representa a la forma más precisamente que a un área. Esta transformación nos da como resultado un mapa matemático de coordenadas esféricas en un plano bidimensional, cuyas unidades pueden son expresadas en metros. Con todo esto en mente, ya podemos plotear este objeto proyectado de clase `SpatialPointsDataFrame`.
+
+::: {#fig-zebras-proyectadas fig-cap="Zebras extraídas del data frame `zebra` observadas mediante una proyección cónica y transformada a un sistema basado en metros"}
+
+```{r}
+# ¿Qué diferencia tiene este grafico con el anterior?
+plot(zebras.transf, pch = 20, col = c("#440D54", "#3CBB75"), axes=TRUE)
+```
+:::
+
+¿Cuál es la diferencia entre la @fig-zebras-proyectadas y @fig-dos-zebras-plot ?
+
+##
+
+
+Hay que tener en cuenta que existen otros  analisis como segmentacion FPT , etc que nos ayudan a predecir el comportamiento y el uso del espacio de un animal. Las areas de viida son solo uno de los tantos parametros q pueden obtenerse a partir de informacion satelital ... etc xxxxxxx
+
+## _move2_
+
+
+## Fuentes
+
+
 ![Estamos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
 

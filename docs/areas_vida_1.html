@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -222,7 +188,7 @@ div.csl-indent {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">4.1</span> ?????</a></li>
+  <li><a href="#adehabitathr" id="toc-adehabitathr" class="nav-link active" data-scroll-target="#adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -248,34 +214,11 @@ div.csl-indent {
 </header>
 
 
-<p>La estimación de áreas de vida es una parte fundamental en el estudio de la ecología y etología de los animales, y el artículo científico de <span class="citation" data-cites="silva_autocorrelation-informed_2022">Silva et al. (<a href="references.html#ref-silva_autocorrelation-informed_2022" role="doc-biblioref">2022</a>)</span> . Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo intermedio del curso solo nos enfocaremos en pocos mediante el uso de los paquetes más populares en la rama de la Ecología Espacial. adehabitatHR El paquete adeHabitatHR es parte de un conjunto de paquetes (como lo es dplyr o ggplot2 de tidyverse) dentro de adehabitat, el cual ha sido dividido en cuatro paquetes diferentes, empleados para distintos objetivos. adeHabitatHR funciona en conjunto con el paquete sp, ya que este último provee de una clase de datos que puede ser leída por adeHabitatHR, los puntos espaciales o spatial points.</p>
-<p>Además, los paquetes rgdal y raster también se utilizarán en esta introducción a los métodos de estimación de áreas de vida, por lo que tendrán que ser instalados antes de dar inicio con los ejercicios. Preparación y análisis de datos Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores. A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales. Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"zebras.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"zebras.csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"zebras.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">na.strings =</span> <span class="st">"NA"</span>,  <span class="at">sep=</span><span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Ahora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (data)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Extrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>zebra <span class="ot">&lt;-</span> data[, <span class="fu">c</span>(<span class="st">"event-id"</span>, <span class="st">"individual-local-identifier"</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"location-long"</span>, <span class="st">"location-lat"</span>, <span class="st">"study-local-timestamp"</span>)]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>zebra <span class="ot">&lt;-</span> zebra <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">id =</span> <span class="st">"event-id"</span>, <span class="at">identifier =</span> <span class="st">"individual-local-identifier"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">long =</span> <span class="st">"location-long"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">lat =</span> <span class="st">"location-lat"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">timestamp =</span> <span class="st">"study-local-timestamp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="section" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.1</span> ?????</h2>
+<p>La estimación de áreas de vida es una parte fundamental, pero no la única, en el estudio de la ecología y etología de los animales, y los artículos científicos de <span class="citation" data-cites="kays_terrestrial_2015">Kays et al. (<a href="references.html#ref-kays_terrestrial_2015" role="doc-biblioref">2015</a>)</span>, <span class="citation" data-cites="abrahms_emerging_2021">Abrahms et al. (<a href="references.html#ref-abrahms_emerging_2021" role="doc-biblioref">2021</a>)</span>, y <span class="citation" data-cites="silva_autocorrelation-informed_2022">Silva et al. (<a href="references.html#ref-silva_autocorrelation-informed_2022" role="doc-biblioref">2022</a>)</span> son una excelente fuente de información si estás involucrándote en el mundo de la ecología de movimiento. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo aprenderás sobre métodos tradicionales ampliamente utilizados y que serán comparados más adelante con nuevos métodos en el paquete <em>ctmm</em>.</p>
+<section id="adehabitathr" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></h2>
+<p>El paquete <a href="https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf"><em>adeHabitatHR</em></a> es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado <em>adehabitat</em>, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes <em>raster</em>, <em>rgdal</em>, <em>rgeos</em>, y <em>sp</em>, que fueron reemplazados en el 2023 por <em>sf</em> y <em>terra</em>. <em>sp</em> es el único que se adaptó a esta transición y adoptó funciones del paquete <em>sf</em> Sin embargo, <em>adehabitatHR</em> no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.</p>
+<p>A pesar de esto, aprender sobre <em>adeHabitatHR</em> es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
@@ -285,6 +228,12 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-abrahms_emerging_2021" class="csl-entry" role="listitem">
+Abrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W. Deacy, Matthew J. Kauffman, and Jerod A. Merkle. 2021. <span>“Emerging <span>Perspectives</span> on <span>Resource</span> <span>Tracking</span> and <span>Animal</span> <span>Movement</span> <span>Ecology</span>.”</span> <em>Trends in Ecology &amp; Evolution</em> 36 (4): 308–20. <a href="https://doi.org/10.1016/j.tree.2020.10.018">https://doi.org/10.1016/j.tree.2020.10.018</a>.
+</div>
+<div id="ref-kays_terrestrial_2015" class="csl-entry" role="listitem">
+Kays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski. 2015. <span>“Terrestrial Animal Tracking as an Eye on Life and Planet.”</span> <em>Science</em> 348 (6240): aaa2478. <a href="https://doi.org/10.1126/science.aaa2478">https://doi.org/10.1126/science.aaa2478</a>.
+</div>
 <div id="ref-silva_autocorrelation-informed_2022" class="csl-entry" role="listitem">
 Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. <span>“Autocorrelation-Informed Home Range Estimation: <span>A</span> Review and Practical Guide.”</span> <em>Methods in Ecology and Evolution</em> 13 (3): 534–44. <a href="https://doi.org/10.1111/2041-210X.13786">https://doi.org/10.1111/2041-210X.13786</a>.
 </div>

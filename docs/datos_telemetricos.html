@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.550">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introducción a la Telemetría de Grandes Mamíferos - 3&nbsp; Datos telemétricos</title>
+<title>Introducción a la Telemetría de Grandes Mamíferos - 3&nbsp; Datos de telemetría satelital</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -56,17 +90,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -79,11 +113,11 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datos_telemetricos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos telemétricos</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datos_telemetricos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos de telemetría satelital</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -101,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://osoandino.org/" title="Fundación Oso Andino" class="quarto-navigation-tool px-1" aria-label="Fundación Oso Andino"><i class="bi bi-globe"></i></a>
     <a href="https://github.com/Xacfran/intro_telemetry_r" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -111,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datos_telemetricos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos telemétricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos de telemetría satelital</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -164,14 +198,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#importación-limpieza-y-visualización-de-datos-telemétricos" id="toc-importación-limpieza-y-visualización-de-datos-telemétricos" class="nav-link active" data-scroll-target="#importación-limpieza-y-visualización-de-datos-telemétricos"><span class="header-section-number">3.1</span> Importación, limpieza y visualización de datos telemétricos</a></li>
+  <li><a href="#transformación-y-proyección-cartográfica" id="toc-transformación-y-proyección-cartográfica" class="nav-link" data-scroll-target="#transformación-y-proyección-cartográfica"><span class="header-section-number">3.2</span> Transformación y proyección cartográfica</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.3</span> </a></li>
+  <li><a href="#move2" id="toc-move2" class="nav-link" data-scroll-target="#move2"><span class="header-section-number">3.4</span> <em>move2</em></a></li>
+  <li><a href="#fuentes" id="toc-fuentes" class="nav-link" data-scroll-target="#fuentes"><span class="header-section-number">3.5</span> Fuentes</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-datos-telemetricos" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos telemétricos</span></span></h1>
+<h1 class="title"><span id="sec-datos-telemetricos" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Datos de telemetría satelital</span></span></h1>
 </div>
 
 
@@ -188,6 +232,245 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Como he hecho énfasis hasta ahora, antes de iniciar con análisis, es necesario asegurarse que la información ingresada sea la apropiada para evitar cualquier tipo de errores, desde mensajes de advertencia, a impedimentos para correr funciones, y errores en los resultados finales.</p>
+<section id="importación-limpieza-y-visualización-de-datos-telemétricos" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="importación-limpieza-y-visualización-de-datos-telemétricos"><span class="header-section-number">3.1</span> Importación, limpieza y visualización de datos telemétricos</h2>
+<p>Es de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores.</p>
+<p>A manera de ejercicio, he tomado material del curso <a href="https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/index.html">Landscape and Analysis Modeling</a> de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Además, modifiqué el formato del archivo original <code>MigratoryZebra.csv</code>, por un motivo que será obvio a continuación.</p>
+<p>Es siempre aconsejable tener una mirada general de los datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura. Descarga y abre el archivo que usarás en este módulo <code>zebras.csv</code>, en un archivo de texto y observa algunas características importantes del archivo como los separadores de columnas y los indicadores de decimales.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>IMPORTANTE</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Evita abrir cualquier archivo que será importado a R, utilizando Excel como primera opción. Utiliza editores de texto como Notepad o Notepad++.</p>
+</div>
+</div>
+<div id="fig-captura" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" alt="Captura de pantalla del archivo zebras.csv">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-captura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="docs/Figures/zebras_csv_screenshot.png" class="border img-fluid figure-img column-page-right" alt="Captura de pantalla del archivo zebras.csv">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-captura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.1: Captura de pantalla de zebras.csv
+</figcaption>
+</figure>
+</div>
+<p>Puedes ver que las columnas están separadas por <code>;</code>, y los decimales mediante <code>,</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intenta importar el archivo y mira las características de estos objetos mediante summary() y str()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"zebras.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">na.strings =</span> <span class="st">"NA"</span>,  <span class="at">sep=</span><span class="st">";"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora activa el paquete <em>readr</em> (también parte de <em>tidyverse</em>) e intenta importar los datos mediante la función <code>read_csv2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"zebras.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ya que tienes el archivo debidamente importado, extrae algunas columnas de interés y asigna un nombre más intuitivo, fácil de escribir y recordar. Esta es una preferencia personal, así que puedes omitir esta parte según tu preferencia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>zebras <span class="ot">&lt;-</span> data[, <span class="fu">c</span>(<span class="st">"event-id"</span>, <span class="st">"individual-local-identifier"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"location-long"</span>, <span class="st">"location-lat"</span>, <span class="st">"study-local-timestamp"</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>zebras <span class="ot">&lt;-</span> zebras <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">id =</span> <span class="st">"event-id"</span>, <span class="at">identifier =</span> <span class="st">"individual-local-identifier"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">long =</span> <span class="st">"location-long"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">lat =</span> <span class="st">"location-lat"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">timestamp =</span> <span class="st">"study-local-timestamp"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspecciona las primeras filas y los nombres de las columnas</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zebras)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 5</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">##          id identifier  long   lat timestamp              </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">##       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                  </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 210260446 Z3864       23.5 -19.4 2007-10-25 02:02:11,000</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 210260447 Z3864       23.5 -19.4 2007-10-25 03:01:49,000</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 210260448 Z3864       23.5 -19.4 2007-10-25 04:01:38,000</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 210260449 Z3864       23.5 -19.4 2007-10-25 05:02:18,000</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 210260450 Z3864       23.5 -19.4 2007-10-25 06:01:35,000</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 210260451 Z3864       23.5 -19.4 2007-10-25 07:02:16,000</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora puedes observar la distribución de estas zebras de una manera sencilla mediante funciones base.</p>
+<div id="fig-todas-zebras-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-todas-zebras-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambia el valor de pch y mira que sucede con el gráfico</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zebras[, <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>)], <span class="at">pch =</span> <span class="dv">20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-todas-zebras-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.2: Distribución espacial de todos los individuos en el data frame <code>zebras</code>
+</figcaption>
+</figure>
+</div>
+<p>Los individuos muestreados se encuentran en una extensión de terreno enorme, por lo que es preferible para los fines de esta primera lección, que analices animales que comparten un mismo espacio geográfico. Para esto, puedes hacer un subset del data frame original, y además puedes practicar tus habilidades en manejar <em>dyplyr</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dos_zebras <span class="ot">&lt;-</span> zebras <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(identifier <span class="sc">==</span> <span class="st">"Z3864"</span> <span class="sc">|</span> identifier <span class="sc">==</span> <span class="st">"Z6405"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">select</span>(identifier, long, lat, timestamp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realiza nuevamente un gráfico asignando colores a cada individuo.</p>
+<div id="fig-dos-zebras-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dos-zebras-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cambia el valor de pch y mira que sucede con el gráfico</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dos_zebras[, <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>)], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#440D54"</span>, <span class="st">"#3CBB75"</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Z3864"</span>, <span class="st">"Z6405"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"#440D54"</span>, <span class="st">"#3CBB75"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">box.lty =</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dos-zebras-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.3: Distribución espacial de dos zebras extraídas del data frame <code>zebras</code>
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Tarea</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Utiliza tus habilidades y conocimiento en <code>ggplot2</code> para realizar un gráfico similar al que acabas de realizar con <code>plot</code>.</p>
+</div>
+</div>
+<p>Como has aprendido en lecciones anteriores, no es conveniente embarcarse en algúm tipo de análisis sin antes realizar una limpieza de tus datos. Ahora puedes proceder a remover los NA’s de las columnas señaladas por <code>summary</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Investiga si el set de datos posee NAs</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dos_zebras)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   identifier             long            lat          timestamp        </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  Length:8915        Min.   :23.52   Min.   :-20.81   Length:8915       </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  Class :character   1st Qu.:23.61   1st Qu.:-20.59   Class :character  </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  Mode  :character   Median :24.88   Median :-20.44   Mode  :character  </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">##                     Mean   :24.47   Mean   :-20.15                     </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">##                     3rd Qu.:25.00   3rd Qu.:-19.44                     </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">##                     Max.   :25.26   Max.   :-19.39                     </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">##                     NA's   :1       NA's   :1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(dos_zebras<span class="sc">$</span>lat))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1802</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(dos_zebras<span class="sc">$</span>long))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1802</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Utiliza cualquier método para eliminar los datos de longitud y latitud faltantes en la fila 1802, y verifica que el proceso de limpieza de datos sea correcto.</p>
+</div>
+</div>
+<p>!Haz limpiado los datos con éxito! Ahora crea un objeto que será transformado y proyectado posteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>zebras.proj <span class="ot">&lt;-</span> dos_zebras</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="transformación-y-proyección-cartográfica" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="transformación-y-proyección-cartográfica"><span class="header-section-number">3.2</span> Transformación y proyección cartográfica</h2>
+<p>Para continuar y entender cual es el propósito de los siguientes pasos, primero debes entender que es una proyección cartográfica. En breve, la posición en el espacio tridimensional de un animal tomada mediante coordenadas decimales deben ser transformadas a un objeto bidimensional. Esta transformación viene acompañada de un gran problema como lo es la distorsión, y esta será más o menos evidente según el tipo de proyección que elijas.</p>
+<p>El canal de YouTube Vox tiene un excelente video que muestra gráficamente este problema.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/kIID5FDi2JQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>El paquete <em>sp</em> es el indicado para esta tarea ya que ofrece clases y métodos para manejar datos espaciales. Así, empezarás por transformar el objeto <code>zebras.proj</code> a un objeto de clase <code>SpatialPointsDataFrame</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zebras.proj <span class="ot">&lt;-</span> <span class="fu">SpatialPointsDataFrame</span>(<span class="at">coords =</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(zebras.proj<span class="sc">$</span>long, zebras.proj<span class="sc">$</span>lat)),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> zebras.proj,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">proj4string =</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para entender el código que antecede a la función <code>proj4string</code> primero te debes preguntar, ¿qué significa CRS, y qué argumentos contiene esta función? <em>proj4string</em> no es nada más que una librería que dispone de métodos que permiten la transformación entre diferentes sistemas de coordenadas de referencia <strong>(CRS)</strong>.</p>
+<p><code>CRS</code> permite determinar la ubicación de un punto de una manera estandarizada, utilizando uno o más números que representan tanto su posición vertical como horizontal. Para lograr esto, utiliza como referencia un elipsoide que es una representación matemática de la Tierra. Una vez definido el sistema de coordenadas, <code>datum</code> define la posición y orientación del elipsoide de referencia en relación con el centro de la Tierra y el meridiano usado como longitud cero, el meridiano principal. Investiga sobre el significado de <strong>WGS84</strong>.</p>
+<p>Como ya deberia ser habitual para ti, analiza tu objeto antes de proseguir. ¿Qué sucedió con <code>zebras.proj</code>? Aplica funciones que has aprendido para analizar este nueva clase de objeto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(zebras.proj)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "SpatialPointsDataFrame"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,"package")</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "sp"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(zebras.proj)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Object of class SpatialPointsDataFrame</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Coordinates:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">##          min       max</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="do">## V1  23.52338  25.26070</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">## V2 -20.81156 -19.38558</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Is projected: FALSE </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="do">## proj4string : [+proj=longlat +datum=WGS84 +no_defs]</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of points: 8914</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Data attributes:</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   identifier             long            lat          timestamp        </span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  Length:8914        Min.   :23.52   Min.   :-20.81   Length:8914       </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  Class :character   1st Qu.:23.61   1st Qu.:-20.59   Class :character  </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  Mode  :character   Median :24.88   Median :-20.44   Mode  :character  </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="do">##                     Mean   :24.47   Mean   :-20.15                     </span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="do">##                     3rd Qu.:25.00   3rd Qu.:-19.44                     </span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="do">##                     Max.   :25.26   Max.   :-19.39</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ya has verificado la transformación de las CRS, sin embargo, estos siguen siendo puntos en un mapa representados por medidas angulares. ¿De qué manera podemos medir la distancia entre ellos para poder calcular el área descrita por los puntos posteriormente? Transformando esta proyección a un sistema basado en metros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>zebras.transf <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(zebras.proj,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">CRS</span>(<span class="st">"+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esta CRS es una proyección cónica y representa a la forma más precisamente que a un área. Esta transformación nos da como resultado un mapa matemático de coordenadas esféricas en un plano bidimensional, cuyas unidades pueden son expresadas en metros. Con todo esto en mente, ya podemos plotear este objeto proyectado de clase <code>SpatialPointsDataFrame</code>.</p>
+<div id="fig-zebras-proyectadas" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zebras-proyectadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Qué diferencia tiene este grafico con el anterior?</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zebras.transf, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#440D54"</span>, <span class="st">"#3CBB75"</span>), <span class="at">axes=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datos_telemetricos_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zebras-proyectadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.4: Zebras extraídas del data frame <code>zebra</code> observadas mediante una proyección cónica y transformada a un sistema basado en metros
+</figcaption>
+</figure>
+</div>
+<p>¿Cuál es la diferencia entre la <a href="#fig-zebras-proyectadas" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> y <a href="#fig-dos-zebras-plot" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> ?</p>
+</section>
+<section id="section" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="section"><span class="header-section-number">3.3</span> </h2>
+<p>Hay que tener en cuenta que existen otros analisis como segmentacion FPT , etc que nos ayudan a predecir el comportamiento y el uso del espacio de un animal. Las areas de viida son solo uno de los tantos parametros q pueden obtenerse a partir de informacion satelital … etc xxxxxxx</p>
+</section>
+<section id="move2" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="move2"><span class="header-section-number">3.4</span> <em>move2</em></h2>
+</section>
+<section id="fuentes" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="fuentes"><span class="header-section-number">3.5</span> Fuentes</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
@@ -196,6 +479,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -252,12 +536,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -605,7 +889,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>© 2024 Fundación Oso Andino. Todos los derechos reservados.</p>
 </div>

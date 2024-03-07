@@ -24,7 +24,7 @@
     "href": "references.html",
     "title": "Literatura citada",
     "section": "",
-    "text": "Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody\nFolta, William F. Fagan, and Justin M. Calabrese. 2022.\n“Autocorrelation-Informed Home Range Estimation: A\nReview and Practical Guide.” Methods in Ecology and\nEvolution 13 (3): 534–44. https://doi.org/10.1111/2041-210X.13786.",
+    "text": "Abrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W.\nDeacy, Matthew J. Kauffman, and Jerod A. Merkle. 2021. “Emerging\nPerspectives on Resource Tracking\nand Animal Movement\nEcology.” Trends in Ecology & Evolution\n36 (4): 308–20. https://doi.org/10.1016/j.tree.2020.10.018.\n\n\nKays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski.\n2015. “Terrestrial Animal Tracking as an Eye on Life and\nPlanet.” Science 348 (6240): aaa2478. https://doi.org/10.1126/science.aaa2478.\n\n\nSilva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody\nFolta, William F. Fagan, and Justin M. Calabrese. 2022.\n“Autocorrelation-Informed Home Range Estimation: A\nReview and Practical Guide.” Methods in Ecology and\nEvolution 13 (3): 534–44. https://doi.org/10.1111/2041-210X.13786.",
     "crumbs": [
       "Literatura citada"
     ]
@@ -212,11 +212,11 @@
   {
     "objectID": "datos_telemetricos.html",
     "href": "datos_telemetricos.html",
-    "title": "3  Datos telemétricos",
+    "title": "3  Datos de telemetría satelital",
     "section": "",
-    "text": "Estamos trabajando en este tutorial",
+    "text": "3.1 Importación, limpieza y visualización de datos telemétricos\nEs de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores.\nA manera de ejercicio, he tomado material del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Además, modifiqué el formato del archivo original MigratoryZebra.csv, por un motivo que será obvio a continuación.\nEs siempre aconsejable tener una mirada general de los datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura. Descarga y abre el archivo que usarás en este módulo zebras.csv, en un archivo de texto y observa algunas características importantes del archivo como los separadores de columnas y los indicadores de decimales.\nPuedes ver que las columnas están separadas por ;, y los decimales mediante ,.\n# Intenta importar el archivo y mira las características de estos objetos mediante summary() y str()\n\ndata1 &lt;- read.csv(\"zebras.csv\")\ndata2 &lt;- read.csv2(\"zebras.csv\")\ndata3 &lt;- read.table(\"zebras.csv\", header = TRUE, na.strings = \"NA\",  sep=\";\")\nAhora activa el paquete readr (también parte de tidyverse) e intenta importar los datos mediante la función read_csv2.\ndata &lt;- read_csv2(\"zebras.csv\")\nsummary(data)\nstr(data)\nYa que tienes el archivo debidamente importado, extrae algunas columnas de interés y asigna un nombre más intuitivo, fácil de escribir y recordar. Esta es una preferencia personal, así que puedes omitir esta parte según tu preferencia.\nzebras &lt;- data[, c(\"event-id\", \"individual-local-identifier\",\n                \"location-long\", \"location-lat\", \"study-local-timestamp\")]\n\nzebras &lt;- zebras %&gt;%\n              rename(id = \"event-id\", identifier = \"individual-local-identifier\",\n              long = \"location-long\",\n              lat = \"location-lat\",\n              timestamp = \"study-local-timestamp\")\n\n# Inspecciona las primeras filas y los nombres de las columnas\nhead(zebras)\n## # A tibble: 6 × 5\n##          id identifier  long   lat timestamp              \n##       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                  \n## 1 210260446 Z3864       23.5 -19.4 2007-10-25 02:02:11,000\n## 2 210260447 Z3864       23.5 -19.4 2007-10-25 03:01:49,000\n## 3 210260448 Z3864       23.5 -19.4 2007-10-25 04:01:38,000\n## 4 210260449 Z3864       23.5 -19.4 2007-10-25 05:02:18,000\n## 5 210260450 Z3864       23.5 -19.4 2007-10-25 06:01:35,000\n## 6 210260451 Z3864       23.5 -19.4 2007-10-25 07:02:16,000\nAhora puedes observar la distribución de estas zebras de una manera sencilla mediante funciones base.\nLos individuos muestreados se encuentran en una extensión de terreno enorme, por lo que es preferible para los fines de esta primera lección, que analices animales que comparten un mismo espacio geográfico. Para esto, puedes hacer un subset del data frame original, y además puedes practicar tus habilidades en manejar dyplyr.\ndos_zebras &lt;- zebras %&gt;%\n          filter(identifier == \"Z3864\" | identifier == \"Z6405\") %&gt;%\n          dplyr::select(identifier, long, lat, timestamp)\nRealiza nuevamente un gráfico asignando colores a cada individuo.\nComo has aprendido en lecciones anteriores, no es conveniente embarcarse en algúm tipo de análisis sin antes realizar una limpieza de tus datos. Ahora puedes proceder a remover los NA’s de las columnas señaladas por summary.\n# Investiga si el set de datos posee NAs\nsummary(dos_zebras)\n##   identifier             long            lat          timestamp        \n##  Length:8915        Min.   :23.52   Min.   :-20.81   Length:8915       \n##  Class :character   1st Qu.:23.61   1st Qu.:-20.59   Class :character  \n##  Mode  :character   Median :24.88   Median :-20.44   Mode  :character  \n##                     Mean   :24.47   Mean   :-20.15                     \n##                     3rd Qu.:25.00   3rd Qu.:-19.44                     \n##                     Max.   :25.26   Max.   :-19.39                     \n##                     NA's   :1       NA's   :1\nwhich(is.na(dos_zebras$lat))\n## [1] 1802\nwhich(is.na(dos_zebras$long))\n## [1] 1802\n!Haz limpiado los datos con éxito! Ahora crea un objeto que será transformado y proyectado posteriormente.\nzebras.proj &lt;- dos_zebras",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos telemétricos</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
     ]
   },
   {
@@ -224,7 +224,7 @@
     "href": "areas_vida_1.html",
     "title": "4  Áreas de vida Parte I",
     "section": "",
-    "text": "4.1 ?????",
+    "text": "4.1 adehabitatHR\nEl paquete adeHabitatHR es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado adehabitat, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes raster, rgdal, rgeos, y sp, que fueron reemplazados en el 2023 por sf y terra. sp es el único que se adaptó a esta transición y adoptó funciones del paquete sf Sin embargo, adehabitatHR no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.\nA pesar de esto, aprender sobre adeHabitatHR es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Áreas de vida Parte I</span>"
     ]
@@ -355,6 +355,106 @@
     "title": "4  Áreas de vida Parte I",
     "section": "",
     "text": "Estamos trabajando en este tutorial\n\n\n\n\n\n\nSilva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. “Autocorrelation-Informed Home Range Estimation: A Review and Practical Guide.” Methods in Ecology and Evolution 13 (3): 534–44. https://doi.org/10.1111/2041-210X.13786.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Áreas de vida Parte I</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#preparación-y-análisis-de-datos",
+    "href": "datos_telemetricos.html#preparación-y-análisis-de-datos",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.2 Preparación y análisis de datos",
+    "text": "3.2 Preparación y análisis de datos\nEs de suma importancia que estos pasos sean realizados de manera correcta, ya que cualquier error en la importación y limpieza de los datos nos puede traer grandes errores. A manera de ejercicio, he cambiado el formato del archivo original de MigratoryZebra.csv, tomado del curso Landscape and Analysis Modeling de The University of Tulsa, al que pueden acceder gratuitamente para profundizar más en los temas que trataremos en estas clases. Es siempre aconsejable tener una mirada general de nuestros datos antes de leerlos como objetos en R, ya que se debe utilizar la función adecuada para su lectura así que empecemos abriendo el archivo zebras.csv en un archivo de texto y miremos algunas características, como los separadores de columnas y los indicadores de decimales. Podemos ver que las columnas están separadas por un punto y coma “;”, y que los decimales se indican mediante una coma “,”.\n\n# Intenta leer el archivo con las siguientes funciones y mira cuales son las características de estos objetos mediante summary() y str()\n\ndata1 &lt;- read.csv(\"zebras.csv\")\ndata2 &lt;- read.csv2(\"zebras.csv\")\ndata3 &lt;- read.table(\"zebras.csv\", header = TRUE, na.strings = \"NA\",  sep=\";\")\n\nAhora activa el paquete readr (también parte de tidyverse) e intenta leer los datos mediante la función read_csv2()\n\ndata &lt;- read_csv2(\"zebras.csv\")\nsummary (data)\nstr(data)\n\nExtrae algunas columnas de interés para la clase de hoy y asignales un nombre más fácil de escribir.\n\nzebra &lt;- data[, c(\"event-id\", \"individual-local-identifier\",\n                \"location-long\", \"location-lat\", \"study-local-timestamp\")]\n\nzebra &lt;- zebra %&gt;%\n              rename(id = \"event-id\", identifier = \"individual-local-identifier\",\n              long = \"location-long\",\n              lat = \"location-lat\",\n              timestamp = \"study-local-timestamp\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#section",
+    "href": "datos_telemetricos.html#section",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.3 ",
+    "text": "3.3 \nHay que tener en cuenta que existen otros analisis como segmentacion FPT , etc que nos ayudan a predecir el comportamiento y el uso del espacio de un animal. Las areas de viida son solo uno de los tantos parametros q pueden obtenerse a partir de informacion satelital … etc xxxxxxx",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#preparación-de-los-datos",
+    "href": "datos_telemetricos.html#preparación-de-los-datos",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.3 Preparación de los datos",
+    "text": "3.3 Preparación de los datos\n\n3.3.1 Proyecciones\n``` \n\n\n\n\nAbrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W. Deacy, Matthew J. Kauffman, and Jerod A. Merkle. 2021. “Emerging Perspectives on Resource Tracking and Animal Movement Ecology.” Trends in Ecology & Evolution 36 (4): 308–20. https://doi.org/10.1016/j.tree.2020.10.018.\n\n\nKays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski. 2015. “Terrestrial Animal Tracking as an Eye on Life and Planet.” Science 348 (6240): aaa2478. https://doi.org/10.1126/science.aaa2478.\n\n\nSilva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. “Autocorrelation-Informed Home Range Estimation: A Review and Practical Guide.” Methods in Ecology and Evolution 13 (3): 534–44. https://doi.org/10.1111/2041-210X.13786.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#importación-y-limpieza-de-datos-telemétricos",
+    "href": "datos_telemetricos.html#importación-y-limpieza-de-datos-telemétricos",
+    "title": "3  Datos de telemetría satelital",
+    "section": "",
+    "text": "IMPORTANTE\n\n\n\nEvita abrir cualquier archivo que será importado a R, utilizando Excel como primera opción. Utiliza editores de texto como Notepad o Notepad++.\n\n\n\n\n\nCaptura de pantalla de zebras.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTarea\n\n\n\nUtiliza tus habilidades y conocimiento en ggplot2 para realizar un gráfico similar al que acabas de realizar con plot.\n\n\n\n\n\n\n\n\n\n\nEjercicio\n\n\n\nUtiliza cualquier método para eliminar los datos de longitud y latitud faltantes en la fila 1802, y verifica que el proceso de limpieza de datos sea correcto.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#move2",
+    "href": "datos_telemetricos.html#move2",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.4 move2",
+    "text": "3.4 move2",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#fuentes",
+    "href": "datos_telemetricos.html#fuentes",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.5 Fuentes",
+    "text": "3.5 Fuentes\n\n\n\nEstamos trabajando en este tutorial",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#transformación-y-proyección-cartográfica",
+    "href": "datos_telemetricos.html#transformación-y-proyección-cartográfica",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.2 Transformación y proyección cartográfica",
+    "text": "3.2 Transformación y proyección cartográfica\nPara continuar y entender cual es el propósito de los siguientes pasos, primero debes entender que es una proyección cartográfica. En breve, la posición en el espacio tridimensional de un animal tomada mediante coordenadas decimales deben ser transformadas a un objeto bidimensional. Esta transformación viene acompañada de un gran problema como lo es la distorsión, y esta será más o menos evidente según el tipo de proyección que elijas.\nEl canal de YouTube Vox tiene un excelente video que muestra gráficamente este problema.\n\nEl paquete sp es el indicado para esta tarea ya que ofrece clases y métodos para manejar datos espaciales. Así, empezarás por transformar el objeto zebras.proj a un objeto de clase SpatialPointsDataFrame.\n\nzebras.proj &lt;- SpatialPointsDataFrame(coords = as.data.frame(cbind(zebras.proj$long, zebras.proj$lat)),\n                data = zebras.proj,\n                proj4string = CRS(\"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs\"))\n\nPara entender el código que antecede a la función proj4string primero te debes preguntar, ¿qué significa CRS, y qué argumentos contiene esta función? proj4string no es nada más que una librería que dispone de métodos que permiten la transformación entre diferentes sistemas de coordenadas de referencia (CRS).\nCRS permite determinar la ubicación de un punto de una manera estandarizada, utilizando uno o más números que representan tanto su posición vertical como horizontal. Para lograr esto, utiliza como referencia un elipsoide que es una representación matemática de la Tierra. Una vez definido el sistema de coordenadas, datum define la posición y orientación del elipsoide de referencia en relación con el centro de la Tierra y el meridiano usado como longitud cero, el meridiano principal. Investiga sobre el significado de WGS84.\nComo ya deberia ser habitual para ti, analiza tu objeto antes de proseguir. ¿Qué sucedió con zebras.proj? Aplica funciones que has aprendido para analizar este nueva clase de objeto.\n\nclass(zebras.proj)\n## [1] \"SpatialPointsDataFrame\"\n## attr(,\"package\")\n## [1] \"sp\"\nsummary(zebras.proj)\n## Object of class SpatialPointsDataFrame\n## Coordinates:\n##          min       max\n## V1  23.52338  25.26070\n## V2 -20.81156 -19.38558\n## Is projected: FALSE \n## proj4string : [+proj=longlat +datum=WGS84 +no_defs]\n## Number of points: 8914\n## Data attributes:\n##   identifier             long            lat          timestamp        \n##  Length:8914        Min.   :23.52   Min.   :-20.81   Length:8914       \n##  Class :character   1st Qu.:23.61   1st Qu.:-20.59   Class :character  \n##  Mode  :character   Median :24.88   Median :-20.44   Mode  :character  \n##                     Mean   :24.47   Mean   :-20.15                     \n##                     3rd Qu.:25.00   3rd Qu.:-19.44                     \n##                     Max.   :25.26   Max.   :-19.39\n\nYa has verificado la transformación de las CRS, sin embargo, estos siguen siendo puntos en un mapa representados por medidas angulares. ¿De qué manera podemos medir la distancia entre ellos para poder calcular el área descrita por los puntos posteriormente? Transformando esta proyección a un sistema basado en metros.\n\nzebras.transf &lt;- spTransform(zebras.proj,\n                  CRS(\"+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs\"))\n\nEsta CRS es una proyección cónica y representa a la forma más precisamente que a un área. Esta transformación nos da como resultado un mapa matemático de coordenadas esféricas en un plano bidimensional, cuyas unidades pueden son expresadas en metros. Con todo esto en mente, ya podemos plotear este objeto proyectado de clase SpatialPointsDataFrame.\n\n\n\n\n# ¿Qué diferencia tiene este grafico con el anterior?\nplot(zebras.transf, pch = 20, col = c(\"#440D54\", \"#3CBB75\"), axes=TRUE)\n\n\n\n\n\n\n\n\n\n\nFigura 3.4: Zebras extraídas del data frame zebra observadas mediante una proyección cónica y transformada a un sistema basado en metros\n\n\n\n¿Cuál es la diferencia entre la Figura 3.4 y Figura 3.3 ?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#importación-limpieza-y-visualización-de-datos-telemétricos",
+    "href": "datos_telemetricos.html#importación-limpieza-y-visualización-de-datos-telemétricos",
+    "title": "3  Datos de telemetría satelital",
+    "section": "",
+    "text": "IMPORTANTE\n\n\n\nEvita abrir cualquier archivo que será importado a R, utilizando Excel como primera opción. Utiliza editores de texto como Notepad o Notepad++.\n\n\n\n\n\n\n\n\nFigura 3.1: Captura de pantalla de zebras.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# Cambia el valor de pch y mira que sucede con el gráfico\nplot(zebras[, c(\"long\", \"lat\")], pch = 20)\n\n\n\n\n\n\n\n\n\n\nFigura 3.2: Distribución espacial de todos los individuos en el data frame zebras\n\n\n\n\n\n\n\n\n\n\n#cambia el valor de pch y mira que sucede con el gráfico\nplot(dos_zebras[, c(\"long\", \"lat\")], pch = 20, col = c(\"#440D54\", \"#3CBB75\"))\nlegend(\"topright\", legend = c(\"Z3864\", \"Z6405\"),\n      fill = c(\"#440D54\", \"#3CBB75\"),\n      pch = 20, box.lty = 0)\n\n\n\n\n\n\n\n\n\n\nFigura 3.3: Distribución espacial de dos zebras extraídas del data frame zebras\n\n\n\n\n\n\n\n\n\nTarea\n\n\n\nUtiliza tus habilidades y conocimiento en ggplot2 para realizar un gráfico similar al que acabas de realizar con plot.\n\n\n\n\n\n\n\n\n\n\nEjercicio\n\n\n\nUtiliza cualquier método para eliminar los datos de longitud y latitud faltantes en la fila 1802, y verifica que el proceso de limpieza de datos sea correcto.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "datos_telemetricos.html#adehabitathr",
+    "href": "datos_telemetricos.html#adehabitathr",
+    "title": "3  Datos de telemetría satelital",
+    "section": "3.3 adehabitatHR",
+    "text": "3.3 adehabitatHR\nEl paquete adeHabitatHR es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado adehabitat, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes raster, rgdal, rgeos, y sp, que fueron reemplazados en el 2023 por sf y terra. sp es el único que se adaptó a esta transición y adoptó funciones del paquete sf Sin embargo, adehabitatHR no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.\nA pesar de esto,",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Datos de telemetría satelital</span>"
+    ]
+  },
+  {
+    "objectID": "areas_vida_1.html#adehabitathr",
+    "href": "areas_vida_1.html#adehabitathr",
+    "title": "4  Áreas de vida Parte I",
+    "section": "",
+    "text": "Estamos trabajando en este tutorial\n\n\n\n\n\n\nAbrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W. Deacy, Matthew J. Kauffman, and Jerod A. Merkle. 2021. “Emerging Perspectives on Resource Tracking and Animal Movement Ecology.” Trends in Ecology & Evolution 36 (4): 308–20. https://doi.org/10.1016/j.tree.2020.10.018.\n\n\nKays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski. 2015. “Terrestrial Animal Tracking as an Eye on Life and Planet.” Science 348 (6240): aaa2478. https://doi.org/10.1126/science.aaa2478.\n\n\nSilva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. “Autocorrelation-Informed Home Range Estimation: A Review and Practical Guide.” Methods in Ecology and Evolution 13 (3): 534–44. https://doi.org/10.1111/2041-210X.13786.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Áreas de vida Parte I</span>"
     ]
