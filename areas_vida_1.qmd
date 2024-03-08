@@ -10,6 +10,7 @@ editor_options:
     wrap: sentence
     canonical: true
 theme: cosmo
+lang: es
 ---
 ```{r}
 #| include: false
@@ -28,3 +29,4 @@ A pesar de esto, aprender sobre _adeHabitatHR_ es aún necesario ya que no exist
 
 ### Home range zebras
 
+Continuando con el objeto `zebras.transf` que generaste en la sección @sec-transf-proy

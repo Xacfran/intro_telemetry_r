@@ -188,7 +188,10 @@ div.csl-indent {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#adehabitathr" id="toc-adehabitathr" class="nav-link active" data-scroll-target="#adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></a></li>
+  <li><a href="#adehabitathr" id="toc-adehabitathr" class="nav-link active" data-scroll-target="#adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></a>
+  <ul class="collapse">
+  <li><a href="#home-range-zebras" id="toc-home-range-zebras" class="nav-link" data-scroll-target="#home-range-zebras"><span class="header-section-number">4.1.1</span> Home range zebras</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -219,12 +222,9 @@ div.csl-indent {
 <h2 data-number="4.1" class="anchored" data-anchor-id="adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></h2>
 <p>El paquete <a href="https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf"><em>adeHabitatHR</em></a> es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado <em>adehabitat</em>, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes <em>raster</em>, <em>rgdal</em>, <em>rgeos</em>, y <em>sp</em>, que fueron reemplazados en el 2023 por <em>sf</em> y <em>terra</em>. <em>sp</em> es el único que se adaptó a esta transición y adoptó funciones del paquete <em>sf</em> Sin embargo, <em>adehabitatHR</em> no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.</p>
 <p>A pesar de esto, aprender sobre <em>adeHabitatHR</em> es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="docs/Figures/under_constrution_bear1.jpeg" title="Title: An elephant" class="img-fluid figure-img"></p>
-<figcaption>Estamos trabajando en este tutorial</figcaption>
-</figure>
-</div>
+<section id="home-range-zebras" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="home-range-zebras"><span class="header-section-number">4.1.1</span> Home range zebras</h3>
+<p>Continuando con el objeto <code>zebras.transf</code> que generaste en la sección <a href="datos_telemetricos.html#sec-transf-proy" class="quarto-xref"><span>Section 3.2</span></a></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -238,6 +238,7 @@ Kays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski. 2015. <span
 Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. <span>“Autocorrelation-Informed Home Range Estimation: <span>A</span> Review and Practical Guide.”</span> <em>Methods in Ecology and Evolution</em> 13 (3): 534–44. <a href="https://doi.org/10.1111/2041-210X.13786">https://doi.org/10.1111/2041-210X.13786</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
