@@ -26,8 +26,5 @@ El paquete [_adeHabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR
 
 A pesar de esto, aprender sobre _adeHabitatHR_ es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.
 
-```{r}
-#| include: false
-source("_common.R")
-```
-![Estamos trabajando en este tutorial](docs/Figures/under_constrution_bear1.jpeg "Title: An elephant")
+### Home range zebras
+
