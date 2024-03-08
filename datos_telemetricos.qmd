@@ -243,7 +243,7 @@ Ahora puedes anotar algunos parametros de movimiento como:
 
 ![Comportamiento teórico basado en la estimación del NSD. Tomado de @pretorius_movement_2020](docs/Figures/NSD1.png){#fig-NSD fig-alt=""}
 
-```{r echo = FALSE}
+```{r}
 dos_zebras_annot <- dos_zebras_move %>%
                       mutate(azimuth = mt_azimuth(dos_zebras_move),
                       speed = mt_speed(dos_zebras_move),
@@ -256,7 +256,7 @@ Debes tener en cuenta que es necesario agregar un límite en el cual tu infieras
 
 ```{r warnings = FALSE}
 # Cuando se mueven
-zebras_movimiento <- dos_zebras_annot %>% filter(speed > set_units(3, "m/min"))
+zebras_movimiento <- dos_zebras_annot %>% filter(speed > set_units(5, "m/min"))
 ```
 
 
