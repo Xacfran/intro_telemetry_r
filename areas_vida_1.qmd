@@ -147,7 +147,7 @@ head(juancho.utm)
 
 :::::: {.callout-note}
 ## Ejercicio
-Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP.
+Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP y realiza un gráfico mostrando ambos polígonos y puntos satelitales.
 :::
 
 ## Kernel Density Estimate (KDE)
