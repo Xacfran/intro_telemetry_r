@@ -77,6 +77,8 @@ Ahora intenta con distintos porcentajes y observa las diferencias en tamaños de
 Si bien puedes utilizar funciones base de R para graficar estos polígonos, aprovecha la interacción de estos paquetes con _sf_ y _ggplot2_ para obtener un gráfico más estético.
 
 ```{r}
+library(ggplot2)
+
 ggplot() +
       geom_sf(data = st_as_sf(zebras.mcp), aes(fill = id),
               alpha = 0.2) +
@@ -87,7 +89,7 @@ ggplot() +
 
 También puedes exportar estos polígonos con extensión `kml` para que puedas importarlos en Google Earth o cualquier software de tu preferencia.
 ```{r eval = FALSE}
-st_write(st_as_sf(zebras.mcp), "zebras.kml")
+st_write(st_as_sf(zebras.mcp), "zebras.kml", delete_layer = TRUE)
 ```
 
 ### Animales hipotéticos
@@ -110,10 +112,20 @@ plot(mamiferos[, c("longitude", "latitude")], pch=20)
 
 :::::: {.callout-note}
 ## Ejercicio
-Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y finalmente crea un objeto que contenga únicamente a "juancho". Finalmente, verifica que el proceso haya sido exitoso.
+Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y crea un objeto que contenga únicamente a "juancho". Finalmente, verifica que el proceso haya sido exitoso.
 :::
 
 ```{r include = FALSE}
+# Verificación visual
+library(plotly)
+
+mamiferos_outliers <- mamiferos %>%
+  ggplot(aes(x= longitude, y=latitude, colour = name))+
+  geom_point(alpha = 0.5)
+
+ggplotly(mamiferos_outliers)
+
+#Limpiar el data frame
 juancho <- mamiferos[-which(mamiferos$longitude < -76),] |>
                 na.omit() |>
                 filter(name == "juancho")
@@ -152,30 +164,54 @@ Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP
 
 ## Kernel Density Estimate (KDE)
 
-```{r eval = FALSE, include = FALSE}
-#Estimo KDE mediante href
-juancho.khref<- kernelUD(juancho.trans[, "name"], h= "href")
-#Obtengo figura del raster
+En KDE, una colina tri-dimensional o kernel es formada junto a cada punto, la forma y altura de esta colina depende del ancho de banda (_bandwidth_).
+En este curso calcularás el KDE mediante el “_fixed kernel_” o href, “_least squares cross-validation_” o lcsv, e intentarás ajustar el bandwidth manualmente.
+La teoría sobre estos métodos, sus pros y contras pueden ser encontrados en estos links: [1], [2].
+
+### _Fixed kernel_ (href)
+
+```{r}
+juancho.khref <- kernelUD(juancho.transf[, "name"], h = "href")
+
+# Observa este raster
 image(juancho.khref)
+```
 
-# Para exportar a ArcGis
-juanchopix<- estUDm2spixdf(juancho.khref)
-juancho.rast<- (raster(as(juanchopix, "SpatialPixelsDataFrame")))
-writeRaster(juancho.rast, "juancho.tif")
+Si quieres exportarlo para su uso en otros softwares como ArcGis puedes seguir estos pasos.
 
+```{r warnings = FALSE, output = FALSE}
+juanchopix <- estUDm2spixdf(juancho.khref)
+st_write(st_as_sf(juanchopix), "juancho.shp", delete_layer = TRUE)
+# Mira otros formatos disponibles con st_drivers()
+```
+
+También puedes plotearlo en R.
+```{r}
 # Tambien se puede plotear en R
-plot(juancho.rast)
-plot(juancho.trans, add=T, cex=0.1)
+plot(juanchopix)
+plot(juancho.transf, add=T, cex=0.1)
+```
 
+Utilizando estos objetos, ya puedes estimar el área de vida de juancho mediante el método KDE.
 
+```{r}
 #Estimo el area usando el objeto juancho.khref segun una secuencia de porcentajes
 kernel.area(juancho.khref, percent = seq (20,95,5),
             unin="m", unout="ha")
+```
 
+Ahora estima el home range desde el objeto `juancho.khref` que creaste anteriormente.
+
+```{r}
 #Obtengo las lineas para el plot final
 juancho.KDE95 <- getverticeshr(juancho.khref, percent= 95)
-
-# Exporto los poligonos como KML
-
-plotKML(juancho.KDE95, axes=T)
 ```
+
+:::::: {.callout-note}
+## Ejericicio
+La función `getvolumeUD` también te permite calcular el área de vida, pero ¿cuál crees que sea la diferencia entre ambos métodos?
+:::
+
+## Fuentes
+
+Puedes utilizar el [manual de _adehabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) para resolver los ejercicios de este tutorial y puedes explorar más funciones que ofrece este paquete.
