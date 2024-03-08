@@ -131,7 +131,7 @@ dos_zebras <- dos_zebras %>% na.omit
 zebras.proj <- dos_zebras
 ```
 
-## Transformación y proyección cartográfica{#sec-transf-proy}
+## Transformación y proyección cartográfica {#sec-transf-proy}
 
 Para continuar y entender cual es el propósito de los siguientes pasos, primero debes entender que es una proyección cartográfica. En breve, la posición en el espacio tridimensional de un animal tomada mediante coordenadas decimales deben ser transformadas a un objeto bidimensional. Esta transformación viene acompañada de un gran problema como lo es la distorsión, y esta será más o menos evidente según el tipo de proyección que elijas.
 

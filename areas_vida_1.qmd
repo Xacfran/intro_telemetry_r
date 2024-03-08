@@ -15,9 +15,25 @@ lang: es
 ```{r}
 #| include: false
 source("_common.R")
+
+data <- read_csv2("docs/datos/zebras.csv")
+zebras <- data[, c("event-id", "individual-local-identifier",
+                "location-long", "location-lat", "study-local-timestamp")]
+dos_zebras <- zebras %>%
+              rename(id = "event-id", identifier = "individual-local-identifier",
+              long = "location-long",
+              lat = "location-lat",
+              timestamp = "study-local-timestamp") |>
+          filter(identifier == "Z3864" | identifier == "Z6405") |>
+          dplyr::select(identifier, long, lat, timestamp) |> na.omit()
+zebras.proj <- SpatialPointsDataFrame(coords = as.data.frame(cbind(dos_zebras$long, dos_zebras$lat)),
+                data = dos_zebras,
+                proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+zebras.transf <- spTransform(zebras.proj,
+                  CRS("+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
 ```
 
-# Áreas de vida Parte I {#sec-areas-vida-1}
+# Áreas de vida {#sec-areas-vida}
 
 La estimación de áreas de vida es una parte fundamental, pero no la única, en el estudio de la ecología y etología de los animales, y los artículos científicos de @kays_terrestrial_2015, @abrahms_emerging_2021, y @silva_autocorrelation-informed_2022 son una excelente fuente de información si estás involucrándote en el mundo de la ecología de movimiento. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo aprenderás sobre métodos tradicionales ampliamente utilizados y que serán comparados más adelante con nuevos métodos en el paquete _ctmm_.
 
@@ -27,6 +43,139 @@ El paquete [_adeHabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR
 
 A pesar de esto, aprender sobre _adeHabitatHR_ es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.
 
-### Home range zebras
+Ahora estimarás el área de vida de las zebras que fueron extraídas en el objeto `zebras.transf` en la @sec-transf-proy.
 
-Continuando con el objeto `zebras.transf` que generaste en la sección @sec-transf-proy
+```{r}
+#| code-fold: true
+#| code-summary: "Obten el objeto `zebras.transf`"
+
+zebras.transf <- spTransform(zebras.proj,
+                  CRS("+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+```
+
+## Minimum Convex Polygon (MCP)
+
+### Zebras en África
+Este método es de los más sencillo para dibujar los límites de distribución de un animal. Aunque su uso original Carl O. Mohr (1947) fue destinado a la identificación de animales recapturados en una malla de captura.
+
+El uso del MCP es limitado ya que este describe el alcance de la distribución de ubicaciones de un individuo, mas no la verdadera área de vida del animal bajo estudio. Para una discusión más detallada sobre esto puedes leer @signer_fresh_2021, y un debate profundo sobre rangos y ocurrencia de distribución en @fleming_estimating_2016.
+
+A pesar de lo anteriormente mencionado, obtener el área del polígono y el poder ubicarlo sobre un mapa, nos permite observar a _grosso modo_ el espacio y hábitat que ocupa cierto ejemplar.
+
+```{r}
+library(adehabitatHR)
+library(sf)
+zebras.mcp <- mcp(zebras.transf[, "identifier"], percent= 100,
+              unin="m", unout= "ha")
+```
+
+:::::: {.callout-note}
+## Ejercicio
+Ahora intenta con distintos porcentajes y observa las diferencias en tamaños de área.
+:::
+
+Si bien puedes utilizar funciones base de R para graficar estos polígonos, aprovecha la interacción de estos paquetes con _sf_ y _ggplot2_ para obtener un gráfico más estético.
+
+```{r}
+ggplot() +
+      geom_sf(data = st_as_sf(zebras.mcp), aes(fill = id),
+              alpha = 0.2) +
+      geom_sf(data = st_as_sf(zebras.transf), aes(colour = identifier)) +
+      coord_sf() +
+      theme_bw()
+```
+
+También puedes exportar estos polígonos con extensión `kml` para que puedas importarlos en Google Earth o cualquier software de tu preferencia.
+```{r eval = FALSE}
+st_write(st_as_sf(zebras.mcp), "zebras.kml")
+```
+
+### Animales hipotéticos
+
+Como caso de estudio, e intentando que mejores en el flujo de trabajo de estos análisis, creé un set de datos de tres mamíferos hipotéticos en la zona Norte de Loreto - Perú, y lo puedes [descargar aquí](https://mega.nz/folder/VwVQEbJK#lxYXI88_90s6hUihhwNXgg).
+
+```{r include = FALSE}
+mamiferos <- read.csv("docs/datos/mamiferos.csv")
+```
+
+```{r eval = FALSE}
+mamiferos <- read.csv("mamiferos.csv")
+```
+
+Como siempre, haz una exploración rápida de este objeto y grafica los puntos satelitales rápidamente.
+
+```{r}
+plot(mamiferos[, c("longitude", "latitude")], pch=20)
+```
+
+:::::: {.callout-note}
+## Ejercicio
+Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y finalmente crea un objeto que contenga únicamente a "juancho". Finalmente, verifica que el proceso haya sido exitoso.
+:::
+
+```{r include = FALSE}
+juancho <- mamiferos[-which(mamiferos$longitude < -76),] |>
+                na.omit() |>
+                filter(name == "juancho")
+
+summary(juancho)
+```
+
+Ahora que has filtrado el set de datos, ya puedes realizar la proyeccion, transformación y cálculo del área de vida y núcleo de juancho.
+
+```{r}
+juancho.proj <- SpatialPointsDataFrame(coords = as.data.frame(cbind
+                        (juancho$longitude, juancho$latitude)),
+                        data = juancho, proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+```
+
+A diferencia de las zebras, sabemos que nuestro lugar de muestreo es pequeño, y en una región tropical, por ende necesitamos un método de proyección adecuado. Entre tantos métodos existentes, ¿cuál elegirías?
+En estos casos, lo aconsejable es utilizar [Universal Transverse Mercator](https://gisgeography.com/utm-universal-transverse-mercator-projection/) (UTM). No obstante, para hacer uso de este método de proyección, aún nos falta conocer un dato importante, la zona y el hemisferio.
+
+Podemos copiar y pegar cualquiera de los puntos de nuestro set de datos en [esta página](http://rcn.montana.edu/resources/Converter.aspx) para poder conocer la información faltante.
+
+```{r}
+juancho.transf <- spTransform(juancho.proj,
+                           CRS("+proj=utm +south +zone=18 +ellps=WGS84"))
+```
+
+Si deseas conocer las coordenadas UTM de todos los puntos, puedes crear un nuevo objeto y ejecutar las siguientes líneas.
+```{r}
+juancho.utm <- coordinates(juancho.transf)
+head(juancho.utm)
+```
+
+:::::: {.callout-note}
+## Ejercicio
+Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP.
+:::
+
+## Kernel Density Estimate (KDE)
+
+```{r eval = FALSE, include = FALSE}
+#Estimo KDE mediante href
+juancho.khref<- kernelUD(juancho.trans[, "name"], h= "href")
+#Obtengo figura del raster
+image(juancho.khref)
+
+# Para exportar a ArcGis
+juanchopix<- estUDm2spixdf(juancho.khref)
+juancho.rast<- (raster(as(juanchopix, "SpatialPixelsDataFrame")))
+writeRaster(juancho.rast, "juancho.tif")
+
+# Tambien se puede plotear en R
+plot(juancho.rast)
+plot(juancho.trans, add=T, cex=0.1)
+
+
+#Estimo el area usando el objeto juancho.khref segun una secuencia de porcentajes
+kernel.area(juancho.khref, percent = seq (20,95,5),
+            unin="m", unout="ha")
+
+#Obtengo las lineas para el plot final
+juancho.KDE95 <- getverticeshr(juancho.khref, percent= 95)
+
+# Exporto los poligonos como KML
+
+plotKML(juancho.KDE95, axes=T)
+```

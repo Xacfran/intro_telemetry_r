@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.550">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introducción a la Telemetría de Grandes Mamíferos - 4&nbsp; Áreas de vida Parte I</title>
+<title>Introducción a la Telemetría de Grandes Mamíferos - 4&nbsp; Áreas de vida</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -50,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./areas_vida_2.html" rel="next">
+<link href="./references.html" rel="next">
 <link href="./datos_telemetricos.html" rel="prev">
 <link href="./docs/Figures/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -76,17 +110,17 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -99,11 +133,11 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./areas_vida_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida Parte I</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./areas_vida_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -121,7 +155,7 @@ div.csl-indent {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://osoandino.org/" title="Fundación Oso Andino" class="quarto-navigation-tool px-1" aria-label="Fundación Oso Andino"><i class="bi bi-globe"></i></a>
     <a href="https://github.com/Xacfran/intro_telemetry_r" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -131,7 +165,7 @@ div.csl-indent {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -163,13 +197,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./areas_vida_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida Parte I</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./areas_vida_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Áreas de vida Parte II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -188,19 +216,22 @@ div.csl-indent {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#adehabitathr" id="toc-adehabitathr" class="nav-link active" data-scroll-target="#adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></a>
+  <li><a href="#adehabitathr" id="toc-adehabitathr" class="nav-link active" data-scroll-target="#adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></a></li>
+  <li><a href="#minimum-convex-polygon-mcp" id="toc-minimum-convex-polygon-mcp" class="nav-link" data-scroll-target="#minimum-convex-polygon-mcp"><span class="header-section-number">4.2</span> Minimum Convex Polygon (MCP)</a>
   <ul class="collapse">
-  <li><a href="#home-range-zebras" id="toc-home-range-zebras" class="nav-link" data-scroll-target="#home-range-zebras"><span class="header-section-number">4.1.1</span> Home range zebras</a></li>
+  <li><a href="#zebras-en-áfrica" id="toc-zebras-en-áfrica" class="nav-link" data-scroll-target="#zebras-en-áfrica"><span class="header-section-number">4.2.1</span> Zebras en África</a></li>
+  <li><a href="#animales-hipotéticos" id="toc-animales-hipotéticos" class="nav-link" data-scroll-target="#animales-hipotéticos"><span class="header-section-number">4.2.2</span> Animales hipotéticos</a></li>
   </ul></li>
+  <li><a href="#kernel-density-estimate-kde" id="toc-kernel-density-estimate-kde" class="nav-link" data-scroll-target="#kernel-density-estimate-kde"><span class="header-section-number">4.3</span> Kernel Density Estimate (KDE)</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-areas-vida-1" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida Parte I</span></span></h1>
+<h1 class="title"><span id="sec-areas-vida" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Áreas de vida</span></span></h1>
 </div>
 
 
@@ -217,28 +248,144 @@ div.csl-indent {
 </header>
 
 
-<p>La estimación de áreas de vida es una parte fundamental, pero no la única, en el estudio de la ecología y etología de los animales, y los artículos científicos de <span class="citation" data-cites="kays_terrestrial_2015">Kays et al. (<a href="references.html#ref-kays_terrestrial_2015" role="doc-biblioref">2015</a>)</span>, <span class="citation" data-cites="abrahms_emerging_2021">Abrahms et al. (<a href="references.html#ref-abrahms_emerging_2021" role="doc-biblioref">2021</a>)</span>, y <span class="citation" data-cites="silva_autocorrelation-informed_2022">Silva et al. (<a href="references.html#ref-silva_autocorrelation-informed_2022" role="doc-biblioref">2022</a>)</span> son una excelente fuente de información si estás involucrándote en el mundo de la ecología de movimiento. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo aprenderás sobre métodos tradicionales ampliamente utilizados y que serán comparados más adelante con nuevos métodos en el paquete <em>ctmm</em>.</p>
+<p>La estimación de áreas de vida es una parte fundamental, pero no la única, en el estudio de la ecología y etología de los animales, y los artículos científicos de <span class="citation" data-cites="kays_terrestrial_2015">Kays et&nbsp;al. (<a href="references.html#ref-kays_terrestrial_2015" role="doc-biblioref">2015</a>)</span>, <span class="citation" data-cites="abrahms_emerging_2021">Abrahms et&nbsp;al. (<a href="references.html#ref-abrahms_emerging_2021" role="doc-biblioref">2021</a>)</span>, y <span class="citation" data-cites="silva_autocorrelation-informed_2022">Silva et&nbsp;al. (<a href="references.html#ref-silva_autocorrelation-informed_2022" role="doc-biblioref">2022</a>)</span> son una excelente fuente de información si estás involucrándote en el mundo de la ecología de movimiento. Si bien existen diversos métodos por los cuales se pueden estimar dichas áreas, en este módulo aprenderás sobre métodos tradicionales ampliamente utilizados y que serán comparados más adelante con nuevos métodos en el paquete <em>ctmm</em>.</p>
 <section id="adehabitathr" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="adehabitathr"><span class="header-section-number">4.1</span> <em>adehabitatHR</em></h2>
 <p>El paquete <a href="https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf"><em>adeHabitatHR</em></a> es uno de cuatro paquetes que hace unos años formaban parte del paquete ya deprecado <em>adehabitat</em>, y se especializa en el análisis de áreas de vida. Este paquete, sin embargo, se enfrenta a un riesgo a futuro ya que otros paquetes utilizados dentro de la disciplina del análisis espacial, dependían en gran medida de los paquetes <em>raster</em>, <em>rgdal</em>, <em>rgeos</em>, y <em>sp</em>, que fueron reemplazados en el 2023 por <em>sf</em> y <em>terra</em>. <em>sp</em> es el único que se adaptó a esta transición y adoptó funciones del paquete <em>sf</em> Sin embargo, <em>adehabitatHR</em> no se adaptó a esta transformación y depende de la instalación de estos paquetes que ya no reciben mantenimiento.</p>
 <p>A pesar de esto, aprender sobre <em>adeHabitatHR</em> es aún necesario ya que no existe, a la fecha, un paquete que incorpore todas las utilidades que éste lo hace.</p>
-<section id="home-range-zebras" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="home-range-zebras"><span class="header-section-number">4.1.1</span> Home range zebras</h3>
-<p>Continuando con el objeto <code>zebras.transf</code> que generaste en la sección <a href="datos_telemetricos.html#sec-transf-proy" class="quarto-xref"><span>Section 3.2</span></a></p>
+<p>Ahora estimarás el área de vida de las zebras que fueron extraídas en el objeto <code>zebras.transf</code> en la <a href="datos_telemetricos.html#sec-transf-proy" class="quarto-xref"><span>Sección 3.2</span></a>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Obten el objeto <code>zebras.transf</code></summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>zebras.transf <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(zebras.proj,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">CRS</span>(<span class="st">"+proj=lcc +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="minimum-convex-polygon-mcp" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="minimum-convex-polygon-mcp"><span class="header-section-number">4.2</span> Minimum Convex Polygon (MCP)</h2>
+<section id="zebras-en-áfrica" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="zebras-en-áfrica"><span class="header-section-number">4.2.1</span> Zebras en África</h3>
+<p>Este método es de los más sencillo para dibujar los límites de distribución de un animal. Aunque su uso original Carl O. Mohr (1947) fue destinado a la identificación de animales recapturados en una malla de captura.</p>
+<p>El uso del MCP es limitado ya que este describe el alcance de la distribución de ubicaciones de un individuo, mas no la verdadera área de vida del animal bajo estudio. Para una discusión más detallada sobre esto puedes leer <span class="citation" data-cites="signer_fresh_2021">Signer y Fieberg (<a href="references.html#ref-signer_fresh_2021" role="doc-biblioref">2021</a>)</span>, y un debate profundo sobre rangos y ocurrencia de distribución en <span class="citation" data-cites="fleming_estimating_2016">Fleming et&nbsp;al. (<a href="references.html#ref-fleming_estimating_2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>A pesar de lo anteriormente mencionado, obtener el área del polígono y el poder ubicarlo sobre un mapa, nos permite observar a <em>grosso modo</em> el espacio y hábitat que ocupa cierto ejemplar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adehabitatHR)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>zebras.mcp <span class="ot">&lt;-</span> <span class="fu">mcp</span>(zebras.transf[, <span class="st">"identifier"</span>], <span class="at">percent=</span> <span class="dv">100</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">unin=</span><span class="st">"m"</span>, <span class="at">unout=</span> <span class="st">"ha"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ahora intenta con distintos porcentajes y observa las diferencias en tamaños de área.</p>
+</div>
+</div>
+<p>Si bien puedes utilizar funciones base de R para graficar estos polígonos, aprovecha la interacción de estos paquetes con <em>sf</em> y <em>ggplot2</em> para obtener un gráfico más estético.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.mcp), <span class="fu">aes</span>(<span class="at">fill =</span> id),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.transf), <span class="fu">aes</span>(<span class="at">colour =</span> identifier)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="areas_vida_1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>También puedes exportar estos polígonos con extensión <code>kml</code> para que puedas importarlos en Google Earth o cualquier software de tu preferencia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(<span class="fu">st_as_sf</span>(zebras.mcp), <span class="st">"zebras.kml"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="animales-hipotéticos" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="animales-hipotéticos"><span class="header-section-number">4.2.2</span> Animales hipotéticos</h3>
+<p>Como caso de estudio, e intentando que mejores en el flujo de trabajo de estos análisis, creé un set de datos de tres mamíferos hipotéticos en la zona Norte de Loreto - Perú, y lo puedes <a href="https://mega.nz/folder/VwVQEbJK#lxYXI88_90s6hUihhwNXgg">descargar aquí</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mamiferos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"mamiferos.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como siempre, haz una exploración rápida de este objeto y grafica los puntos satelitales rápidamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mamiferos[, <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>)], <span class="at">pch=</span><span class="dv">20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="areas_vida_1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y finalmente crea un objeto que contenga únicamente a “juancho”. Finalmente, verifica que el proceso haya sido exitoso.</p>
+</div>
+</div>
+<p>Ahora que has filtrado el set de datos, ya puedes realizar la proyeccion, transformación y cálculo del área de vida y núcleo de juancho.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>juancho.proj <span class="ot">&lt;-</span> <span class="fu">SpatialPointsDataFrame</span>(<span class="at">coords =</span> <span class="fu">as.data.frame</span>(cbind</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                        (juancho<span class="sc">$</span>longitude, juancho<span class="sc">$</span>latitude)),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> juancho, <span class="at">proj4string =</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A diferencia de las zebras, sabemos que nuestro lugar de muestreo es pequeño, y en una región tropical, por ende necesitamos un método de proyección adecuado. Entre tantos métodos existentes, ¿cuál elegirías? En estos casos, lo aconsejable es utilizar <a href="https://gisgeography.com/utm-universal-transverse-mercator-projection/">Universal Transverse Mercator</a> (UTM). No obstante, para hacer uso de este método de proyección, aún nos falta conocer un dato importante, la zona y el hemisferio.</p>
+<p>Podemos copiar y pegar cualquiera de los puntos de nuestro set de datos en <a href="http://rcn.montana.edu/resources/Converter.aspx">esta página</a> para poder conocer la información faltante.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>juancho.transf <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(juancho.proj,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">CRS</span>(<span class="st">"+proj=utm +south +zone=18 +ellps=WGS84"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si deseas conocer las coordenadas UTM de todos los puntos, puedes crear un nuevo objeto y ejecutar las siguientes líneas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>juancho.utm <span class="ot">&lt;-</span> <span class="fu">coordinates</span>(juancho.transf)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(juancho.utm)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      coords.x1 coords.x2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]  519037.6   9855961</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]  518962.0   9855943</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [3,]  518962.0   9855956</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [4,]  518958.6   9855959</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [5,]  518960.9   9855956</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [6,]  518966.4   9855952</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="kernel-density-estimate-kde" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="kernel-density-estimate-kde"><span class="header-section-number">4.3</span> Kernel Density Estimate (KDE)</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-abrahms_emerging_2021" class="csl-entry" role="listitem">
-Abrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W. Deacy, Matthew J. Kauffman, and Jerod A. Merkle. 2021. <span>“Emerging <span>Perspectives</span> on <span>Resource</span> <span>Tracking</span> and <span>Animal</span> <span>Movement</span> <span>Ecology</span>.”</span> <em>Trends in Ecology &amp; Evolution</em> 36 (4): 308–20. <a href="https://doi.org/10.1016/j.tree.2020.10.018">https://doi.org/10.1016/j.tree.2020.10.018</a>.
+Abrahms, Briana, Ellen O. Aikens, Jonathan B. Armstrong, William W. Deacy, Matthew J. Kauffman, y Jerod A. Merkle. 2021. <span>«Emerging <span>Perspectives</span> on <span>Resource</span> <span>Tracking</span> and <span>Animal</span> <span>Movement</span> <span>Ecology</span>»</span>. <em>Trends in Ecology &amp; Evolution</em> 36 (4): 308-20. <a href="https://doi.org/10.1016/j.tree.2020.10.018">https://doi.org/10.1016/j.tree.2020.10.018</a>.
+</div>
+<div id="ref-fleming_estimating_2016" class="csl-entry" role="listitem">
+Fleming, C. H., W. F. Fagan, T. Mueller, K. A. Olson, P. Leimgruber, y J. M. Calabrese. 2016. <span>«Estimating where and how animals travel: an optimal framework for path reconstruction from autocorrelated tracking data»</span>. <em>Ecology</em> 97 (3): 576-82. <a href="https://doi.org/10.1890/15-1607.1">https://doi.org/10.1890/15-1607.1</a>.
 </div>
 <div id="ref-kays_terrestrial_2015" class="csl-entry" role="listitem">
-Kays, Roland, Margaret C. Crofoot, Walter Jetz, and Martin Wikelski. 2015. <span>“Terrestrial Animal Tracking as an Eye on Life and Planet.”</span> <em>Science</em> 348 (6240): aaa2478. <a href="https://doi.org/10.1126/science.aaa2478">https://doi.org/10.1126/science.aaa2478</a>.
+Kays, Roland, Margaret C. Crofoot, Walter Jetz, y Martin Wikelski. 2015. <span>«Terrestrial animal tracking as an eye on life and planet»</span>. <em>Science</em> 348 (6240): aaa2478. <a href="https://doi.org/10.1126/science.aaa2478">https://doi.org/10.1126/science.aaa2478</a>.
+</div>
+<div id="ref-signer_fresh_2021" class="csl-entry" role="listitem">
+Signer, Johannes, y John R. Fieberg. 2021. <span>«A fresh look at an old concept: home-range estimation in a tidy world»</span>. <em>PeerJ</em> 9. <a href="https://doi.org/10.7717/peerj.11031">https://doi.org/10.7717/peerj.11031</a>.
 </div>
 <div id="ref-silva_autocorrelation-informed_2022" class="csl-entry" role="listitem">
-Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, and Justin M. Calabrese. 2022. <span>“Autocorrelation-Informed Home Range Estimation: <span>A</span> Review and Practical Guide.”</span> <em>Methods in Ecology and Evolution</em> 13 (3): 534–44. <a href="https://doi.org/10.1111/2041-210X.13786">https://doi.org/10.1111/2041-210X.13786</a>.
+Silva, Inês, Christen H. Fleming, Michael J. Noonan, Jesse Alston, Cody Folta, William F. Fagan, y Justin M. Calabrese. 2022. <span>«Autocorrelation-informed home range estimation: <span>A</span> review and practical guide»</span>. <em>Methods in Ecology and Evolution</em> 13 (3): 534-44. <a href="https://doi.org/10.1111/2041-210X.13786">https://doi.org/10.1111/2041-210X.13786</a>.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -296,12 +443,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -636,8 +783,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./areas_vida_2.html" class="pagination-link" aria-label="Áreas de vida Parte II">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Áreas de vida Parte II</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="Literatura citada">
+        <span class="nav-page-text">Literatura citada</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -649,7 +796,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Informar de un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>© 2024 Fundación Oso Andino. Todos los derechos reservados.</p>
 </div>

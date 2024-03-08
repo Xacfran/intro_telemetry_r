@@ -27,7 +27,6 @@ book:
     - analisis_data.qmd
     - datos_telemetricos.qmd
     - areas_vida_1.qmd
-    - areas_vida_2.qmd
     - references.qmd
 
 bibliography: references.bib
