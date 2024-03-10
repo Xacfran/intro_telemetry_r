@@ -123,6 +123,14 @@ div.csl-indent {
     "search-label": "Buscar"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 </head>
@@ -222,7 +230,11 @@ div.csl-indent {
   <li><a href="#zebras-en-áfrica" id="toc-zebras-en-áfrica" class="nav-link" data-scroll-target="#zebras-en-áfrica"><span class="header-section-number">4.2.1</span> Zebras en África</a></li>
   <li><a href="#animales-hipotéticos" id="toc-animales-hipotéticos" class="nav-link" data-scroll-target="#animales-hipotéticos"><span class="header-section-number">4.2.2</span> Animales hipotéticos</a></li>
   </ul></li>
-  <li><a href="#kernel-density-estimate-kde" id="toc-kernel-density-estimate-kde" class="nav-link" data-scroll-target="#kernel-density-estimate-kde"><span class="header-section-number">4.3</span> Kernel Density Estimate (KDE)</a></li>
+  <li><a href="#kernel-density-estimate-kde" id="toc-kernel-density-estimate-kde" class="nav-link" data-scroll-target="#kernel-density-estimate-kde"><span class="header-section-number">4.3</span> Kernel Density Estimate (KDE)</a>
+  <ul class="collapse">
+  <li><a href="#fixed-kernel-href" id="toc-fixed-kernel-href" class="nav-link" data-scroll-target="#fixed-kernel-href"><span class="header-section-number">4.3.1</span> <em>Fixed kernel</em> (href)</a></li>
+  </ul></li>
+  <li><a href="#fuentes" id="toc-fuentes" class="nav-link" data-scroll-target="#fuentes"><span class="header-section-number">4.4</span> Fuentes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Xacfran/intro_telemetry_r/issues/new" class="toc-action"><i class="bi bi-github"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -290,12 +302,14 @@ Ejercicio
 </div>
 <p>Si bien puedes utilizar funciones base de R para graficar estos polígonos, aprovecha la interacción de estos paquetes con <em>sf</em> y <em>ggplot2</em> para obtener un gráfico más estético.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.mcp), <span class="fu">aes</span>(<span class="at">fill =</span> id),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.transf), <span class="fu">aes</span>(<span class="at">colour =</span> identifier)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.mcp), <span class="fu">aes</span>(<span class="at">fill =</span> id),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">st_as_sf</span>(zebras.transf), <span class="fu">aes</span>(<span class="at">colour =</span> identifier)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -306,7 +320,7 @@ Ejercicio
 </div>
 <p>También puedes exportar estos polígonos con extensión <code>kml</code> para que puedas importarlos en Google Earth o cualquier software de tu preferencia.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(<span class="fu">st_as_sf</span>(zebras.mcp), <span class="st">"zebras.kml"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(<span class="fu">st_as_sf</span>(zebras.mcp), <span class="st">"zebras.kml"</span>, <span class="at">delete_layer =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="animales-hipotéticos" class="level3" data-number="4.2.2">
@@ -336,7 +350,7 @@ Ejercicio
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y finalmente crea un objeto que contenga únicamente a “juancho”. Finalmente, verifica que el proceso haya sido exitoso.</p>
+<p>Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y crea un objeto que contenga únicamente a “juancho”. Finalmente, verifica que el proceso haya sido exitoso.</p>
 </div>
 </div>
 <p>Ahora que has filtrado el set de datos, ya puedes realizar la proyeccion, transformación y cálculo del área de vida y núcleo de juancho.</p>
@@ -373,13 +387,94 @@ Ejercicio
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP y realiza un gráfico mostrando ambos polígonos y puntos satelitales.</p>
+<p>Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="kernel-density-estimate-kde" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="kernel-density-estimate-kde"><span class="header-section-number">4.3</span> Kernel Density Estimate (KDE)</h2>
+<p>En KDE, una colina tri-dimensional o kernel es formada junto a cada punto, la forma y altura de esta colina depende del ancho de banda (<em>bandwidth</em>). En este curso calcularás el KDE mediante el “<em>fixed kernel</em>” o href, “<em>least squares cross-validation</em>” o lcsv, e intentarás ajustar el bandwidth manualmente. La teoría sobre estos métodos, sus pros y contras pueden ser encontrados en estos links: [1], [2].</p>
+<section id="fixed-kernel-href" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="fixed-kernel-href"><span class="header-section-number">4.3.1</span> <em>Fixed kernel</em> (href)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>juancho.khref <span class="ot">&lt;-</span> <span class="fu">kernelUD</span>(juancho.transf[, <span class="st">"name"</span>], <span class="at">h =</span> <span class="st">"href"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Observa este raster</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(juancho.khref)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="areas_vida_1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si quieres exportarlo para su uso en otros softwares como ArcGis puedes seguir estos pasos.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>juanchopix <span class="ot">&lt;-</span> <span class="fu">estUDm2spixdf</span>(juancho.khref)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(<span class="fu">st_as_sf</span>(juanchopix), <span class="st">"juancho.shp"</span>, <span class="at">delete_layer =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mira otros formatos disponibles con st_drivers()</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También puedes plotearlo en R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tambien se puede plotear en R</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(juanchopix)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(juancho.transf, <span class="at">add=</span>T, <span class="at">cex=</span><span class="fl">0.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="areas_vida_1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Utilizando estos objetos, ya puedes estimar el área de vida de juancho mediante el método KDE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Estimo el area usando el objeto juancho.khref segun una secuencia de porcentajes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kernel.area</span>(juancho.khref, <span class="at">percent =</span> <span class="fu">seq</span> (<span class="dv">20</span>,<span class="dv">95</span>,<span class="dv">5</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">unin=</span><span class="st">"m"</span>, <span class="at">unout=</span><span class="st">"ha"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      juancho</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 20  10.51807</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 25  15.02581</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 30  18.03098</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 35  22.53872</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 40  27.04646</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 45  31.55421</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 50  37.56453</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 55  43.57486</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 60  49.58518</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 65  58.60067</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 70  67.61616</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 75  79.63681</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 80  96.16520</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 85 117.20134</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 90 150.25813</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 204.35106</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora estima el home range desde el objeto <code>juancho.khref</code> que creaste anteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Obtengo las lineas para el plot final</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>juancho.KDE95 <span class="ot">&lt;-</span> <span class="fu">getverticeshr</span>(juancho.khref, <span class="at">percent=</span> <span class="dv">95</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejericicio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>getvolumeUD</code> también te permite calcular el área de vida, pero ¿cuál crees que sea la diferencia entre ambos métodos?</p>
+</div>
+</div>
+</section>
+</section>
+<section id="fuentes" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="fuentes"><span class="header-section-number">4.4</span> Fuentes</h2>
+<p>Puedes utilizar el <a href="https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf">manual de <em>adehabitatHR</em></a> para resolver los ejercicios de este tutorial y puedes explorar más funciones que ofrece este paquete.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
