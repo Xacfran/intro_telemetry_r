@@ -74,6 +74,8 @@ zebras.mcp <- mcp(zebras.transf[, "identifier"], percent= 100,
 Ahora intenta con distintos porcentajes y observa las diferencias en tamaños de área.
 :::
 
+
+
 Si bien puedes utilizar funciones base de R para graficar estos polígonos, aprovecha la interacción de estos paquetes con _sf_ y _ggplot2_ para obtener un gráfico más estético.
 
 ```{r}
@@ -115,7 +117,7 @@ plot(mamiferos[, c("longitude", "latitude")], pch=20)
 Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y crea un objeto que contenga únicamente a "juancho". Finalmente, verifica que el proceso haya sido exitoso.
 :::
 
-```{r include = FALSE}
+```{r}
 # Verificación visual
 library(plotly)
 
@@ -124,13 +126,15 @@ mamiferos_outliers <- mamiferos %>%
   geom_point(alpha = 0.5)
 
 ggplotly(mamiferos_outliers)
+```
 
+Con los gráficos interactivos de _plotly_ puedes usar el cursor para observar la posición exacta de los _outliers_. Si bien esto es de utilidad para un set de datos pequeño como este, puedes automatizar tu código para deshacerte de todos aquellos puntos menores a la longitud -76.
+
+```{r}
 #Limpiar el data frame
 juancho <- mamiferos[-which(mamiferos$longitude < -76),] |>
                 na.omit() |>
                 filter(name == "juancho")
-
-summary(juancho)
 ```
 
 Ahora que has filtrado el set de datos, ya puedes realizar la proyeccion, transformación y cálculo del área de vida y núcleo de juancho.
@@ -162,6 +166,31 @@ head(juancho.utm)
 Estima el área de vida (90%) y núcleo (50%) de juancho mediante el método MCP y realiza un gráfico mostrando ambos polígonos y puntos satelitales.
 :::
 
+
+```{r}
+juancho.mcp.90 <- mcp(juancho.transf[, "name"], percent = 90,
+                          unin = "m", unout = "ha")
+juancho.mcp.50 <- mcp(juancho.transf[, "name"], percent = 50,
+                      unin = "m", unout = "ha")
+```
+
+Tal como lo hiciste para el set de datos de zebras, puedes transformar los objetos _SpatialPolygonsDataFrame_ a un objeto _sf_ para graficarlo fácilmente.
+```{r}
+ggplot() +
+  geom_sf(data = st_as_sf(juancho.mcp.90),
+          color = "NA",
+          fill = "black",
+          alpha = 0.2) +
+  geom_sf(data = st_as_sf(juancho.mcp.50),
+          color = "NA",
+          fill = "purple",
+          alpha = 0.5) +
+  geom_sf(data = st_as_sf(juancho.transf), alpha = 0.5) +
+  coord_sf() +
+  labs(title = "Áreas de vida y núcleo de juancho estimadas mediante MCP") +
+  theme_bw()
+```
+
 ## Kernel Density Estimate (KDE)
 
 En KDE, una colina tri-dimensional o kernel es formada junto a cada punto, la forma y altura de esta colina depende del ancho de banda (_bandwidth_).
@@ -186,25 +215,42 @@ st_write(st_as_sf(juanchopix), "juancho.shp", delete_layer = TRUE)
 ```
 
 También puedes plotearlo en R.
-```{r}
-# Tambien se puede plotear en R
+```{r eval = FALSE}
+# Tambien lo puedes graficar en R
 plot(juanchopix)
-plot(juancho.transf, add=T, cex=0.1)
+plot(juancho.transf, add = T, cex = 0.1)
 ```
 
 Utilizando estos objetos, ya puedes estimar el área de vida de juancho mediante el método KDE.
 
 ```{r}
-#Estimo el area usando el objeto juancho.khref segun una secuencia de porcentajes
-kernel.area(juancho.khref, percent = seq (20,95,5),
+# Estimo el area usando el objeto juancho.khref segun una secuencia de porcentajes
+kernel.area(juancho.khref, percent = seq (20, 95, 5),
             unin="m", unout="ha")
 ```
 
-Ahora estima el home range desde el objeto `juancho.khref` que creaste anteriormente.
+Ahora puedes utilizar la función `getverticeshr` para obtener los polígonos que te permitirán graficar el área de vida y núcleo de juancho.
 
 ```{r}
-#Obtengo las lineas para el plot final
-juancho.KDE95 <- getverticeshr(juancho.khref, percent= 95)
+# Polígonos para el plot final
+juancho.KDE90 <- getverticeshr(juancho.khref, percent = 90)
+juancho.KDE50 <- getverticeshr(juancho.khref, percent = 50)
+
+# Usa ggplot para graficar
+
+ggplot() +
+  geom_sf(data = st_as_sf(juancho.KDE90),
+          color = "NA",
+          fill = "black",
+          alpha = 0.2) +
+  geom_sf(data = st_as_sf(juancho.KDE50),
+          color = "NA",
+          fill = "purple",
+          alpha = 0.5) +
+  geom_sf(data = st_as_sf(juancho.transf), alpha = 0.5) +
+  coord_sf() +
+  labs(title = "Áreas de vida y núcleo de juancho estimada mediante KDE") +
+  theme_bw()
 ```
 
 :::::: {.callout-note}
@@ -212,6 +258,219 @@ juancho.KDE95 <- getverticeshr(juancho.khref, percent= 95)
 La función `getvolumeUD` también te permite calcular el área de vida, pero ¿cuál crees que sea la diferencia entre ambos métodos?
 :::
 
+
+## Movebank
+
+Con el advenimiento de nuevas tecnologías para el rastreo de animales, algunos problemas se hicieron evidentes debido al cumulo de información generada por los nuevos dispositivos. Esto conllevó al desarrollo del sistema [_Movebank_](https://www.movebank.org/cms/movebank-main), para poder mejorar el manejo del gran volumen y diversidad de información (@kays_movebank_2022).
+
+[Movebank](https://www.movebank.org/cms/movebank-main) es una plataforma web que permite almacenar datos de telemetría (GPS, Argos, VHF, etc)  de manera privada y/o pública. A la fecha, cuentan con un total de 6 billones de locaciones generadas por más de 8 mil estudios que compreden a aproximadamente 1500 taxones. Además, almacena una gran diversidad de información asociada a cada proyecto (persona de contacto, grants, cita, licencia, etc), animal (Nombre, especie, peso, edad, etc) y a los sensores del collar (temperatura externa, altitud, frecuencia cardíaca, DOP, etc.
+
+Estas variables han sido estandarizadas mediante lenguaje persistente, mediante una lista de vocabulario extensa que puede ser leído por máquinas y que está disponible en el Natural Environment Research Council's Vocabulary Server (mira los detalles [aquí](https://www.movebank.org/cms/movebank-content/movebank-attribute-dictionary)).
+
+El trabajo que realizarás a continuación utilizará una porción de los datos recolectados por @castellanos_pilot_2022 de un zorro andino en Ecuador que puedes obtenerla aquí. Sin embargo, si quieres trabajar con las más de 6 mil posiciones satelitales, puedes acceder al [repositorio de Movebank](doi:10.5441/001/1.1q2c075p), o también puedes crear una cuenta en [www.movebank.org](www.movebank.org) y buscar el proyecto "_Home range and movement patterns of the Andean Fox in Cotopaxi National Park Ecuador_".
+
+## Autocorrelated Kernel Density Estimate (AKDE)
+
+### Error de posición
+
+El primer paso en este flujo de trabajo es estimar el error de posición GPS. La explicación matemática de este parámetro se detalla en @fleming_comprehensive_2020, acompañada por varias medidas de error de una gran variedad de collares, en caso de que no poseas información de calibración del collar o si no fuiste capaz de obternerla. Una [viñeta de R](https://ctmm-initiative.github.io/ctmm/articles/error.html) explica un poco más sobre este proceso.
+
+En este caso, usaremos el error de calibración oportunista que se obtuvo tras la muerte del zorro andino Mashca.
+
+```{r include = FALSE}
+calibracion <- read.csv("docs/datos/mashca_calibration.csv")
+calibracion <- calibracion[, c(3:5,8,9,15, 18,19)] |> na.omit()
+```
+
+```{r eval = FALSE}
+calibracion <- read.csv("mashca_calbration.csv")
+```
+
+::::::: {.callout-note}
+## Ejercicio
+Remueve los NA's que se encuentran en las columnas de longitud y latitud del objeto `calibracion`.
+:::
+
+Ahora plotea este objeto utilizando cualquiera de las columnas de posición.
+```{r}
+plot(calibracion$utm.easting, calibracion$utm.northing)
+```
+
+Convierte este objeto a una nueva clase de objeto con la función `as.telemetry`. Asegurate de saber cual es la zona horaria de tu lugar de estudio y del [código EPSG](https://spatialreference.org/ref/epsg/32717/), o puedes utilizar los argumentos `projstring` que utilizamos en @sec-transf-proy para la transformaciónn a UTM.
+
+```{r}
+library(ctmm)
+calib.ctmm <- as.telemetry(calibracion, timezone = "America/Bogota", projection =
+                                CRS("+init=epsg:32717"))
+summary(calib.ctmm)
+```
+
+Ahora plotea este objeto, y compáralo con los gráficos anteriores. ¿Qué diferencias notas?
+```{r}
+plot(calib.ctmm, error = 2)
+```
+
+Finalmente, debemos aplicar el error de locación al objeto `calib.ctmm`.
+
+```{r}
+calib.model <- uere.fit(calib.ctmm)
+summary(calib.model)
+```
+
+De esta manera, se puede estimar un error de posición de GPS de aproximadamente 36 metros. En este tutorial no removerás outliers, pero siempre es necesario aplicarlo a tu trabajo y encontrarás una explicación muy sencilla y directa sobre como hacerlo en la [página oficial de ctmm](https://ctmm-initiative.github.io/ctmm/articles/error.html#outlier-detection).
+
+Para mostrar los beneficios del uso del método AKDE, he separado el set de datos de mashca aproximadamente en dos mitades.
+
+```{r include = FALSE}
+mashca_first <- read.csv("docs/datos/mashca_first_half.csv")
+mashca_second <- read.csv("docs/datos/mashca_second_half.csv")
+```
+
+```{r eval = FALSE}
+mashca_first <- read.csv("mashca_first_half.csv")
+mashca_second <- read.csv("mashca_second_half.csv")
+```
+
+Como es habitual, limpia estos objetos e importalos a _ctmm_ tal como lo hiciste para la información de calibración.
+
+```{r}
+mashca_first <- mashca_first[, c(3:5,8,9,15,18,19, 22)] %>%
+    na.omit() %>%
+  filter(gps.dop < 3, gps.fix.type.raw == "val. GPS-3D")
+mashca_second <- mashca_second[, c(3:5,8,9,15,18,19, 22)] %>%
+  na.omit() %>%
+  filter(gps.dop < 3, gps.fix.type.raw == "val. GPS-3D")
+
+# Importa a ctmm
+mashca_first_ctmm <- as.telemetry(mashca_first, timezone = "America/Bogota",
+                            projection = CRS("+init=epsg:32717"))
+
+mashca_second_ctmm <- as.telemetry(mashca_second, timezone = "America/Bogota",
+                                  projection = CRS("+init=epsg:32717"))
+```
+Puedes utilizar _ctmm_ con listas, lo que mejorara tu flujo de trabajo cuando analices varios individuos.
+
+```{r}
+# Une ambos objetos en una lista
+mashca_merged <- list(mashca_first_ctmm, mashca_second_ctmm)
+names(mashca_merged) <- c("first","second")
+summary(mashca_merged)
+
+# Aplica el modelo de calibracion a la lista
+# guess variogram and fit
+uere(mashca_merged) <- calib.model
+mashca_merged$first@UERE
+
+# Observa los datos
+plot(mashca_merged[[2]], error=2)
+```
+
+### Variogramas
+
+El método implementado en _ctmm_ requiere que los animales presenten un comportamiento de rango-residentecia indicado por la función de semivarianza (SVF) de un proceso de movimiento estocástico, el cual puede ser visualizado mediante un variograma. Los detalles sobre este método se encuentran en @fleming_correcting_2018-1.
+
+Debido a que los variogramas incorporan el efecto de tasa de muestreo para evaluar distintos comportamientos,es recomendable evaluar el intervalo en el cual los puntos fueron tomados en el animal.
+```{r}
+# Obtener grafico de intervalos
+dt.plot(mashca_merged[[2]])
+ablines = abline(h = c(1, 2, 4) %#% "hours", col = "red")
+
+# Aplicar este intervalo en un nuevo objeto
+dt = c(c(2, 4) %#% "hours")
+
+# Evalua el variograma
+vg <- c()
+for (i in 1:length(mashca_merged)){
+vg[[i]] <- variogram(mashca_merged[[i]], dt)
+}
+
+# Puedes mirar este variograma como un gráfico estático o con zoom()
+plot(vg[[2]], fraction = 0.9, level=c(0.5,0.95))
+```
+
+### _Model fitting_
+
+```{r include = FALSE}
+load("mashca_fits.RData")
+```
+Tras incorporar el error de posicion a los datos y seleccionar un variograma, debemos realizar una aproximación empírica a lo que el modelo "pareceria ser". Esto puede lograrse con la función `guess`.
+
+```{r eval = FALSE}
+# guess
+guess <- c()
+for (i in 1:length(mashca_merged)){
+guess[[i]] <- ctmm.guess(mashca_merged[[i]],
+                   variogram = vg[[i]],
+                   interactive = FALSE)
+guess[[i]]$error <- TRUE
+}
+```
+Tambien puedes hacerlo manualmente si es que tienes el suficiente conocimiento sobre los parámetros que estás eligiendo.
+```{r eval = FALSE}
+ctmm.guess(mashca_merged[[1]],
+           variogram = vg[[1]])
+```
+
+```{r eval = FALSE}
+# Ajusta un modelo
+fits_first <- ctmm.select(mashca_merged[[1]], CTMM = guess[[1]], trace = 3,
+                    cores = 0)
+fits_second <- ctmm.select(mashca_merged[[2]], CTMM = guess[[2]], trace = 3,
+                    cores = 0)
+```
+
+Puedes inspeccinar ambos objetos con `summary` y verás algo como esto:
+
+```{r echo = FALSE}
+# FITS
+summary(fits_second)
+```
+
+En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales ($DOF; speed = 0). Sin embargo, hay suficiente informacion para estimar el home range de mashca ($DOF; area = 419.78 - 428.08).
+
+### AKDE
+
+Para estimarla utilizacion de distribución de la primera mitad de datos de mashca:
+
+```{r eval = FALSE}
+mashca_first_akde <- akde(mashca_merged[[1]], fits_first,
+                    trace = 2)
+summary(mashca_first_akde, level.UD = 0.95)
+```
+```{r include = FALSE}
+mashca_first_akde <- akde(mashca_merged[[1]], fits_first,
+                    trace = 2)
+mashca_second_akde <- akde(mashca_merged[[2]], fits_second,
+                    trace = 2)
+```
+:::::: {.callout-note}
+## Ejercicio
+Calcula el AKDE para la segunda mitad de los datos de mashca. ¿Hay alguna diferencia?
+:::
+
+Finalmente, puedes realizar un plot de estas áreas.
+
+```{r echo = FALSE}
+par(mfrow=c(2,2))
+plot(mashca_merged[[1]], UD = mashca_first_akde,
+      col.grid=NA, level.UD= 0.5, error=2, main = "Primera mitad AKDE core mashca")
+
+plot(mashca_merged[[2]], UD = mashca_second_akde,
+      col.grid=NA, level.UD= 0.5, error=2, main = "Segunda mitad AKDE core mashca")
+
+plot(mashca_merged[[1]], UD = mashca_first_akde,
+      col.grid=NA, level.UD= 0.95, error=2, main = "Primera mitad AKDE core mashca")
+
+plot(mashca_merged[[2]], UD = mashca_second_akde,
+      col.grid=NA, level.UD= 0.95, error=2, main = "Segunda mitad AKDE core mashca")
+```
+
+:::::: {.callout-note}
+## Tarea
+Investiga como realicé los gráficos de las áreas de vida y núcleo de mashca en dos períodos diferentes.
+:::
+
+
 ## Fuentes
 
-Puedes utilizar el [manual de _adehabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) para resolver los ejercicios de este tutorial y puedes explorar más funciones que ofrece este paquete.
+Puedes utilizar el [manual de _adehabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) para resolver los ejercicios de este tutorial, y puedes explorar más funciones que también ofrece este paquete.

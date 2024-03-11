@@ -12,8 +12,9 @@ library(ggfortify)
 ## Telemetria
 library(sp)
 library(move2)
-# areas de vida
+# Areas de vida
 library(adehabitatHR)
+library(ctmm)
 
 # Set global options for knitr
 knitr::opts_chunk$set(
