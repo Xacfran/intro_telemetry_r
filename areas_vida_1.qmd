@@ -271,6 +271,8 @@ El trabajo que realizarás a continuación utilizará una porción de los datos 
 
 ## Autocorrelated Kernel Density Estimate (AKDE)
 
+Lo descrito en esta sección es una parte muy pequeña de todo lo que puedes lograr con este paquete. Puedes encontrar mucho más en la [página oficial de ctmm](https://ctmm-initiative.github.io/ctmm/index.html). Además, el [grupo de google](https://groups.google.com/g/ctmm-user) de ctmm es muy activo y encontrarás respuestas a posibles problemas que puedas tener con este paquete. La teoría sobre cada función ha sido publicada en varias revistas, y estas funciones se expandirán aún más en próximos años.
+
 ### Error de posición
 
 El primer paso en este flujo de trabajo es estimar el error de posición GPS. La explicación matemática de este parámetro se detalla en @fleming_comprehensive_2020, acompañada por varias medidas de error de una gran variedad de collares, en caso de que no poseas información de calibración del collar o si no fuiste capaz de obternerla. Una [viñeta de R](https://ctmm-initiative.github.io/ctmm/articles/error.html) explica un poco más sobre este proceso.
