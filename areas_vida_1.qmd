@@ -285,7 +285,7 @@ calibracion <- calibracion[, c(3:5,8,9,15, 18,19)] |> na.omit()
 ```
 
 ```{r eval = FALSE}
-calibracion <- read.csv("mashca_calbration.csv")
+calibracion <- read.csv("mashca_calibration.csv")
 ```
 
 ::::::: {.callout-note}
@@ -428,11 +428,11 @@ Puedes inspeccinar ambos objetos con `summary` y verás algo como esto:
 summary(fits_second)
 ```
 
-En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales ($DOF; speed = 0). Sin embargo, hay suficiente informacion para estimar el home range de mashca ($DOF; area = 419.78 - 428.08).
+En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales (DOF; speed = 0). Sin embargo, hay suficiente informacion para estimar el home range de mashca (DOF; area = 419.78 - 428.08).
 
 ### AKDE
 
-Para estimarla utilizacion de distribución de la primera mitad de datos de mashca:
+Para estimar la utilizacion de distribución de la primera mitad de datos de mashca:
 
 ```{r eval = FALSE}
 mashca_first_akde <- akde(mashca_merged[[1]], fits_first,
