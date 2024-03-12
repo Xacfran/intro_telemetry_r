@@ -449,7 +449,7 @@ Calcula el AKDE para la segunda mitad de los datos de mashca. ¿Hay alguna difer
 
 Finalmente, puedes realizar un plot de estas áreas.
 
-```{r echo = FALSE}
+```{r}
 par(mfrow=c(2,2))
 plot(mashca_merged[[1]], UD = mashca_first_akde,
       col.grid=NA, level.UD= 0.5, error=2, main = "Primera mitad AKDE core mashca")
@@ -463,11 +463,7 @@ plot(mashca_merged[[2]], UD = mashca_second_akde,
       col.grid=NA, level.UD= 0.95, error=2, main = "Segunda mitad AKDE core mashca")
 ```
 
-:::::: {.callout-note}
-## Tarea
-Investiga como realicé los gráficos de las áreas de vida y núcleo de mashca en dos períodos diferentes.
-:::
-### KDE vs AKDE
+### AKDE vs KDE
 
 Realiza una comparación de ambos métodos y analiza sus semejanzas y diferencias. ¿Es uno de estos métodos mejor que el otro?
 
@@ -504,6 +500,11 @@ plot(mashca.first.transf, col = "black", add = TRUE, pch = 21, cex = 0.2)
 ```
 
 ![Comparación de dos métodos para estimar áreas de vida, AKDE vs KDE de la primera mitad de datos del zorro andino  Mashca](docs/Figures/akde_vs_kde.png)
+
+:::::: {.callout-note}
+## Tarea
+Investiga como realicé los gráficos de las áreas de vida y núcleo estimadas con AKDE y KDE.
+:::
 
 ## _moveVis_
 
