@@ -577,7 +577,7 @@ Tambien puedes indicar cuantos nucleos quieres utilizar para acelerar el proceso
 ```{r eval = FALSE}
 ##utilizar nucleos
 use_multicore()
-use_multicore(n_cores = 24)
+use_multicore(n_cores = numero)
 ```
 
 Finalmente, utiliza el objeto alineado y estandarizado para obtener los frames.
@@ -605,7 +605,6 @@ frames_edit <- add_labels(frames, x = "Longitud" , y = "Latitud", verbose = TRUE
   add_gg(frames, gg = expr(labs(title = "Movimientos del jaguar Courisco en Brasil")))
 
 frames_edit[[535]]
-save(frames, frames_edit, file = "moveVis_frames.RData")
 ```
 
 Puedes mirar varios formatos para exportar la animación utilizando `suggest_formats()`.
