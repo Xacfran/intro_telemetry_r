@@ -467,7 +467,155 @@ plot(mashca_merged[[2]], UD = mashca_second_akde,
 ## Tarea
 Investiga como realicé los gráficos de las áreas de vida y núcleo de mashca en dos períodos diferentes.
 :::
+### KDE vs AKDE
 
+Realiza una comparación de ambos métodos y analiza sus semejanzas y diferencias. ¿Es uno de estos métodos mejor que el otro?
+
+```{r include = FALSE}
+mashca.first.proj <- SpatialPointsDataFrame(coords = as.data.frame(cbind
+                        (mashca_first$location.long, mashca_first$location.lat)),
+                        data = mashca_first, proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+mashca.first.transf <- spTransform(mashca.first.proj,
+                           CRS("+proj=utm +south +zone=17 +ellps=WGS84"))
+
+mashca.first.khref <- kernelUD(mashca.first.transf, h = "href")
+kernel.area(mashca.first.khref, percent = seq (50, 95, 15),
+            unin="m", unout="km")
+
+# Obten los poligonos
+mashca.first.KDE95 <- getverticeshr(mashca.first.khref, percent = 95)
+mashca.first.KDE50 <- getverticeshr(mashca.first.khref, percent = 50)
+```
+
+```{r include = FALSE, eval = FALSE}
+# ctmm package meses up with the base R plot function for KDE
+# I tried to unload it but is not working either
+par(mfrow=c(2,2))
+plot(mashca_merged[[1]], UD = mashca_first_akde,
+      col.grid=NA, level.UD= 0.5, error=2, main = "Primera mitad AKDE 50% mashca")
+plot.default(mashca.first.KDE50, col = "grey", axes = TRUE, main = "Primera mitad KDE 50% mashca")
+plot(mashca.first.transf, col = "black", add = TRUE, pch = 21, cex = 0.2)
+
+plot(mashca_merged[[1]], UD = mashca_first_akde,
+      col.grid=NA, level.UD= 0.95, error=2, main = "Primera mitad AKDE 95% mashca")
+plot(mashca.first.KDE95, col = "grey", axes = TRUE, main = "Primera mitad AKDE 95% mashca")
+plot(mashca.first.transf, col = "black", add = TRUE, pch = 21, cex = 0.2)
+```
+
+![Comparación de dos métodos para estimar áreas de vida, AKDE vs KDE de la primera mitad de datos del zorro andino  Mashca](docs/Figures/akde_vs_kde.png)
+
+## _moveVis_
+
+Una excelente forma de atraer la atencion a tus proyectos y de alcanzar a un publico general, es mostrandocomo el animal se desplaza por su area de vida sobre mapas satelitales. Con este proposito fue diseñado [moveVis](https://movevis.org/index.html).
+
+Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido de este, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Posteriormente, dirigete a la pestaña de _Packages_ en R Studio y elige la opción _Install_ en la esquina superior izquierda, y elige  instalar desde un archivo `.tar.gz`. Ahora selecciona el directorio donde lo descargaste e instalalo.
+
+Accede a Movebank y descarga el set de datos que utilizarás hoy para animar los movimientos de un jaguar muestreado en la Caatinga en Brasil. Para esto, ingresa al mapa y escribe "jaguar conservation in the caatinga biome", elige el estudio y haz click en "Open in studies page". Una vez aparezca la ventana que contiene todo acerca de este estudio, haz clic en "Download" y descarga este archivo en formato `csv`.
+
+```{r include = FALSE}
+library(moveVis)
+library(move)
+
+jaguars <- read_csv("docs/datos/Jaguars.csv")
+
+# Selecciona a Courisco
+courisco <- jaguars %>%
+  filter(`individual-local-identifier` == "Courisco")
+```
+
+Debido a la gran cantidad de datos colectados en este estudio, selecciona solo a uno de los jaguares.
+```{r eval = FALSE}
+library(moveVis)
+library(move)
+library(tidyverse)
+
+# Importa los datos
+jaguars <- read_csv("Jaguars.csv")
+
+# Selecciona a Courisco
+courisco <- jaguars %>%
+  filter(`individual-local-identifier` == "Courisco")
+```
+
+Ahora deberas llevar a cabo unos cuantos pasos para poder animar los movimientos de Courisco.
+
+```{r}
+# Transformar en objeto move
+courisco_move <- df2move(courisco[1:4500,],
+             proj = "+proj=longlat +south +zone=23 +ellps=WGS84",
+             x = "location-long", y = "location-lat", time = "study-local-timestamp",
+             track_id = "individual-local-identifier")
+```
+
+Es importante saber cual es la frecuencia de muestreo antes de obtener los frames de la animacion.
+
+```{r}
+# Visualizar frecuencia de muestreo
+lagging <- timeLag(courisco_move,
+                  unit="mins")
+summary(lagging)
+
+# Histograma de frecuencias de muestreo
+hist(lagging, xlab= "mins", xlim= c(0, 400), breaks= 40)
+```
+
+Utiliza el numero estimado anteriormente para alinear y estandarizar la frecuencia de muestreo sobre el objeto.
+
+```{r}
+courisco_move <- align_move(courisco_move, res = 60, unit = "mins")
+```
+
+Hay una variedad de mapas que puedes utilizar como fondo para tu animacion.
+```{r}
+##ver mapas disponibles
+get_maptypes()
+```
+
+Tambien puedes indicar cuantos nucleos quieres utilizar para acelerar el proceso.
+
+```{r eval = FALSE}
+##utilizar nucleos
+use_multicore()
+use_multicore(n_cores = 24)
+```
+
+Finalmente, utiliza el objeto alineado y estandarizado para obtener los frames.
+```{r eval = FALSE}
+# Crear el objeto que alamcene los frames de la animacion
+frames <- frames_spatial(courisco_move,
+                         map_service = "osm",
+                         map_type = "topographic",
+                         path_legend = F,
+                         path_colours = "black",
+                         path_alpha = 0.8,
+                         tail_size = 2,
+                         tail_length = 5)
+
+frames[[535]]
+```
+
+Puedes editar el formato de estas imagenes siguiendo el estilo de escritura de ggplot.
+
+```{r eval = FALSE}
+frames_edit <- add_labels(frames, x = "Longitud" , y = "Latitud", verbose = TRUE) %>%
+  add_scalebar(height = 0.015) %>%
+  add_northarrow() %>%
+  add_timestamps(courisco_move, type = "label") %>%
+  add_gg(frames, gg = expr(labs(title = "Movimientos del jaguar Courisco en Brasil")))
+
+frames_edit[[535]]
+save(frames, frames_edit, file = "moveVis_frames.RData")
+```
+
+Puedes mirar varios formatos para exportar la animación utilizando `suggest_formats()`.
+
+```{r eval = FALSE}
+animate_frames(frames_edit, out_file = "courisco.gif",
+              height = 500, width = 500, res = 82, overwrite = TRUE)
+```
+
+![Animación de los movimientos del jaguar Courisco en la Caatinga brasilera realizada en _movevis_](docs/Figures/courisco.gif){#fig-courisco fig-alt="movimientos del jaguar Courisco en _movevis_"}
 
 ## Fuentes
 
