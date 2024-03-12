@@ -179,8 +179,8 @@ Esta CRS es una proyección cónica y representa a la forma más precisamente qu
 
 ```{r}
 # ¿Qué diferencia tiene este grafico con el anterior?
-plot(zebras.transf, pch = 20, col = c("#440D54", "#3CBB75"), axes=TRUE)
-
+plot(zebras.transf[, c("long", "lat")],
+        pch = 20, col = c("#440D54", "#3CBB75"), axes=TRUE)
 ```
 :::
 
@@ -221,9 +221,9 @@ mt_n_tracks(dos_zebras_move)
 # ¿Cada cuantas horas se tomaron posiciones satelitales?
 timeLags <- set_units(mt_time_lags(dos_zebras_move), hours)
 
-# Distribution of time lags
-timeLags_h <- units::drop_units(timeLags) #hist is not compatible with time "units", we drop them
-hist(timeLags_h, breaks = 50, main=NA, xlab = "Time lag in hours")
+# Distribucion de time lags
+timeLags_h <- units::drop_units(timeLags)
+hist(timeLags_h, breaks = 50, main=NA, xlab = "Time lag en horas")
 ```
 
 Puedes graficar la distribucion de puntos por individuo.

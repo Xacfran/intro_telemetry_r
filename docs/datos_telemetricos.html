@@ -475,7 +475,8 @@ Precaución
 <div aria-describedby="fig-zebras-proyectadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Qué diferencia tiene este grafico con el anterior?</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zebras.transf, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#440D54"</span>, <span class="st">"#3CBB75"</span>), <span class="at">axes=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(zebras.transf[, <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>)],</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#440D54"</span>, <span class="st">"#3CBB75"</span>), <span class="at">axes=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -533,9 +534,9 @@ Importante
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cada cuantas horas se tomaron posiciones satelitales?</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>timeLags <span class="ot">&lt;-</span> <span class="fu">set_units</span>(<span class="fu">mt_time_lags</span>(dos_zebras_move), hours)</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribution of time lags</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>timeLags_h <span class="ot">&lt;-</span> units<span class="sc">::</span><span class="fu">drop_units</span>(timeLags) <span class="co">#hist is not compatible with time "units", we drop them</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(timeLags_h, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main=</span><span class="cn">NA</span>, <span class="at">xlab =</span> <span class="st">"Time lag in hours"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribucion de time lags</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>timeLags_h <span class="ot">&lt;-</span> units<span class="sc">::</span><span class="fu">drop_units</span>(timeLags)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(timeLags_h, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main=</span><span class="cn">NA</span>, <span class="at">xlab =</span> <span class="st">"Time lag en horas"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

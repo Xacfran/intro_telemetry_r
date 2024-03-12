@@ -356,12 +356,9 @@ Puedes utilizar _ctmm_ con listas, lo que mejorara tu flujo de trabajo cuando an
 # Une ambos objetos en una lista
 mashca_merged <- list(mashca_first_ctmm, mashca_second_ctmm)
 names(mashca_merged) <- c("first","second")
-summary(mashca_merged)
 
 # Aplica el modelo de calibracion a la lista
-# guess variogram and fit
 uere(mashca_merged) <- calib.model
-mashca_merged$first@UERE
 
 # Observa los datos
 plot(mashca_merged[[2]], error=2)
@@ -369,7 +366,7 @@ plot(mashca_merged[[2]], error=2)
 
 ### Variogramas
 
-El método implementado en _ctmm_ requiere que los animales presenten un comportamiento de rango-residentecia indicado por la función de semivarianza (SVF) de un proceso de movimiento estocástico, el cual puede ser visualizado mediante un variograma. Los detalles sobre este método se encuentran en @fleming_correcting_2018-1.
+El método implementado en _ctmm_ requiere que los animales presenten un comportamiento de rango-residentecia indicado por la función de semivarianza (SVF) de un proceso de movimiento estocástico, el cual puede ser visualizado mediante un variograma. Los detalles sobre este método se encuentran en @fleming_fine-scale_2014.
 
 Debido a que los variogramas incorporan el efecto de tasa de muestreo para evaluar distintos comportamientos,es recomendable evaluar el intervalo en el cual los puntos fueron tomados en el animal.
 ```{r}
@@ -393,9 +390,9 @@ plot(vg[[2]], fraction = 0.9, level=c(0.5,0.95))
 ### _Model fitting_
 
 ```{r include = FALSE}
-load("mashca_fits.RData")
+load("docs/datos/mashca_fits.RData")
 ```
-Tras incorporar el error de posicion a los datos y seleccionar un variograma, debemos realizar una aproximación empírica a lo que el modelo "pareceria ser". Esto puede lograrse con la función `guess`.
+Tras incorporar el error de posición a los datos y seleccionar un variograma, debes realizar una aproximación empírica a lo que el modelo "pareceria ser". Esto puede lograrse con la función `guess`.
 
 ```{r eval = FALSE}
 # guess
@@ -407,7 +404,7 @@ guess[[i]] <- ctmm.guess(mashca_merged[[i]],
 guess[[i]]$error <- TRUE
 }
 ```
-Tambien puedes hacerlo manualmente si es que tienes el suficiente conocimiento sobre los parámetros que estás eligiendo.
+También puedes hacerlo manualmente si es que tienes el suficiente conocimiento sobre los parámetros que estás eligiendo.
 ```{r eval = FALSE}
 ctmm.guess(mashca_merged[[1]],
            variogram = vg[[1]])
@@ -428,11 +425,11 @@ Puedes inspeccinar ambos objetos con `summary` y verás algo como esto:
 summary(fits_second)
 ```
 
-En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales (DOF; speed = 0). Sin embargo, hay suficiente informacion para estimar el home range de mashca (DOF; area = 419.78 - 428.08).
+En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales ya que los grados de libertad de la velocidad son iguales a 0 y el modelo elegido fue OU anisotropic (lee @fleming_fine-scale_2014). Sin embargo, hay suficiente información para estimar el área de vida de mashcaya que los grados de libertad del área son 428.08.
 
 ### AKDE
 
-Para estimar la utilizacion de distribución de la primera mitad de datos de mashca:
+Para estimar la utilización de distribución de la primera mitad de datos de mashca:
 
 ```{r eval = FALSE}
 mashca_first_akde <- akde(mashca_merged[[1]], fits_first,
@@ -456,7 +453,6 @@ Finalmente, puedes realizar un plot de estas áreas.
 par(mfrow=c(2,2))
 plot(mashca_merged[[1]], UD = mashca_first_akde,
       col.grid=NA, level.UD= 0.5, error=2, main = "Primera mitad AKDE core mashca")
-
 plot(mashca_merged[[2]], UD = mashca_second_akde,
       col.grid=NA, level.UD= 0.5, error=2, main = "Segunda mitad AKDE core mashca")
 

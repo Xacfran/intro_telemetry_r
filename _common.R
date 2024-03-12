@@ -14,7 +14,7 @@ library(sp)
 library(move2)
 # Areas de vida
 library(adehabitatHR)
-library(ctmm)
+
 
 # Set global options for knitr
 knitr::opts_chunk$set(
