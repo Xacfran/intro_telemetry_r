@@ -510,7 +510,14 @@ Investiga como realicé los gráficos de las áreas de vida y núcleo estimadas 
 
 Una excelente forma de atraer la atencion a tus proyectos y de alcanzar a un publico general, es mostrandocomo el animal se desplaza por su area de vida sobre mapas satelitales. Con este proposito fue diseñado [moveVis](https://movevis.org/index.html).
 
-Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido de este, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Posteriormente, dirigete a la pestaña de _Packages_ en R Studio y elige la opción _Install_ en la esquina superior izquierda, y elige  instalar desde un archivo `.tar.gz`. Ahora selecciona el directorio donde lo descargaste e instalalo.
+Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido de este, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Este modo de instalación también puede requerir en algunos casos que instales ciertas dependencias primero por lo que te recomiendo que los instales de esta manera.
+
+```{r eval = FALSE}
+library(pacman)
+p_load(move, slippymath, magick, gifski, av, pbapply, moveVis)
+```
+
+Posteriormente, dirigete a la pestaña de _Packages_ en R Studio y elige la opción _Install_ en la esquina superior izquierda, y elige  instalar desde un archivo `.tar.gz`. Ahora selecciona el directorio donde lo descargaste e instalalo.
 
 Accede a Movebank y descarga el set de datos que utilizarás hoy para animar los movimientos de un jaguar muestreado en la Caatinga en Brasil. Para esto, ingresa al mapa y escribe "jaguar conservation in the caatinga biome", elige el estudio y haz click en "Open in studies page". Una vez aparezca la ventana que contiene todo acerca de este estudio, haz clic en "Download" y descarga este archivo en formato `csv`.
 
@@ -542,8 +549,8 @@ courisco <- jaguars %>%
 Ahora deberas llevar a cabo unos cuantos pasos para poder animar los movimientos de Courisco.
 
 ```{r}
-# Transformar en objeto move
-courisco_move <- df2move(courisco[1:4500,],
+# Transformar en objeto move y selecciona una porcion de los datos
+courisco_move <- df2move(courisco[1:500,],
              proj = "+proj=longlat +south +zone=23 +ellps=WGS84",
              x = "location-long", y = "location-lat", time = "study-local-timestamp",
              track_id = "individual-local-identifier")
@@ -615,7 +622,7 @@ animate_frames(frames_edit, out_file = "courisco.gif",
               height = 500, width = 500, res = 82, overwrite = TRUE)
 ```
 
-![Animación de los movimientos del jaguar Courisco en la Caatinga brasilera realizada en _movevis_](docs/Figures/courisco.gif){#fig-courisco fig-alt="movimientos del jaguar Courisco en _movevis_"}
+![Animación de 4500 puntos GPS del jaguar Courisco en la Caatinga brasilera ](docs/Figures/courisco.gif){#fig-courisco fig-alt="movimientos del jaguar Courisco en _movevis_"}
 
 ## Fuentes
 
