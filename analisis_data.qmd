@@ -10,6 +10,7 @@ editor_options:
     wrap: sentence
     canonical: true
 theme: cosmo
+lang: es
 ---
 # Análisis de datos {#sec-analisis-datos}
 
@@ -103,12 +104,12 @@ Puedes aprovechar esta función para simplificar la escritura del código para e
 ```{r echo=TRUE}
 # Extrae las columnas de lipidos y sexo
 lipidos <- data %>%
-            select(colesterol, trigliceridos, sexo) %>%
+            dplyr::select(colesterol, trigliceridos, sexo) %>%
             na.omit()
 
 # Extrae las columnas de compuestos nitrogenados y sexo
 nitrogenados <- data %>%
-                select(proteina, bun, sexo) %>%
+                dplyr::select(proteina, bun, sexo) %>%
                 na.omit()
 ```
 
@@ -121,14 +122,14 @@ Puedes hacer mucho más con este set de datos hipotético que puedes aplicar en 
 ```{r echo=TRUE}
 # Agrega una columna con la relación proteina/bun
 data %>%
-  select(proteina, bun, sexo) %>%
+  dplyr::select(proteina, bun, sexo) %>%
   na.omit() %>%
   mutate(proteina_bun_ratio = proteina / bun) %>%
   head()
 
 # Agrega categorías por rangos
 data %>%
-  select(proteina, bun, sexo) %>%
+  dplyr::select(proteina, bun, sexo) %>%
   na.omit() %>%
   mutate(categoria_bun = case_when(
     bun < 15 ~ "Bajo",
@@ -186,7 +187,7 @@ Ahora utiliza el objeto `nitrogenados` e inspecciona en detalle alguna diferenci
 
 ```{r eval=FALSE}
 nitrogenados %>%
-    select(bun, sexo) %>%
+    dplyr::select(bun, sexo) %>%
     group_by(sexo) %>%
     summarise(media = mean(bun),
                 mediana = median(bun),
@@ -232,12 +233,12 @@ Ahora que tienes evidencia de que los niveles de urea en sangre se aproximan a u
 # Crea un objeto con los machos
 bun_m <- nitrogenados %>%
             filter(sexo == "macho") %>%
-                select(bun) %>% unlist()
+                dplyr::select(bun) %>% unlist()
 
 # Ahora uno con las hembras
 bun_h <- nitrogenados %>%
             filter(sexo == "hembra") %>%
-                select(bun) %>% unlist()
+                dplyr::select(bun) %>% unlist()
 ```
 
 ::: callout-tip
