@@ -267,7 +267,7 @@ Con el advenimiento de nuevas tecnologías para el rastreo de animales, algunos 
 
 Estas variables han sido estandarizadas mediante lenguaje persistente, mediante una lista de vocabulario extensa que puede ser leído por máquinas y que está disponible en el Natural Environment Research Council's Vocabulary Server (mira los detalles [aquí](https://www.movebank.org/cms/movebank-content/movebank-attribute-dictionary)).
 
-El trabajo que realizarás a continuación utilizará una porción de los datos recolectados por @castellanos_pilot_2022 de un zorro andino en Ecuador que puedes obtenerla aquí. Sin embargo, si quieres trabajar con las más de 6 mil posiciones satelitales, puedes acceder al [repositorio de Movebank](doi:10.5441/001/1.1q2c075p), o también puedes crear una cuenta en [www.movebank.org](www.movebank.org) y buscar el proyecto "_Home range and movement patterns of the Andean Fox in Cotopaxi National Park Ecuador_".
+El trabajo que realizarás a continuación utilizará una porción de los datos recolectados por @castellanos_pilot_2022 de un zorro andino en Ecuador que puedes obtenerla [aquí](https://mega.nz/folder/F01TibSK#DHHrerhI5tiCFSbYISLLjA). Sin embargo, si quieres trabajar con las más de 6 mil posiciones satelitales, puedes acceder al [repositorio de Movebank](doi:10.5441/001/1.1q2c075p), o ingresar a [www.movebank.org](www.movebank.org) y buscar el proyecto "_Home range and movement patterns of the Andean Fox in Cotopaxi National Park Ecuador_".
 
 ## Autocorrelated Kernel Density Estimate (AKDE)
 
@@ -275,9 +275,9 @@ Lo descrito en esta sección es una parte muy pequeña de todo lo que puedes log
 
 ### Error de posición
 
-El primer paso en este flujo de trabajo es estimar el error de posición GPS. La explicación matemática de este parámetro se detalla en @fleming_comprehensive_2020, acompañada por varias medidas de error de una gran variedad de collares, en caso de que no poseas información de calibración del collar o si no fuiste capaz de obternerla. Una [viñeta de R](https://ctmm-initiative.github.io/ctmm/articles/error.html) explica un poco más sobre este proceso.
+El primer paso en este flujo de trabajo es estimar el error de posición GPS. La explicación matemática de este parámetro se detalla en @fleming_comprehensive_2020, acompañada por varias medidas de error de una gran variedad de collares. En caso de que no poseas información de calibración del collar o si no fuiste capaz de obtenerla, esta [viñeta de R](https://ctmm-initiative.github.io/ctmm/articles/error.html) te explica un poco más sobre este proceso.
 
-En este caso, usaremos el error de calibración oportunista que se obtuvo tras la muerte del zorro andino Mashca.
+Aquuí usarás el error de calibración oportunista que se obtuvo tras la muerte del zorro andino Mashca.
 
 ```{r include = FALSE}
 calibracion <- read.csv("docs/datos/mashca_calibration.csv")
@@ -298,7 +298,7 @@ Ahora plotea este objeto utilizando cualquiera de las columnas de posición.
 plot(calibracion$utm.easting, calibracion$utm.northing)
 ```
 
-Convierte este objeto a una nueva clase de objeto con la función `as.telemetry`. Asegurate de saber cual es la zona horaria de tu lugar de estudio y del [código EPSG](https://spatialreference.org/ref/epsg/32717/), o puedes utilizar los argumentos `projstring` que utilizamos en @sec-transf-proy para la transformaciónn a UTM.
+Convierte este objeto a una nueva clase de objeto con la función `as.telemetry`. Asegúrate de saber cual es la zona horaria de tu lugar de estudio y del [código EPSG](https://spatialreference.org/ref/epsg/32717/), o puedes utilizar los argumentos `projstring` que utilizamos en @sec-transf-proy para la transformaciónn a UTM.
 
 ```{r}
 library(ctmm)
@@ -366,15 +366,14 @@ plot(mashca_merged[[2]], error=2)
 
 ### Variogramas
 
-El método implementado en _ctmm_ requiere que los animales presenten un comportamiento de rango-residentecia indicado por la función de semivarianza (SVF) de un proceso de movimiento estocástico, el cual puede ser visualizado mediante un variograma. Los detalles sobre este método se encuentran en @fleming_fine-scale_2014.
+El método implementado en _ctmm_ requiere que los animales presenten un comportamiento de rango-residencia indicado por la función de semivarianza (SVF) de un proceso de movimiento estocástico, el cual puede ser visualizado mediante un variograma. Los detalles sobre este método se encuentran en @fleming_fine-scale_2014.
 
-Debido a que los variogramas incorporan el efecto de tasa de muestreo para evaluar distintos comportamientos,es recomendable evaluar el intervalo en el cual los puntos fueron tomados en el animal.
+Debido a que los variogramas incorporan el efecto de tasa de muestreo para evaluar distintos comportamientos, es recomendable evaluar el intervalo en el cual los puntos de locación fueron tomados.
 ```{r}
 # Obtener grafico de intervalos
 dt.plot(mashca_merged[[2]])
 ablines = abline(h = c(1, 2, 4) %#% "hours", col = "red")
-
-# Aplicar este intervalo en un nuevo objeto
+# Aplica este intervalo en un nuevo objeto
 dt = c(c(2, 4) %#% "hours")
 
 # Evalua el variograma
@@ -425,7 +424,7 @@ Puedes inspeccinar ambos objetos con `summary` y verás algo como esto:
 summary(fits_second)
 ```
 
-En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales ya que los grados de libertad de la velocidad son iguales a 0 y el modelo elegido fue OU anisotropic (lee @fleming_fine-scale_2014). Sin embargo, hay suficiente información para estimar el área de vida de mashcaya que los grados de libertad del área son 428.08.
+En breve, ambos objetos muestran que no hay suficiente señal en la información para poder estimar velocidades no lineales ya que los grados de libertad de la velocidad son iguales a 0 y el modelo elegido fue OU anisotropic (lee @fleming_fine-scale_2014). Sin embargo, hay suficiente información para estimar el área de vida de Mashca ya que los grados de libertad del área son 419.78.
 
 ### AKDE
 
@@ -508,9 +507,9 @@ Investiga como realicé los gráficos de las áreas de vida y núcleo estimadas 
 
 ## _moveVis_
 
-Una excelente forma de atraer la atencion a tus proyectos y de alcanzar a un publico general, es mostrandocomo el animal se desplaza por su area de vida sobre mapas satelitales. Con este proposito fue diseñado [moveVis](https://movevis.org/index.html).
+Una excelente forma de atraer la atención a tus proyectos y de alcanzar a una audiencia no académica, es mostrando como el animal se desplaza por su área de vida sobre mapas satelitales. Es con este proposito que fue diseñado [moveVis](https://movevis.org/index.html).
 
-Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido de este, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Este modo de instalación también puede requerir en algunos casos que instales ciertas dependencias primero por lo que te recomiendo que los instales de esta manera.
+Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Este modo de instalación también puede requerir en algunos casos que instales ciertas dependencias primero por lo que te recomiendo que los instales de esta manera.
 
 ```{r eval = FALSE}
 library(pacman)
@@ -519,7 +518,7 @@ p_load(move, slippymath, magick, gifski, av, pbapply, moveVis)
 
 Posteriormente, dirigete a la pestaña de _Packages_ en R Studio y elige la opción _Install_ en la esquina superior izquierda, y elige  instalar desde un archivo `.tar.gz`. Ahora selecciona el directorio donde lo descargaste e instalalo.
 
-Accede a Movebank y descarga el set de datos que utilizarás hoy para animar los movimientos de un jaguar muestreado en la Caatinga en Brasil. Para esto, ingresa al mapa y escribe "jaguar conservation in the caatinga biome", elige el estudio y haz click en "Open in studies page". Una vez aparezca la ventana que contiene todo acerca de este estudio, haz clic en "Download" y descarga este archivo en formato `csv`.
+Accede a Movebank y descarga el set de datos que utilizarás hoy para animar los movimientos de un jaguar muestreado en la Caatinga en Brasil. Para esto, ingresa al mapa y escribe _"jaguar conservation in the caatinga biome"_, elige el estudio y haz click en "Open in studies page". Una vez aparezca la ventana que contiene todo acerca de este estudio, haz clic en "Download" y descarga este archivo en formato `csv`.
 
 ```{r include = FALSE}
 library(moveVis)
@@ -546,7 +545,7 @@ courisco <- jaguars %>%
   filter(`individual-local-identifier` == "Courisco")
 ```
 
-Ahora deberas llevar a cabo unos cuantos pasos para poder animar los movimientos de Courisco.
+Ahora deberás llevar a cabo unos cuantos pasos para poder animar los movimientos de Courisco.
 
 ```{r}
 # Transformar en objeto move y selecciona una porcion de los datos
@@ -568,19 +567,19 @@ summary(lagging)
 hist(lagging, xlab= "mins", xlim= c(0, 400), breaks= 40)
 ```
 
-Utiliza el numero estimado anteriormente para alinear y estandarizar la frecuencia de muestreo sobre el objeto.
+Utiliza el número estimado anteriormente para alinear y estandarizar la frecuencia de muestreo sobre el objeto.
 
 ```{r}
 courisco_move <- align_move(courisco_move, res = 60, unit = "mins")
 ```
 
-Hay una variedad de mapas que puedes utilizar como fondo para tu animacion.
+Hay una variedad de mapas que puedes utilizar como fondo para tu animación.
 ```{r}
 ##ver mapas disponibles
 get_maptypes()
 ```
 
-Tambien puedes indicar cuantos nucleos quieres utilizar para acelerar el proceso.
+También puedes indicar cuantos núcleos quieres utilizar para acelerar el proceso.
 
 ```{r eval = FALSE}
 ##utilizar nucleos
@@ -603,7 +602,7 @@ frames <- frames_spatial(courisco_move,
 frames[[535]]
 ```
 
-Puedes editar el formato de estas imagenes siguiendo el estilo de escritura de ggplot.
+Puedes editar el formato de estas imágenes siguiendo el estilo de escritura de _ggplot2_.
 
 ```{r eval = FALSE}
 frames_edit <- add_labels(frames, x = "Longitud" , y = "Latitud", verbose = TRUE) %>%
@@ -626,4 +625,4 @@ animate_frames(frames_edit, out_file = "courisco.gif",
 
 ## Fuentes
 
-Puedes utilizar el [manual de _adehabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) para resolver los ejercicios de este tutorial, y puedes explorar más funciones que también ofrece este paquete.
+Puedes utilizar el [manual de _adehabitatHR_](https://cran.r-project.org/web/packages/adehabitatHR/vignettes/adehabitatHR.pdf) para resolver algunos ejercicios de este tutorial, y puedes explorar más funciones que también ofrece este paquete
