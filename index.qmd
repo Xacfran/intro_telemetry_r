@@ -64,4 +64,4 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 
 ## Agradecimientos {.unnumbered}
 
-Esta edición del curso ha sido auspiciada por el Instituto Nacional de Biodiversidad y la Universidad Técnica de Cotopaxi.
+Esta edición del curso ha sido auspiciada por el [Instituto Nacional de Biodiversidad](http://inabio.biodiversidad.gob.ec/).
