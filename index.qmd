@@ -39,12 +39,12 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 | 10:00 - 10:30     | - México                        |                                              |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 14, 2024     | Sean Sutor - Estados Unidos    | Using telemetry to understand tortoise          |
-| 11:00 - 11:30     |                                 | habitat selection, and space use.          |
-|                   |                                 |             |
+| Julio 14, 2024    | Sean Sutor - Estados Unidos    | Using telemetry to understand tortoise        |
+| 11:00 - 11:30     |                                 | habitat selection, and space use.            |
+|                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| A determinar     | Mateo Noboa - Ecuador         | Ocupación, patrones de actividad y abundancia|
-|      |                                 | relativa de la danta de tierras bajas        |
+| A determinar      | Mateo Noboa - Ecuador           | Ocupación, patrones de actividad y abundancia|
+|                   |                                 | relativa de la danta de tierras bajas        |
 |                   |                                 | (*Tapirus terrestris*) en Arauca, Colombia   |
 +-------------------+---------------------------------+----------------------------------------------+
 
