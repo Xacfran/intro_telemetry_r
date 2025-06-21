@@ -39,11 +39,20 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 | 10:00 - 10:30     |                                 |                                              |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 14, 2024    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
+| Julio 14, 2025    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
 | 11:00 - 11:30     |                                 | habitat selection, and space use.            |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 15, 2024    | Mateo Noboa - Ecuador           |                                              |
+| Julio 15, 2025    | Laura Paunero del Río           |  Bioindicadores de salud ecológica en bosques|
+|                   |                                 |  tropicales de Costa Rica: infección         |
+|                   |                                 |  parasitaria, genes de resistencia a         |
+|                   |                                 | antimicrobianos y variabilidad genética en.  |
+|                   |                                 |  poblaciones de jaguar (Panthera onca).      |
+|                   |                                 |                                              |
+| 10:00 - 10:30     |                                 |                                              |
+|                   |                                 |                                              |
++-------------------+---------------------------------+----------------------------------------------+
+| Julio 15, 2025    | Mateo Noboa - Ecuador           |                                              |
 | 11:00 - 11:30     |                                 |  A determinar                                |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
