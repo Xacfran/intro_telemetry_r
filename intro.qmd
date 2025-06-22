@@ -24,17 +24,19 @@ R Studio es un entorno de desarrollo integrado (IDE por sus siglas en inglés), 
 Este software provee una interfaz intuitiva que permite un manejo fácil y amigable de cualquier tipo de datos.
 Tanto R como R Studio son de código abierto y pueden descargarse gratuitamente.
 
-Actualmente, existen dos alternativas para utilizar R Studio.
-Este puede instalarse localmente en un computador, o puedes utilizarlo en la web a través de [Posit Cloud](https://posit.cloud/).
+Actualmente, puedes utilizar R mediante cuatro IDEs.
+El recomendado y más ampliamente utilizado es R Studio, el cual también puedes utilizarlo en la web a través de [Posit Cloud](https://posit.cloud/).
 Esta última opción es muy útil si tu computador no cuenta con suficiente memoria RAM.
 Crear una cuenta en Posit cloud es gratis y puedes crear hasta **25 proyectos**.
 Para hacerlo solamente sigue [este enlace](https://posit.cloud/plans/free), haz clic en *Sign up*, y sigue las instrucciones.
 
-Una vez hayas creado tu cuenta, verás una ventana como la siguiente y puedes crear un nuevo proyecto:
+Una vez hayas creado tu cuenta, verás una ventana como la siguiente y allí podrás crear un nuevo proyecto.
 
 ![](docs/Figures/posit_cloud_start.png)
 
-Por el contrario, si quieres tener R y R Studio en tu computador debes contar con acceso a internet y cualquier navegador web de tu preferencia, Chrome, Firefox, etc.
+Si eres un usuario avanzado te recomiendo utilizarlo a través de [Positron](https://positron.posit.co/start.html) o [Visual Studio Code](https://code.visualstudio.com/). Positron aún está en versión Beta, pero tiene gran potencial, y ha sido diseñado a partir de Visual Studio Code pero con mayores ajustes al análisis de datos con R.
+
+En este curso, vamos a utilizar R y R Studio localmente en nuestro computador, para lo cual debes contar con acceso a internet y cualquier navegador web de tu preferencia, Chrome, Firefox, etc.
 Si tu Sistema Operativo es Windows la descarga de R debe hacerse desde el subdirectorio base en la web de CRAN (Comprehensive R Archive Network), [aquí](https://cran.r-project.org/bin/windows/base/).
 De la misma manera, R Studio para Windows puede ser descargado desde [aquí](https://posit.co/download/rstudio-desktop/).
 Si surge algún problema durante la instalación o quieres saber más sobre R, puedes dirigirte a la sección de [Preguntas frecuentes](https://cran.r-project.org/doc/FAQ/R-FAQ.html).
