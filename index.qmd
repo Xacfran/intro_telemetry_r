@@ -36,24 +36,32 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 | Fecha             | Expositor                       | Tema                                         |
 +===================+=================================+==============================================+
 | Julio 8, 2025     | Carlos Navarro - México         | El jaguar. Majestuoso señor de las selvas    |
-| 10:00 - 10:30     |                                 |                                              |
 |                   |                                 |                                              |
+| 10:00 - 10:30     |                                 |                                              |
++-------------------+---------------------------------+----------------------------------------------+
+| Julio 10, 2025    | Mateo Noboa - Ecuador           |                                              |
+|                   |                                 |  A determinar                                |
+| 11:00 - 11:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 14, 2025    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
-| 11:00 - 11:30     |                                 | habitat selection, and space use.            |
-|                   |                                 |                                              |
+|                   |                                 | habitat selection, and space use.            |
+| 11:00 - 11:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 15, 2025    | Laura Paunero del Río           |  Bioindicadores de salud ecológica en bosques|
+| Julio 15, 2025    | Laura Paunero del Río - España  |  Bioindicadores de salud ecológica en bosques|
 |                   |                                 |  tropicales de Costa Rica: infección         |
 |                   |                                 |  parasitaria, genes de resistencia a         |
-|                   |                                 | antimicrobianos y variabilidad genética en.  |
-|                   |                                 |  poblaciones de jaguar (Panthera onca).      |
+| 10:00 - 10:30     |                                 | antimicrobianos y variabilidad genética en   |
+|                   |                                 |  poblaciones de jaguar (*Panthera onca*).    |
 |                   |                                 |                                              |
-| 10:00 - 10:30     |                                 |                                              |
+|                   |                                 |                                              |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 15, 2025    | Mateo Noboa - Ecuador           |                                              |
-| 11:00 - 11:30     |                                 |  A determinar                                |
+| Julio 16, 2025    | Richard Forest - Estados Unidos | Potencial para la investigación bioacústica  |
+|                   |                                 | de mamíferos en Ecuador.                     |
+| 11:00 - 11:30     |                                 |                                              |
++-------------------+---------------------------------+----------------------------------------------+
+| A determinar      | Gerardo Cerón - Argentina.      |                                              |
+|                   |                                 |  A determinar                                |
 |                   |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 
@@ -61,4 +69,4 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 
 ## Agradecimientos {.unnumbered}
 
-Esta edición del curso ha sido auspiciada por el [Instituto Nacional de Biodiversidad](http://inabio.biodiversidad.gob.ec/).
+Este curso es auspiciado por el [Instituto Nacional de Biodiversidad](http://inabio.biodiversidad.gob.ec/).
