@@ -39,19 +39,19 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 |                   |                                 |                                              |
 | 10:00 - 10:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 10, 2025    | Mateo Noboa - Ecuador           |                                              |
-|                   |                                 |  A determinar                                |
-| 11:00 - 11:30     |                                 |                                              |
+| Julio 10, 2025    | Mateo Noboa - Ecuador           |  Modelamiento del nicho ecológico de víboras |
+|                   |                                 |  ecuatorianas bajo escenarios de cambio      |
+| 11:00 - 11:30     |                                 |  climático                                   |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 14, 2025    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
 |                   |                                 | habitat selection, and space use.            |
 | 11:00 - 11:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 15, 2025    | Laura Paunero del Río - España  |  Bioindicadores de salud ecológica en bosques|
-|                   |                                 |  tropicales de Costa Rica: infección         |
-|                   |                                 |  parasitaria, genes de resistencia a         |
+| Julio 15, 2025    | Laura Paunero del Río - España  | Bioindicadores de salud ecológica en bosques |
+|                   |                                 | tropicales de Costa Rica: infección          |
+|                   |                                 | parasitaria, genes de resistencia a          |
 | 10:00 - 10:30     |                                 | antimicrobianos y variabilidad genética en   |
-|                   |                                 |  poblaciones de jaguar (*Panthera onca*).    |
+|                   |                                 | poblaciones de jaguar (*Panthera onca*).     |
 |                   |                                 |                                              |
 |                   |                                 |                                              |
 |                   |                                 |                                              |
@@ -60,9 +60,9 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 |                   |                                 | de mamíferos en Ecuador.                     |
 | 11:00 - 11:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
-| A determinar      | Gerardo Cerón - Argentina.      |                                              |
-|                   |                                 |  A determinar                                |
-|                   |                                 |                                              |
+| Julio 17, 2025    | Gerardo Cerón - Argentina       |                                              |
+|                   |                                 | Telemetría aplicada a la conservación        |
+| 10:00 - 10:30     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 
 : Las horas corresponden al horario de Ecuador (GMT -5)
