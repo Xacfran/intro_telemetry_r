@@ -410,6 +410,19 @@ Lee el apartado de ayuda de `ggMarginal` y grafica un diagrama de caja y
 bigotes en lugar de un histograma.
 :::
 
+### Exportando figuras
+
+Existen algunas opciones para exportar los gráficos generados en R, una de ellas es `ggsave`. Por default ggsave exporta la última figura generada, pero también puedes guardar cualquier imagen como un objeto y exportarla en cualquier punto de tu trabajo. Exportar utilizando esta función te da mucho control sobre la calidad y extensión de la figura. [Esta guía](https://ggplot2.tidyverse.org/reference/ggsave.html) te da muchos más detalles sobre los argumentos que puedes utilizar dentro de la función. Para mantener las cosas sencillas en este curso, utiliza el siguiente código para exportar la última imagen generada
+
+```{r eval= FALSE}
+ggsave("lipidos_osos.png",
+  width = 5,
+  height = 5,
+  units = "cm",
+  dpi = 72)
+```
+
+
 ## Fuentes {#sec-est-basica-fuentes}
 
 Este capítulo fue tomado y adaptado de diversas fuentes, siendo [R for Data Science](https://r4ds.had.co.nz/), el curso gratis de edX [Statistics and R](https://www.edx.org/course/statistics-and-r), [Linear Algebra for Data Science with examples in R](https://shainarace.github.io/LinearAlgebra/index.html), [Plotting PCA](https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html), y [Principal Component Methods in R: Practical Guide](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/#biplot) las más grandes influencias de este trabajo.
