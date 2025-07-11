@@ -37,20 +37,20 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 +===================+=================================+==============================================+
 | Julio 8, 2025     | Carlos Navarro - México         | El jaguar. Majestuoso señor de las selvas    |
 |                   |                                 |                                              |
-| 10:00 - 10:30     |                                 |                                              |
+| 10:00 - 11:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 10, 2025    | Mateo Noboa - Ecuador           |  Modelamiento del nicho ecológico de víboras |
 |                   |                                 |  ecuatorianas bajo escenarios de cambio      |
-| 11:00 - 11:30     |                                 |  climático                                   |
+| 11:00 - 12:00     |                                 |  climático                                   |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 14, 2025    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
 |                   |                                 | habitat selection, and space use.            |
-| 11:00 - 11:30     |                                 |                                              |
+| 11:00 - 12:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 15, 2025    | Laura Paunero del Río - España  | Bioindicadores de salud ecológica en bosques |
 |                   |                                 | tropicales de Costa Rica: infección          |
 |                   |                                 | parasitaria, genes de resistencia a          |
-| 10:00 - 10:30     |                                 | antimicrobianos y variabilidad genética en   |
+| 10:00 - 11:00     |                                 | antimicrobianos y variabilidad genética en   |
 |                   |                                 | poblaciones de jaguar (*Panthera onca*).     |
 |                   |                                 |                                              |
 |                   |                                 |                                              |
@@ -58,11 +58,11 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 16, 2025    | Richard Forest - República Checa| Potencial para la investigación bioacústica  |
 |                   |                                 | de mamíferos en Ecuador.                     |
-| 11:00 - 11:30     |                                 |                                              |
+| 11:00 - 12:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 17, 2025    | Gerardo Cerón - Argentina       |                                              |
 |                   |                                 | Telemetría aplicada a la conservación        |
-| 10:00 - 10:30     |                                 |                                              |
+| 10:00 - 11:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 
 : Las horas corresponden al horario de Ecuador (GMT -5)
