@@ -302,6 +302,8 @@ Convierte este objeto a una nueva clase de objeto con la función `as.telemetry`
 
 ```{r}
 library(ctmm)
+library(raster)
+
 calib.ctmm <- as.telemetry(calibracion, timezone = "America/Bogota", projection =
                                 CRS("+init=epsg:32717"))
 summary(calib.ctmm)
@@ -336,6 +338,8 @@ mashca_second <- read.csv("mashca_second_half.csv")
 Como es habitual, limpia estos objetos e importalos a _ctmm_ tal como lo hiciste para la información de calibración.
 
 ```{r}
+library(tidyverse)
+
 mashca_first <- mashca_first[, c(3:5,8,9,15,18,19, 22)] %>%
     na.omit() %>%
   filter(gps.dop < 3, gps.fix.type.raw == "val. GPS-3D")
@@ -513,7 +517,7 @@ Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repos
 
 ```{r eval = FALSE}
 library(pacman)
-p_load(move, slippymath, magick, gifski, av, pbapply, moveVis)
+p_load(move, slippymath, magick, gifski, av, pbapply)
 ```
 
 Posteriormente, dirigete a la pestaña de _Packages_ en R Studio y elige la opción _Install_ en la esquina superior izquierda, y elige  instalar desde un archivo `.tar.gz`. Ahora selecciona el directorio donde lo descargaste e instalalo.
