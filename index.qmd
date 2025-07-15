@@ -43,9 +43,9 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 |                   |                                 |  ecuatorianas bajo escenarios de cambio      |
 | 11:00 - 12:00     |                                 |  climático                                   |
 +-------------------+---------------------------------+----------------------------------------------+
-| Julio 14, 2025    | Sean Sutor - Estados Unidos     | Using telemetry to understand tortoise       |
-|                   |                                 | habitat selection, and space use.            |
-| 11:00 - 12:00     |                                 |                                              |
+| Julio 14, 2025    | Sean Sutor, Kyle Griffis,       | Using telemetry to understand tortoise       |
+|                   | Nancy McIntyre                  | habitat selection, and space use.            |
+| 11:00 - 12:00     | - Estados Unidos                |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 15, 2025    | Laura Paunero del Río - España  | Bioindicadores de salud ecológica en bosques |
 |                   |                                 | tropicales de Costa Rica: infección          |
