@@ -58,7 +58,7 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 16, 2025    | Richard Forest - República Checa| Potencial para la investigación bioacústica  |
 |                   |                                 | de mamíferos en Ecuador.                     |
-| 11:00 - 12:00     |                                 |                                              |
+| 10:00 - 11:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 | Julio 17, 2025    | Gerardo Cerón - Argentina       |                                              |
 |                   |                                 | Telemetría aplicada a la conservación        |
