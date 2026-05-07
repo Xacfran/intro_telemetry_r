@@ -10,7 +10,7 @@ book:
     left: |
       Escrito por <a href="https://xacfran.github.io/digital-resume/">FXC</a> en <a href="https://quarto.org/">Quarto</a>.
     right: |
-      © 2024 Fundación Oso Andino. Todos los derechos reservados.
+      © 2026 Fundación Oso Andino. Todos los derechos reservados.
   cover-image: docs/Figures/cover.png
   favicon: docs/Figures/cover.png
   repo-url: https://github.com/Xacfran/intro_telemetry_r
