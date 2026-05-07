@@ -13,11 +13,11 @@ editor_options:
 
 # Inicio {.unnumbered}
 
-Esta es la séptima edición del curso de Introducción a la Ecología y Telemetría de Grandes Mamíferos dictado por la <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
+Esta es la octava edición del curso de Introducción a la Ecología y Telemetría de Grandes Mamíferos dictado por la <a href="https://osoandino.org">Fundación Oso Andino</a>. Puedes enterarte sobre el cronograma de actividades <a href="https://drive.google.com/file/d/17hlpS6ZyRcRVw-YguwXConvJJJ9oZ2c0/view">aquí</a>.
 
 ## Código de conducta {.unnumbered}
 
-Queremos asegurarnos que tu expreiencia en el curso sea lo más agradable y fluida posible, y que puedas aprovechar al máximo el tiempo con nosotros.
+Queremos asegurarnos que tu experiencia en el curso sea lo más agradable y fluida posible, y que puedas aprovechar al máximo el tiempo con nosotros.
 
 Para poder llevar las actividades dentro del horario establecido y con normalidad, te pedimos:
 
@@ -28,7 +28,7 @@ Para poder llevar las actividades dentro del horario establecido y con normalida
 
 Por favor, recuerda que queremos mantener un ambiente respetuoso y amigable para todos. Cualquier comportamiento inapropiado o que perturbe la armonía del grupo podría resultar en la expulsión de la sala. Queremos que todos se sientan cómodos y seguros aquí, así que te pedimos que respetes estas normas para que podamos disfrutar de nuestro tiempo juntos al máximo.
 
-## Expositores
+<!-- ## Expositores
 
 Estudiantes y profesionales brindarán charlas para mostrar el trabajo que llevan a cabo en sus países.
 
@@ -65,7 +65,11 @@ Estudiantes y profesionales brindarán charlas para mostrar el trabajo que lleva
 | 10:00 - 11:00     |                                 |                                              |
 +-------------------+---------------------------------+----------------------------------------------+
 
-: Las horas corresponden al horario de Ecuador (GMT -5)
+: Las horas corresponden al horario de Ecuador (GMT -5) -->
+
+## Licencia {.unnumbered}
+
+El contenido de este libro virtual está bajo licencia [CC BY-NC-ND 4.0 license](https://creativecommons.org/licenses/by-nc-nd/4.0/). Está prohibido cualquier uso comercial y la distribución de versiones modificadas. Sin embargo, permitimos copiar, descargar y compartir el material original con fines educativos atribuyendo el crédito correspondiente.
 
 ## Agradecimientos {.unnumbered}
 
