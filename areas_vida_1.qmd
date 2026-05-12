@@ -117,13 +117,14 @@ plot(mamiferos[, c("longitude", "latitude")], pch=20)
 Realiza una limpieza de este set de datos, elimina outliers y datos faltantes, y crea un objeto que contenga únicamente a "juancho". Finalmente, verifica que el proceso haya sido exitoso.
 :::
 
-```{r}
+```{r eval=FALSE}
 # Verificación visual
 library(plotly)
 
 mamiferos_outliers <- mamiferos %>%
-  ggplot(aes(x= longitude, y=latitude, colour = name))+
-  geom_point(alpha = 0.5)
+  ggplot(aes(x = longitude, y = latitude, colour = name)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal()
 
 ggplotly(mamiferos_outliers)
 ```

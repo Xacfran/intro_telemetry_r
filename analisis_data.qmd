@@ -143,6 +143,22 @@ data %>%
 ¿Cómo harías para seleccionar y guardar únicamente los valores normales en nuevo *data frame*?
 :::
 
+### Exportando data frames
+
+Existen varios métodos por los cuales se pueden exportar data frames, el más popular quizás sea transformalos a archivos csv (*comma separated values*).
+
+```{r echo=TRUE}
+# Crea un objeto
+para_exportar <- data %>%
+  dplyr::select(proteina, bun, sexo) %>%
+  na.omit() %>%
+  mutate(proteina_bun_ratio = proteina / bun) %>%
+  head()
+
+write.csv(para_exportar, file = "rangos_proteina_bun.csv", quote = FALSE, row.names = FALSE)
+```
+
+
 ## Estadística básica en R {#sec-est-basica}
 
 Puedes realizar una exploración rápida de tus datos antes de iniciar análisis específicos. Observemos en un *scatterplot* como se distribuyen los datos.
@@ -359,7 +375,7 @@ Por ahora nos concentraremos en indagar en algunas de las tantas opciones de per
 ### Plotly
 Imaginemos que una vez concluidos nuestros análisis, estamos disconformes con ellos y creemos que puede deberse a un error en los datos. ¿Como podríamos identificar entre tantos valores a aquel que genera un error en el cálculo de estadísticos? Para generar el gráfico que nos puede ayudar a responder esta pregunta, necesitaremos descargar primeramente el paquete *plotly*.
 
-```{r eval=TRUE, fig.align="center", fig.width=5, fig.height=5}
+```{r eval=FALSE, fig.align="center", fig.width=5, fig.height=5}
 library(plotly)
 
 # Crea un objeto que contenga un ggplot de nuestro dataset lipidos.

@@ -2,3 +2,10 @@
 /_extensions/
 /docs/Figures/
 /docs/datos/
+
+# telemetry objs
+*.dbf
+*.prj
+*.shp
+*.shx
+*.kml
