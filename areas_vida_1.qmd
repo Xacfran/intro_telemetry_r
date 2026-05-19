@@ -512,6 +512,8 @@ Investiga como realicé los gráficos de las áreas de vida y núcleo estimadas 
 
 ## _moveVis_
 
+> Para utilizar _moveVis_ es recomendable que utilicen su computadora personal ya sea R Studio o Positron, debido a que este paquete demanda mucha memoria y procesamiento que Posit Cloud no puede proporcionar.
+
 Una excelente forma de atraer la atención a tus proyectos y de alcanzar a una audiencia no académica, es mostrando como el animal se desplaza por su área de vida sobre mapas satelitales. Es con este proposito que fue diseñado [moveVis](https://movevis.org/index.html).
 
 Ya que _moveVis_ ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido, te recomiendo descargar la versión 0.10.5 [desde aquí](https://cran.r-project.org/src/contrib/Archive/moveVis/). Este modo de instalación también puede requerir en algunos casos que instales ciertas dependencias primero por lo que te recomiendo que los instales de esta manera.
@@ -594,7 +596,7 @@ use_multicore(n_cores = numero)
 
 Finalmente, utiliza el objeto alineado y estandarizado para obtener los frames.
 ```{r eval = FALSE}
-# Crear el objeto que alamcene los frames de la animacion
+# Crear el objeto que almacene los frames de la animacion
 frames <- frames_spatial(courisco_move,
                          map_service = "osm",
                          map_type = "topographic",
@@ -604,18 +606,19 @@ frames <- frames_spatial(courisco_move,
                          tail_size = 2,
                          tail_length = 5)
 
+# Explora uno de los frames
 frames[[535]]
 ```
 
 Puedes editar el formato de estas imágenes siguiendo el estilo de escritura de _ggplot2_.
 
 ```{r eval = FALSE}
-frames_edit <- add_labels(frames, x = "Longitud" , y = "Latitud", verbose = TRUE) %>%
+frames_edit <- add_labels(frames, x = "Longitud" , y = "Latitud", title = "Movimientos del jaguar Courisco en Brasil") %>%
   add_scalebar(height = 0.015) %>%
   add_northarrow() %>%
-  add_timestamps(courisco_move, type = "label") %>%
-  add_gg(frames, gg = expr(labs(title = "Movimientos del jaguar Courisco en Brasil")))
+  add_timestamps(courisco_move, type = "label")
 
+# Explora uno de los frames editados
 frames_edit[[535]]
 ```
 
