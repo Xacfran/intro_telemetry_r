@@ -820,6 +820,9 @@ Tarea
 </section>
 <section id="movevis" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="movevis"><span class="header-section-number">4.6</span> <em>moveVis</em></h2>
+<blockquote class="blockquote">
+<p>Para utilizar <em>moveVis</em> es recomendable que utilicen su computadora personal ya sea R Studio o Positron, debido a que este paquete demanda mucha memoria y procesamiento que Posit Cloud no puede proporcionar.</p>
+</blockquote>
 <p>Una excelente forma de atraer la atención a tus proyectos y de alcanzar a una audiencia no académica, es mostrando como el animal se desplaza por su área de vida sobre mapas satelitales. Es con este proposito que fue diseñado <a href="https://movevis.org/index.html">moveVis</a>.</p>
 <p>Ya que <em>moveVis</em> ha pasado por algunos cambios que no han sido cargados al repositorio de CRAN y este ha sido removido, te recomiendo descargar la versión 0.10.5 <a href="https://cran.r-project.org/src/contrib/Archive/moveVis/">desde aquí</a>. Este modo de instalación también puede requerir en algunos casos que instales ciertas dependencias primero por lo que te recomiendo que los instales de esta manera.</p>
 <div class="cell">
@@ -902,7 +905,7 @@ Tarea
 </div>
 <p>Finalmente, utiliza el objeto alineado y estandarizado para obtener los frames.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el objeto que alamcene los frames de la animacion</span></span>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el objeto que almacene los frames de la animacion</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>frames <span class="ot">&lt;-</span> <span class="fu">frames_spatial</span>(courisco_move,</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">map_service =</span> <span class="st">"osm"</span>,</span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">map_type =</span> <span class="st">"topographic"</span>,</span>
@@ -912,16 +915,17 @@ Tarea
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tail_size =</span> <span class="dv">2</span>,</span>
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tail_length =</span> <span class="dv">5</span>)</span>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>frames[[<span class="dv">535</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Explora uno de los frames</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>frames[[<span class="dv">535</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Puedes editar el formato de estas imágenes siguiendo el estilo de escritura de <em>ggplot2</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>frames_edit <span class="ot">&lt;-</span> <span class="fu">add_labels</span>(frames, <span class="at">x =</span> <span class="st">"Longitud"</span> , <span class="at">y =</span> <span class="st">"Latitud"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>frames_edit <span class="ot">&lt;-</span> <span class="fu">add_labels</span>(frames, <span class="at">x =</span> <span class="st">"Longitud"</span> , <span class="at">y =</span> <span class="st">"Latitud"</span>, <span class="at">title =</span> <span class="st">"Movimientos del jaguar Courisco en Brasil"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_scalebar</span>(<span class="at">height =</span> <span class="fl">0.015</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_northarrow</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_timestamps</span>(courisco_move, <span class="at">type =</span> <span class="st">"label"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_gg</span>(frames, <span class="at">gg =</span> <span class="fu">expr</span>(<span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Movimientos del jaguar Courisco en Brasil"</span>)))</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_timestamps</span>(courisco_move, <span class="at">type =</span> <span class="st">"label"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Explora uno de los frames editados</span></span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>frames_edit[[<span class="dv">535</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Puedes mirar varios formatos para exportar la animación utilizando <code>suggest_formats()</code>.</p>
